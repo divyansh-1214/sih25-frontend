@@ -15,13 +15,13 @@ import {
 } from "lucide-react"
 
 const navigation = [
-  { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
-  { name: "Vehicle Tracking", href: "/vehicles", icon: Truck },
-  { name: "Compliance", href: "/compliance", icon: ClipboardCheck },
-  { name: "Enforcement", href: "/enforcement", icon: AlertTriangle },
-  { name: "Citizen Reports", href: "/reports", icon: MessageSquare },
-  { name: "Analytics", href: "/analytics", icon: BarChart3 },
-  { name: "Worker Management", href: "/workers", icon: Users },
+  { name: "Dashboard", href: "/authority/dashboard", icon: LayoutDashboard },
+  { name: "Vehicle Tracking", href: "/authority/vehicles", icon: Truck },
+  { name: "Compliance", href: "/authority/compliance", icon: ClipboardCheck },
+  { name: "Enforcement", href: "/authority/enforcement", icon: AlertTriangle },
+  { name: "Citizen Reports", href: "/authority/reports", icon: MessageSquare },
+  { name: "Analytics", href: "/authority/analytics", icon: BarChart3 },
+  { name: "Worker Management", href: "/authority/workers", icon: Users },
 ]
 
 export function Sidebar() {
