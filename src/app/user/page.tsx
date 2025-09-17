@@ -69,7 +69,7 @@ export default function HomePage() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <Link href="/segregation">
+                <Link href="/user/segregation">
                   <Button variant="outline" size="sm" className="w-full bg-transparent">
                     Try Now
                   </Button>
@@ -89,7 +89,7 @@ export default function HomePage() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <Link href="/training">
+                <Link href="/user/training">
                   <Button variant="outline" size="sm" className="w-full bg-transparent">
                     Learn More
                   </Button>
@@ -109,7 +109,7 @@ export default function HomePage() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <Link href="/qr-scanner">
+                <Link href="/user/qr-scanner">
                   <Button variant="outline" size="sm" className="w-full bg-transparent">
                     Scan QR
                   </Button>
@@ -127,7 +127,7 @@ export default function HomePage() {
                 <CardDescription>Report issues, track resolutions, and connect with your neighborhood</CardDescription>
               </CardHeader>
               <CardContent>
-                <Link href="/community">
+                <Link href="/user/community">
                   <Button variant="outline" size="sm" className="w-full bg-transparent">
                     Join In
                   </Button>
@@ -153,7 +153,7 @@ export default function HomePage() {
                 </div>
               </CardHeader>
               <CardContent>
-                <Link href="/services">
+                <Link href="/user/services">
                   <Button className="w-full">Find Services</Button>
                 </Link>
               </CardContent>
@@ -170,7 +170,7 @@ export default function HomePage() {
                 </div>
               </CardHeader>
               <CardContent>
-                <Link href="/tracking">
+                <Link href="/user/tracking">
                   <Button variant="secondary" className="w-full">
                     Track Now
                   </Button>
@@ -189,7 +189,7 @@ export default function HomePage() {
                 </div>
               </CardHeader>
               <CardContent>
-                <Link href="/store">
+                <Link href="/user/store">
                   <Button
                     variant="outline"
                     className="w-full border-accent text-accent hover:bg-accent hover:text-accent-foreground bg-transparent"
