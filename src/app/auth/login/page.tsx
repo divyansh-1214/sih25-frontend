@@ -5,6 +5,7 @@ import type React from "react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import axios from "axios";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -23,25 +24,117 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-  const login = (mail: string, password: string) => {
-    console.log(mail);
-    console.log(password)
-    return true
+
+  // Helper function to set cookie
+  const setCookie = (name: string, value: string, days: number = 7) => {
+    const expires = new Date();
+    expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+    document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/;secure;samesite=strict`;
+  };
+
+  const login = async (email: string, password: string) => {
+    try {
+      console.log('Attempting login with:', { email });
+      
+      const response = await axios.post('http://localhost:5000/api/auth/login', {
+        email,
+        password,
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        timeout: 10000,
+      });
+
+      console.log('Login successful:', response.data);
+      
+      // Extract token and user data from response
+      const { token, user, ...otherData } = response.data;
+      
+      if (token) {
+        // Store token in cookie
+        setCookie('authToken', token, 7); // Store for 7 days
+        
+        // Store user data in localStorage for quick access
+        if (user) {
+          localStorage.setItem('userData', JSON.stringify(user));
+        }
+        
+        console.log('Token stored in cookie:', token);
+        return { success: true, token, user, ...otherData };
+      } else {
+        throw new Error('No token received from server');
+      }
+      
+    } catch (error) {
+      console.error('Login error:', error);
+      if (axios.isAxiosError(error)) {
+        if (error.response) {
+          console.error('Error response data:', error.response.data);
+          console.error('Error response status:', error.response.status);
+          
+          const errorMessage = error.response.data?.message || 
+                              error.response.data?.error || 
+                              `Login failed: ${error.response.status}`;
+          throw new Error(errorMessage);
+        } else if (error.request) {
+          throw new Error('Network error. Please check your connection and ensure the server is running.');
+        } else {
+          throw new Error('An unexpected error occurred.');
+        }
+      }
+      throw error;
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Basic validation
+    if (!email.trim()) {
+      alert("Please enter your email");
+      return;
+    }
+    
+    if (!password.trim()) {
+      alert("Please enter your password");
+      return;
+    }
+    
     setIsLoading(true);
 
     try {
-      const success = await login(email, password);
-      if (success) {
-        // Redirect will be handled by the auth context based on user role
-        console.log("fuck you");
+      const result = await login(email.trim(), password);
+      if (result.success) {
+        alert("Login successful!");
         
+        // Clear form
+        setEmail("");
+        setPassword("");
+        
+        // Redirect based on user role or to dashboard
+        if (result.user?.role) {
+          switch (result.user.role) {
+            case 'admin':
+              router.push('/authority/dashboard');
+              break;
+            case 'worker':
+              router.push('/authority/dashboard');
+              break;
+            case 'citizen':
+            default:
+              router.push('/user');
+              break;
+          }
+        } else {
+          // Default redirect if no role specified
+          router.push('/user');
+        }
       }
     } catch (error) {
       console.error("Login failed:", error);
+      const errorMessage = error instanceof Error ? error.message : "Login failed. Please try again.";
+      alert(errorMessage);
     } finally {
       setIsLoading(false);
     }

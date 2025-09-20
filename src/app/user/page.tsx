@@ -56,7 +56,7 @@ export default function HomePage() {
           <h3 className="text-2xl font-bold text-center mb-8 text-foreground">
             Everything You Need for Smart Waste Management
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
             {/* Smart Segregation */}
             <Card className="hover:shadow-lg transition-shadow">
               <CardHeader className="pb-3">
@@ -98,7 +98,7 @@ export default function HomePage() {
             </Card>
 
             {/* QR & Points */}
-            <Card className="hover:shadow-lg transition-shadow">
+            {/* <Card className="hover:shadow-lg transition-shadow">
               <CardHeader className="pb-3">
                 <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-2">
                   <QrCode className="w-6 h-6 text-accent" />
@@ -115,7 +115,7 @@ export default function HomePage() {
                   </Button>
                 </Link>
               </CardContent>
-            </Card>
+            </Card> */}
 
             {/* Community */}
             <Card className="hover:shadow-lg transition-shadow">
@@ -202,8 +202,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* Footer */}
       <footer className="border-t bg-muted/30 py-8 px-4">
         <div className="container mx-auto text-center">
           <div className="flex items-center justify-center gap-2 mb-4">

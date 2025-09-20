@@ -88,8 +88,6 @@ export default function HomePage() {
             </CardContent>
           </Card>
         </div>
-
-        {/* Features Section */}
         <div className="mt-20 text-center">
           <h2 className="text-3xl font-bold text-gray-900 mb-8">Key Features</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
