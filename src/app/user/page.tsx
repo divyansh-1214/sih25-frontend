@@ -1,13 +1,35 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Camera, BookOpen, QrCode, Users, MapPin, Truck, Award, Recycle } from "lucide-react"
-import Link from "next/link"
-
+"use client";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import {
+  Camera,
+  BookOpen,
+  QrCode,
+  Users,
+  MapPin,
+  Truck,
+  Award,
+  Recycle,
+} from "lucide-react";
+import Link from "next/link";
+import Cookies from "js-cookie";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 export default function HomePage() {
+  const [token, setToken] = useState<string | undefined>(undefined);
+  useEffect(() => {
+    setToken(Cookies.get("authToken"));
+    console.log("Token:", Cookies.get("authToken"));
+  }, []);
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
       <header className="border-b bg-card/50 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
@@ -18,10 +40,9 @@ export default function HomePage() {
               <h1 className="text-xl font-bold text-foreground">GreenHome</h1>
             </div>
             <div className="flex items-center gap-2">
-              <Badge variant="secondary" className="bg-accent/20 text-accent-foreground">
-                <Award className="w-3 h-3 mr-1" />
-                1,250 Points
-              </Badge>
+              <Button>
+                <Link href={"/user/profile"}>{token ? "Profile" : "Login"}</Link>
+              </Button>
             </div>
           </div>
         </div>
@@ -34,8 +55,9 @@ export default function HomePage() {
             Smart Waste Management for a Greener Tomorrow
           </h2>
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto text-pretty">
-            Join your community in making waste management smarter, more efficient, and environmentally friendly with
-            AI-powered tools and gamification.
+            Join your community in making waste management smarter, more
+            efficient, and environmentally friendly with AI-powered tools and
+            gamification.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-primary hover:bg-primary/90">
@@ -65,12 +87,17 @@ export default function HomePage() {
                 </div>
                 <CardTitle className="text-lg">AI Waste ID</CardTitle>
                 <CardDescription>
-                  Snap a photo and get instant waste categorization with disposal instructions
+                  Snap a photo and get instant waste categorization with
+                  disposal instructions
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <Link href="/user/segregation">
-                  <Button variant="outline" size="sm" className="w-full bg-transparent">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="w-full bg-transparent"
+                  >
                     Try Now
                   </Button>
                 </Link>
@@ -85,12 +112,17 @@ export default function HomePage() {
                 </div>
                 <CardTitle className="text-lg">Training Hub</CardTitle>
                 <CardDescription>
-                  Complete mandatory modules and earn certifications for proper waste handling
+                  Complete mandatory modules and earn certifications for proper
+                  waste handling
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <Link href="/user/training">
-                  <Button variant="outline" size="sm" className="w-full bg-transparent">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="w-full bg-transparent"
+                  >
                     Learn More
                   </Button>
                 </Link>
@@ -124,11 +156,18 @@ export default function HomePage() {
                   <Users className="w-6 h-6 text-primary" />
                 </div>
                 <CardTitle className="text-lg">Community</CardTitle>
-                <CardDescription>Report issues, track resolutions, and connect with your neighborhood</CardDescription>
+                <CardDescription>
+                  Report issues, track resolutions, and connect with your
+                  neighborhood
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <Link href="/user/community">
-                  <Button variant="outline" size="sm" className="w-full bg-transparent">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="w-full bg-transparent"
+                  >
                     Join In
                   </Button>
                 </Link>
@@ -148,7 +187,9 @@ export default function HomePage() {
                   <MapPin className="w-8 h-8 text-primary" />
                   <div>
                     <CardTitle>Service Locator</CardTitle>
-                    <CardDescription>Find nearby waste facilities</CardDescription>
+                    <CardDescription>
+                      Find nearby waste facilities
+                    </CardDescription>
                   </div>
                 </div>
               </CardHeader>
@@ -165,7 +206,9 @@ export default function HomePage() {
                   <Truck className="w-8 h-8 text-secondary" />
                   <div>
                     <CardTitle>Track Vehicle</CardTitle>
-                    <CardDescription>Monitor collection schedules</CardDescription>
+                    <CardDescription>
+                      Monitor collection schedules
+                    </CardDescription>
                   </div>
                 </div>
               </CardHeader>
@@ -184,7 +227,9 @@ export default function HomePage() {
                   <Award className="w-8 h-8 text-accent" />
                   <div>
                     <CardTitle>Waste Store</CardTitle>
-                    <CardDescription>Redeem points for eco products</CardDescription>
+                    <CardDescription>
+                      Redeem points for eco products
+                    </CardDescription>
                   </div>
                 </div>
               </CardHeader>
@@ -210,9 +255,11 @@ export default function HomePage() {
             </div>
             <span className="font-semibold text-foreground">GreenHome</span>
           </div>
-          <p className="text-sm text-muted-foreground">Making waste management smarter, one household at a time.</p>
+          <p className="text-sm text-muted-foreground">
+            Making waste management smarter, one household at a time.
+          </p>
         </div>
       </footer>
     </div>
-  )
+  );
 }
