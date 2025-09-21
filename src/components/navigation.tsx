@@ -1,13 +1,26 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Badge } from "@/components/ui/badge"
-import { Menu, Home, Camera, BookOpen, QrCode, Users, MapPin, Truck, ShoppingBag, Award, Recycle } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Badge } from "@/components/ui/badge";
+import {
+  Menu,
+  Home,
+  Camera,
+  BookOpen,
+  QrCode,
+  Users,
+  MapPin,
+  Truck,
+  ShoppingBag,
+  Award,
+  Recycle,
+} from "lucide-react";
+import { cn } from "@/lib/utils";
+import Cookies from "js-cookie";
 
 const navigation = [
   { name: "Home", href: "/user", icon: Home },
@@ -18,12 +31,16 @@ const navigation = [
   { name: "Services", href: "/user/services", icon: MapPin },
   { name: "Tracking", href: "/user/tracking", icon: Truck },
   { name: "Store", href: "/user/store", icon: ShoppingBag },
-]
+];
 
 export function Navigation() {
-  const pathname = usePathname()
-  const [isOpen, setIsOpen] = useState(false)
-
+  const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
+  const [token, setToken] = useState<string | undefined>(undefined);
+  useEffect(() => {
+    setToken(Cookies.get("authToken"));
+    console.log("Token:", Cookies.get("authToken"));
+  }, []);
   return (
     <header className="border-b bg-card/50 backdrop-blur-sm sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4">
@@ -39,34 +56,30 @@ export function Navigation() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-6">
             {navigation.slice(0, 4).map((item) => {
-              const Icon = item.icon
+              const Icon = item.icon;
               return (
                 <Link
                   key={item.name}
                   href={item.href}
                   className={cn(
                     "flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary",
-                    pathname === item.href ? "text-primary" : "text-muted-foreground",
+                    pathname === item.href
+                      ? "text-primary"
+                      : "text-muted-foreground"
                   )}
                 >
                   <Icon className="w-4 h-4" />
                   {item.name}
                 </Link>
-              )
+              );
             })}
           </nav>
 
           {/* Points Badge & Mobile Menu */}
           <div className="flex items-center gap-4">
-            <Link href="/points">
-              <Badge
-                variant="secondary"
-                className="bg-accent/20 text-accent-foreground hover:bg-accent/30 transition-colors"
-              >
-                <Award className="w-3 h-3 mr-1" />
-                1,250 Points
-              </Badge>
-            </Link>
+            <Button>
+              <Link href={"/user/profile"}>{token ? "Profile" : "Login"}</Link>
+            </Button>
 
             {/* Mobile Menu */}
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -80,11 +93,13 @@ export function Navigation() {
                   <div className="w-6 h-6 bg-primary rounded-md flex items-center justify-center">
                     <Recycle className="w-4 h-4 text-primary-foreground" />
                   </div>
-                  <span className="font-semibold text-foreground">GreenHome</span>
+                  <span className="font-semibold text-foreground">
+                    GreenHome
+                  </span>
                 </div>
                 <nav className="space-y-2">
                   {navigation.map((item) => {
-                    const Icon = item.icon
+                    const Icon = item.icon;
                     return (
                       <Link
                         key={item.name}
@@ -94,27 +109,19 @@ export function Navigation() {
                           "flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors",
                           pathname === item.href
                             ? "bg-primary/10 text-primary"
-                            : "text-muted-foreground hover:text-foreground hover:bg-muted",
+                            : "text-muted-foreground hover:text-foreground hover:bg-muted"
                         )}
                       >
                         <Icon className="w-4 h-4" />
                         {item.name}
                       </Link>
-                    )
+                    );
                   })}
-                  <Link
-                    href="/points"
-                    onClick={() => setIsOpen(false)}
-                    className={cn(
-                      "flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors",
-                      pathname === "/points"
-                        ? "bg-primary/10 text-primary"
-                        : "text-muted-foreground hover:text-foreground hover:bg-muted",
-                    )}
-                  >
-                    <Award className="w-4 h-4" />
-                    Points Dashboard
-                  </Link>
+                  <Button>
+                    <Link href={"/user/profile"}>
+                      {token ? "Profile" : "Login"}
+                    </Link>
+                  </Button>
                 </nav>
               </SheetContent>
             </Sheet>
@@ -122,5 +129,5 @@ export function Navigation() {
         </div>
       </div>
     </header>
-  )
+  );
 }

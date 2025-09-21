@@ -28,12 +28,13 @@ export interface CommunityReport {
   id: string
   title: string
   description: string
-  category: "illegal_dumping" | "overflowing_bin" | "missed_collection" | "other"
+  category: "illegal_dumping" | "overflowing_bin" | "missed_collection" | "overflow_swvage" | "other"
   location: string
   status: "pending" | "in_progress" | "resolved"
   reportedAt: string
   reportedBy: string
-  priority: "low" | "medium" | "high"
+  priority: "low" | "medium" | "high",
+  imageUrl:string
 }
 
 export interface StoreItem {
@@ -233,6 +234,7 @@ export const mockCommunityReports: CommunityReport[] = [
     reportedAt: "2024-01-15T10:30:00Z",
     reportedBy: "John Doe",
     priority: "medium",
+    imageUrl:""
   },
   {
     id: "2",
@@ -244,6 +246,7 @@ export const mockCommunityReports: CommunityReport[] = [
     reportedAt: "2024-01-14T16:45:00Z",
     reportedBy: "Jane Smith",
     priority: "high",
+    imageUrl:""
   },
 ]
 
