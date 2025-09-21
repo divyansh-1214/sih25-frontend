@@ -25,31 +25,25 @@ import {
   LogOut,
   QrCode,
   Download,
+  Briefcase,
 } from "lucide-react";
 // @ts-ignore
 import QRCode from "qrcode";
-interface PersonDetail {
-  name: string;
-  aadhar: string;
-  _id?: string;
-}
-
-interface UserProfile {
+interface WorkerProfile {
   _id: string;
+  role: string;
   name: string;
-  email: string;
   aadhar: string;
-  phoneNumber: string;
   address: string;
-  numberOfPersons: number;
-  personsDetails: PersonDetail[];
-  garbagePickerReviewReference?: string;
-  createdAt?: string;
-  updatedAt?: string;
+  phoneNumber: string;
+  workerType: string;
+  email: string;
+  password?: string;
+  __v?: number;
 }
 
 export default function ProfilePage() {
-  const [profile, setProfile] = useState<UserProfile | null>(null);
+  const [profile, setProfile] = useState<WorkerProfile | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
@@ -78,10 +72,11 @@ export default function ProfilePage() {
         throw new Error("No authentication token found. Please login again.");
       }
 
-      console.log("Fetching profile with token:", token);
+      console.log("Fetching worker profile with token:", token);
 
+      // First, get the worker ID from the main profile endpoint
       const response = await axios.get(
-        "http://localhost:5000/api/auth/profile",
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/worker/profile`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -91,16 +86,19 @@ export default function ProfilePage() {
         }
       );
 
-      console.log("Profile data received:", response.data);
+      console.log("Worker profile data received:", response.data);
 
-      const responseUser = await axios.get(
-        `http://localhost:5000/api/auth/profile/${response.data.user.id}`
+      // Then get the detailed worker profile using the ID
+      const detailedResponse = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/worker/profile/${response.data.user.id}`
       );
-      setProfile(responseUser.data);
-      generateQRCode(response.data.user.id)
+      
+      console.log("Detailed worker profile:", detailedResponse.data);
+      setProfile(detailedResponse.data);
+      generateQRCode(detailedResponse.data._id);
     } catch (error) {
       console.error("Profile fetch error:", error);
-      let errorMessage = "Failed to load profile data.";
+      let errorMessage = "Failed to load worker profile data.";
 
       if (axios.isAxiosError(error)) {
         if (error.response?.status === 401) {
@@ -108,7 +106,7 @@ export default function ProfilePage() {
           // Clear invalid token
           deleteCookie("authToken");
           localStorage.removeItem("userData");
-          setTimeout(() => router.push("/auth/login"), 2000);
+          setTimeout(() => router.push("/worker"), 2000);
         } else if (error.response?.status === 403) {
           errorMessage =
             "Access denied. You do not have permission to view this profile.";
@@ -154,7 +152,7 @@ export default function ProfilePage() {
     localStorage.removeItem("userData");
 
     // Redirect to login
-    router.push("/auth/login");
+    router.push("/worker");
   };
 
   const handleRefresh = () => {
@@ -224,7 +222,7 @@ export default function ProfilePage() {
       <div className="max-w-4xl mx-auto space-y-6">
         {/* Header */}
         <div className="flex justify-between items-center">
-          <h1 className="text-3xl font-bold text-gray-800">User Profile</h1>
+          <h1 className="text-3xl font-bold text-gray-800">Worker Profile</h1>
           <div className="space-x-2">
             <Button onClick={handleRefresh} variant="outline">
               <RefreshCw className="h-4 w-4 mr-2" />
@@ -244,7 +242,7 @@ export default function ProfilePage() {
               <User className="h-8 w-8 text-green-600" />
               <div>
                 <CardTitle className="text-2xl">{profile.name}</CardTitle>
-                <CardDescription>User ID: {profile._id}</CardDescription>
+                <CardDescription>Worker ID: {profile._id}</CardDescription>
               </div>
             </div>
           </CardHeader>
@@ -283,11 +281,19 @@ export default function ProfilePage() {
                     <p className="font-medium">{profile.aadhar}</p>
                   </div>
                 </div>
+
+                <div className="flex items-center space-x-3">
+                  <Briefcase className="h-5 w-5 text-gray-500" />
+                  <div>
+                    <Label className="text-sm text-gray-500">Role</Label>
+                    <p className="font-medium capitalize">{profile.role}</p>
+                  </div>
+                </div>
               </div>
 
               <div className="space-y-4">
                 <h3 className="text-lg font-semibold text-gray-800">
-                  Address & Details
+                  Work Details
                 </h3>
 
                 <div className="flex items-start space-x-3">
@@ -299,83 +305,30 @@ export default function ProfilePage() {
                 </div>
 
                 <div className="flex items-center space-x-3">
-                  <Users className="h-5 w-5 text-gray-500" />
+                  <User className="h-5 w-5 text-gray-500" />
                   <div>
                     <Label className="text-sm text-gray-500">
-                      Household Members
+                      Worker Type
                     </Label>
-                    <p className="font-medium">
-                      {profile.numberOfPersons} person(s)
+                    <p className="font-medium capitalize">
+                      {profile.workerType.replace('_', ' ')}
                     </p>
                   </div>
                 </div>
-
-                {profile.garbagePickerReviewReference && (
-                  <div>
-                    <Label className="text-sm text-gray-500">
-                      Garbage Picker Reference
-                    </Label>
-                    <p className="font-medium">
-                      {profile.garbagePickerReviewReference}
-                    </p>
-                  </div>
-                )}
               </div>
             </div>
           </CardContent>
         </Card>
-
-        {/* Household Members Card */}
-        {profile.personsDetails && profile.personsDetails.length > 0 && (
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center space-x-2">
-                <Users className="h-6 w-6 text-green-600" />
-                <span>Household Members</span>
-                <Badge variant="secondary">
-                  {profile.personsDetails.length}
-                </Badge>
-              </CardTitle>
-              <CardDescription>
-                Details of all household members
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {profile.personsDetails.map((person, index) => (
-                  <div
-                    key={person._id || index}
-                    className="border rounded-lg p-4"
-                  >
-                    <h4 className="font-semibold text-gray-800">
-                      Person {index + 1}
-                    </h4>
-                    <div className="mt-2 space-y-1">
-                      <p>
-                        <span className="text-gray-500">Name:</span>{" "}
-                        {person.name}
-                      </p>
-                      <p>
-                        <span className="text-gray-500">Aadhar:</span>{" "}
-                        {person.aadhar}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        )}
 
         {/* QR Code Card */}
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
               <QrCode className="h-6 w-6 text-green-600" />
-              <span>User QR Code</span>
+              <span>Worker QR Code</span>
             </CardTitle>
             <CardDescription>
-              Your unique QR code for identification
+              Your unique QR code for worker identification
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -386,12 +339,12 @@ export default function ProfilePage() {
                   <div className="relative">
                     <img 
                       src={url} 
-                      alt="User QR Code" 
+                      alt="Worker QR Code" 
                       className="w-48 h-48 border-2 border-gray-200 rounded-lg bg-white p-2"
                     />
                     <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2">
                       <Badge variant="secondary" className="text-xs">
-                        User ID: {profile._id.slice(-6)}
+                        Worker ID: {profile._id.slice(-6)}
                       </Badge>
                     </div>
                   </div>
@@ -412,7 +365,7 @@ export default function ProfilePage() {
                   <div className="space-y-2 text-sm">
                     <div className="flex items-center space-x-2">
                       <User className="h-4 w-4 text-gray-500" />
-                      <span className="text-gray-600">Contains: User ID ({profile._id})</span>
+                      <span className="text-gray-600">Contains: Worker ID ({profile._id})</span>
                     </div>
                     <div className="flex items-center space-x-2">
                       <QrCode className="h-4 w-4 text-gray-500" />
@@ -423,12 +376,13 @@ export default function ProfilePage() {
                 
                 <div className="pt-2">
                   <p className="text-sm text-gray-600 mb-3">
-                    This QR code contains your unique user ID and can be used for:
+                    This QR code contains your unique worker ID and can be used for:
                   </p>
                   <ul className="text-sm text-gray-600 space-y-1">
-                    <li>• Quick identification at waste collection points</li>
-                    <li>• Accessing your account via QR scanner</li>
-                    <li>• Verification for waste management services</li>
+                    <li>• Worker identification at work sites</li>
+                    <li>• Accessing worker account via QR scanner</li>
+                    <li>• Verification for waste management tasks</li>
+                    <li>• Time tracking and attendance</li>
                   </ul>
                 </div>
 
@@ -447,29 +401,6 @@ export default function ProfilePage() {
             </div>
           </CardContent>
         </Card>
-
-        {/* Account Details */}
-        {(profile.createdAt || profile.updatedAt) && (
-          <Card>
-            <CardHeader>
-              <CardTitle>Account Information</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-2">
-              {profile.createdAt && (
-                <p>
-                  <span className="text-gray-500">Account Created:</span>{" "}
-                  {new Date(profile.createdAt).toLocaleDateString()}
-                </p>
-              )}
-              {profile.updatedAt && (
-                <p>
-                  <span className="text-gray-500">Last Updated:</span>{" "}
-                  {new Date(profile.updatedAt).toLocaleDateString()}
-                </p>
-              )}
-            </CardContent>
-          </Card>
-        )}
       </div>
     </div>
   );
