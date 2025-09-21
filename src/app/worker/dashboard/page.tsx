@@ -98,15 +98,14 @@ export default function WorkerPortal() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="bg-card border-b border-border p-4" onClick={()=>{router.push('/worker/profile')}}>
+      <header className="bg-card border-b border-border p-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3"  onClick={()=>{router.push('/worker/profile')}}>
             <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center" >
               <User className="w-5 h-5 text-primary-foreground"  />
             </div>
             <div>
               <h1 className="text-lg font-semibold text-foreground">Worker Portal</h1>
-              <p className="text-sm text-muted-foreground">ID: WM-2024-001</p>
             </div>
           </div>
           <div className="flex items-center gap-2">

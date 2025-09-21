@@ -5,11 +5,13 @@ import { QrReader } from "react-qr-reader";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Camera, Video, StopCircle, RotateCcw } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { Camera, Video, StopCircle, RotateCcw, Send, Star } from "lucide-react";
 import axios from "axios";
 import jsQR from "jsqr";
-import { config } from "process";
-
 export default function QrScanner() {
   const [data, setData] = useState("No result");
   const [useVideoInput, setUseVideoInput] = useState(false);
@@ -18,6 +20,18 @@ export default function QrScanner() {
   const [userData, setUserData] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string>("");
+  const [workerId,setWorkerId] = useState(null)
+  // Form state
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    address: "",
+    behavior: "",
+    segregationQuality: "",
+    wasteWeight: "",
+    comments: ""
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -64,6 +78,14 @@ export default function QrScanner() {
 
       setUserData(response.data);
       console.log("User data fetched successfully:", response.data);
+      
+      // Pre-populate form with user data
+      setFormData(prev => ({
+        ...prev,
+        name: response.data.name || "",
+        email: response.data.email || "",
+        address: response.data.address || ""
+      }));
     } catch (error: any) {
       console.error("Error fetching user data:", error);
       setUserData(null);
@@ -209,6 +231,88 @@ export default function QrScanner() {
         }
       }
     }, 100); // Check every 100ms for better responsiveness
+  };
+
+  // Handle form submission
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setError("");
+    
+    try {
+      const token = getCookie("authToken");
+      if (!token) {
+        throw new Error("No authentication token found. Please login again.");
+      }
+      // Fetch worker profile to get worker ID
+      const workerProfileRes = await axios.get(
+        `${port}/api/auth/worker/profile`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          timeout: 10000,
+        }
+      );
+      const workerId = workerProfileRes.data.user.id;
+
+      const submissionData = {
+        ...formData,
+        uId: data, // The scanned user ID
+        date: new Date().toISOString(),
+        wId: workerId,
+        scannedAt: new Date().toISOString(),
+      };
+
+      console.log("Submitting evaluation:", submissionData);
+      
+      // Submit to your evaluation/feedback API endpoint
+      const response = await axios.post(
+        `${port}/api/worker/feedback/`,
+        submissionData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      
+      console.log("Evaluation submitted successfully:", response.data);
+      
+      // Reset form after successful submission
+      setFormData({
+        name: "",
+        email: "",
+        address: "",
+        behavior: "",
+        segregationQuality: "",
+        wasteWeight: "",
+        comments: ""
+      });
+      
+      // Reset scanner
+      setData("No result");
+      setUserData(null);
+      
+      alert("Evaluation submitted successfully!");
+      
+    } catch (error: any) {
+      console.error("Error submitting evaluation:", error);
+      setError(`Failed to submit evaluation: ${error.response?.data?.message || error.message}`);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  // Helper function to get cookie value (add this if not already present)
+  const getCookie = (name: string): string | null => {
+    if (typeof document === "undefined") return null;
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop()?.split(";").shift() || null;
+    return null;
   };
 
   // Handle QR scan result
@@ -389,18 +493,6 @@ export default function QrScanner() {
                   </label>
                   <p className="text-sm">{userData.email || "N/A"}</p>
                 </div>
-                <div>
-                  <label className="text-sm font-medium text-muted-foreground">
-                    Phone
-                  </label>
-                  <p className="text-sm">{userData.phone || "N/A"}</p>
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-muted-foreground">
-                    Role
-                  </label>
-                  <p className="text-sm">{userData.role || "N/A"}</p>
-                </div>
               </div>
               {userData.address && (
                 <div>
@@ -410,6 +502,161 @@ export default function QrScanner() {
                   <p className="text-sm">{userData.address}</p>
                 </div>
               )}
+            </CardContent>
+            
+            {/* Evaluation Form */}
+            <CardContent>
+              <form onSubmit={handleFormSubmit} className="space-y-4">
+                <div className="border-t pt-4">
+                  <h3 className="text-lg font-semibold mb-4">User Evaluation Form</h3>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {/* Name Field */}
+                    <div className="space-y-2">
+                      <Label htmlFor="name">Name</Label>
+                      <Input
+                        id="name"
+                        value={formData.name}
+                        onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                        placeholder="Enter user name"
+                        required
+                      />
+                    </div>
+
+                    {/* Email Field */}
+                    <div className="space-y-2">
+                      <Label htmlFor="email">Email</Label>
+                      <Input
+                        id="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                        placeholder="Enter email address"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Address Field */}
+                  <div className="space-y-2">
+                    <Label htmlFor="address">Address</Label>
+                    <Textarea
+                      id="address"
+                      value={formData.address}
+                      onChange={(e) => setFormData(prev => ({ ...prev, address: e.target.value }))}
+                      placeholder="Enter full address"
+                      rows={2}
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {/* Behavior Assessment */}
+                    <div className="space-y-2">
+                      <Label htmlFor="behavior">User Behavior</Label>
+                      <Select
+                        value={formData.behavior}
+                        onValueChange={(value) => setFormData(prev => ({ ...prev, behavior: value }))}
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select behavior rating" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="excellent">Excellent - Very cooperative</SelectItem>
+                          <SelectItem value="good">Good - Cooperative</SelectItem>
+                          <SelectItem value="average">Average - Somewhat cooperative</SelectItem>
+                          <SelectItem value="poor">Poor - Uncooperative</SelectItem>
+                          <SelectItem value="very-poor">Very Poor - Hostile</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    {/* Segregation Quality */}
+                    <div className="space-y-2">
+                      <Label htmlFor="segregation">Segregation Quality</Label>
+                      <Select
+                        value={formData.segregationQuality}
+                        onValueChange={(value) => setFormData(prev => ({ ...prev, segregationQuality: value }))}
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select segregation quality" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="excellent">Excellent - Perfect segregation</SelectItem>
+                          <SelectItem value="good">Good - Well segregated</SelectItem>
+                          <SelectItem value="average">Average - Partially segregated</SelectItem>
+                          <SelectItem value="poor">Poor - Poorly segregated</SelectItem>
+                          <SelectItem value="none">None - No segregation</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+
+                  {/* Waste Weight */}
+                  <div className="space-y-2">
+                    <Label htmlFor="weight">Waste Weight (kg)</Label>
+                    <Input
+                      id="weight"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      value={formData.wasteWeight}
+                      onChange={(e) => setFormData(prev => ({ ...prev, wasteWeight: e.target.value }))}
+                      placeholder="Enter waste weight in kg"
+                      required
+                    />
+                  </div>
+
+                  {/* Comments */}
+                  <div className="space-y-2">
+                    <Label htmlFor="comments">Additional Comments</Label>
+                    <Textarea
+                      id="comments"
+                      value={formData.comments}
+                      onChange={(e) => setFormData(prev => ({ ...prev, comments: e.target.value }))}
+                      placeholder="Any additional observations or comments"
+                      rows={3}
+                    />
+                  </div>
+
+                  {/* Submit Button */}
+                  <div className="flex gap-2 pt-4">
+                    <Button 
+                      type="submit" 
+                      disabled={isSubmitting || !formData.name || !formData.wasteWeight}
+                      className="flex-1"
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                          Submitting...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-4 h-4 mr-2" />
+                          Submit Evaluation
+                        </>
+                      )}
+                    </Button>
+                    
+                    <Button 
+                      type="button"
+                      variant="outline"
+                      onClick={() => {
+                        setFormData({
+                          name: userData?.name || "",
+                          email: userData?.email || "",
+                          address: userData?.address || "",
+                          behavior: "",
+                          segregationQuality: "",
+                          wasteWeight: "",
+                          comments: ""
+                        });
+                      }}
+                    >
+                      Reset
+                    </Button>
+                  </div>
+                </div>
+              </form>
             </CardContent>
           </Card>
         )}
