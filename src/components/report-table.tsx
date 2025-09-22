@@ -1,6 +1,7 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import axios from "axios"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -21,20 +22,17 @@ import { Search, Eye, MapPin, Calendar, User, MessageSquare } from "lucide-react
 import { useToast } from "@/hooks/use-toast"
 
 interface CitizenReport {
-  id: string
+  _id: string
+  author: string
   title: string
   description: string
   category: "waste_collection" | "illegal_dumping" | "overflowing_bins" | "missed_collection" | "other"
-  status: "new" | "assigned" | "in_progress" | "resolved" | "closed"
-  priority: "low" | "medium" | "high" | "urgent"
+  location: string
+  status: "pending" | "in_progress" | "resolved" | "closed"
+  reportedAt: string
   reportedBy: string
-  reportedDate: string
+  priority: "low" | "medium" | "high" | "urgent"
   assignedTo?: string
-  location: {
-    address: string
-    lat: number
-    lng: number
-  }
   photoUrl?: string
   resolutionNote?: string
   resolvedDate?: string
@@ -112,18 +110,43 @@ const mockReports: CitizenReport[] = [
 
 export function ReportTable() {
   const { toast } = useToast()
-  const [data, setData] = useState(mockReports)
+  const [data, setData] = useState<CitizenReport[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedStatus, setSelectedStatus] = useState("all")
   const [selectedPriority, setSelectedPriority] = useState("all")
   const [selectedReport, setSelectedReport] = useState<CitizenReport | null>(null)
   const [resolutionNote, setResolutionNote] = useState("")
 
+  // Fetch reports from API
+  useEffect(() => {
+    const fetchReports = async () => {
+      try {
+        setLoading(true)
+        setError(null)
+        
+        const response = await axios.get("http://localhost:5000/api/reports/")
+        console.log("Reports fetched:", response.data)
+        
+        setData(response.data)
+      } catch (error: any) {
+        console.error("Error fetching reports:", error)
+        setError(`Failed to fetch reports: ${error.response?.data?.message || error.message}`)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchReports()
+  }, [])
+
   const filteredData = data.filter((report) => {
     const matchesSearch =
-      report.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      report.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      report.reportedBy.toLowerCase().includes(searchTerm.toLowerCase())
+      report.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      report._id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      report.author.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      report.location.toLowerCase().includes(searchTerm.toLowerCase())
     const matchesStatus = selectedStatus === "all" || report.status === selectedStatus
     const matchesPriority = selectedPriority === "all" || report.priority === selectedPriority
 
@@ -132,12 +155,12 @@ export function ReportTable() {
 
   const getStatusBadge = (status: string) => {
     switch (status) {
-      case "new":
-        return <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-100">New</Badge>
+      case "pending":
+        return <Badge className="bg-yellow-100 text-yellow-800 hover:bg-yellow-100">Pending</Badge>
       case "assigned":
         return <Badge className="bg-purple-100 text-purple-800 hover:bg-purple-100">Assigned</Badge>
       case "in_progress":
-        return <Badge className="bg-yellow-100 text-yellow-800 hover:bg-yellow-100">In Progress</Badge>
+        return <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-100">In Progress</Badge>
       case "resolved":
         return <Badge className="bg-green-100 text-green-800 hover:bg-green-100">Resolved</Badge>
       case "closed":
@@ -184,7 +207,7 @@ export function ReportTable() {
 
     setData((prev) =>
       prev.map((report) =>
-        report.id === selectedReport.id
+        report._id === selectedReport._id
           ? {
               ...report,
               status: "resolved",
@@ -197,7 +220,7 @@ export function ReportTable() {
 
     toast({
       title: "Report Resolved",
-      description: `Report ${selectedReport.id} has been marked as resolved.`,
+      description: `Report ${selectedReport._id} has been marked as resolved.`,
     })
 
     setSelectedReport(null)
@@ -214,6 +237,31 @@ export function ReportTable() {
         <CardDescription>Manage and resolve citizen complaints and reports</CardDescription>
       </CardHeader>
       <CardContent>
+        {/* Loading State */}
+        {loading && (
+          <div className="flex justify-center items-center py-8">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 mx-auto"></div>
+              <p className="mt-2 text-sm text-muted-foreground">Loading reports...</p>
+            </div>
+          </div>
+        )}
+
+        {/* Error State */}
+        {error && (
+          <div className="bg-red-50 border border-red-200 rounded-md p-4">
+            <div className="flex items-center">
+              <div className="text-red-800">
+                <h3 className="text-sm font-medium">Error Loading Reports</h3>
+                <p className="text-sm mt-1">{error}</p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Main Content - only show if not loading and no error */}
+        {!loading && !error && (
+          <>
         {/* Filters */}
         <div className="flex flex-col sm:flex-row gap-4 mb-6">
           <div className="relative flex-1">
@@ -231,7 +279,7 @@ export function ReportTable() {
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">All Status</SelectItem>
-              <SelectItem value="new">New</SelectItem>
+              <SelectItem value="pending">Pending</SelectItem>
               <SelectItem value="assigned">Assigned</SelectItem>
               <SelectItem value="in_progress">In Progress</SelectItem>
               <SelectItem value="resolved">Resolved</SelectItem>
@@ -274,8 +322,8 @@ export function ReportTable() {
             </TableHeader>
             <TableBody>
               {filteredData.map((report) => (
-                <TableRow key={report.id}>
-                  <TableCell className="font-medium">{report.id}</TableCell>
+                <TableRow key={report._id}>
+                  <TableCell className="font-medium">{report._id}</TableCell>
                   <TableCell className="max-w-xs">
                     <div className="truncate font-medium">{report.title}</div>
                     <div className="text-sm text-muted-foreground truncate">{report.description}</div>
@@ -283,8 +331,8 @@ export function ReportTable() {
                   <TableCell>{getCategoryLabel(report.category)}</TableCell>
                   <TableCell>{getPriorityBadge(report.priority)}</TableCell>
                   <TableCell>{getStatusBadge(report.status)}</TableCell>
-                  <TableCell>{report.reportedBy}</TableCell>
-                  <TableCell>{report.reportedDate}</TableCell>
+                  <TableCell>{report.author}</TableCell>
+                  <TableCell>{new Date(report.reportedAt).toLocaleDateString()}</TableCell>
                   <TableCell>
                     <Dialog>
                       <DialogTrigger asChild>
@@ -295,7 +343,7 @@ export function ReportTable() {
                       <DialogContent className="max-w-2xl">
                         <DialogHeader>
                           <DialogTitle>{report.title}</DialogTitle>
-                          <DialogDescription>Report ID: {report.id}</DialogDescription>
+                          <DialogDescription>Report ID: {report._id}</DialogDescription>
                         </DialogHeader>
                         <div className="space-y-4">
                           <div className="grid grid-cols-2 gap-4">
@@ -320,14 +368,14 @@ export function ReportTable() {
                                 <User className="w-4 h-4" />
                                 Reported By
                               </Label>
-                              <p className="mt-1 text-sm">{report.reportedBy}</p>
+                              <p className="mt-1 text-sm">{report.author}</p>
                             </div>
                             <div>
                               <Label className="text-sm font-medium flex items-center gap-1">
                                 <Calendar className="w-4 h-4" />
                                 Date
                               </Label>
-                              <p className="mt-1 text-sm">{report.reportedDate}</p>
+                              <p className="mt-1 text-sm">{new Date(report.reportedAt).toLocaleDateString()}</p>
                             </div>
                           </div>
 
@@ -336,7 +384,7 @@ export function ReportTable() {
                               <MapPin className="w-4 h-4" />
                               Location
                             </Label>
-                            <p className="mt-1 text-sm">{report.location.address}</p>
+                            <p className="mt-1 text-sm">{report.location}</p>
                           </div>
 
                           {report.photoUrl && (
@@ -389,6 +437,8 @@ export function ReportTable() {
             </TableBody>
           </Table>
         </div>
+        </>
+        )}
       </CardContent>
     </Card>
   )
