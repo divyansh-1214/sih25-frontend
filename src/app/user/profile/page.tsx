@@ -81,7 +81,7 @@ export default function ProfilePage() {
       console.log("Fetching profile with token:", token);
 
       const response = await axios.get(
-        "http://localhost:5000/api/auth/profile",
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/profile`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -94,7 +94,7 @@ export default function ProfilePage() {
       console.log("Profile data received:", response.data);
 
       const responseUser = await axios.get(
-        `http://localhost:5000/api/auth/profile/${response.data.user.id}`
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/profile/${response.data.user.id}`
       );
       setProfile(responseUser.data);
       generateQRCode(response.data.user.id)

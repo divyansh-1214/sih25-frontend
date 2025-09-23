@@ -457,7 +457,7 @@ export default function QrScanner() {
                       : "String"}
                   </p>
                   <p>Length: {data.length} characters</p>
-                  <p>API Call: http://localhost:5000/api/auth/profile/{data}</p>
+                  <p>API Call: {process.env.NEXT_PUBLIC_API_URL}/api/auth/profile/{data}</p>
                 </div>
               )}
             </div>

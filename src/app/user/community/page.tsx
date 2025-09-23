@@ -48,7 +48,7 @@ export default function CommunityPage() {
     fechReport();
     async function fechReport() {
       try {
-        const response = await axios.get("http://localhost:5000/api/reports/");
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/reports/`);
         setReports(response.data);
       } catch (error) {
         console.log(error);
@@ -445,7 +445,7 @@ function ReportForm({ onClose, onSubmit }: ReportFormProps) {
       imageUrl: getFinalImageUrl(),
     };
     console.log(newReport);
-    await axios.post("http://localhost:5000/api/reports/", newReport);
+    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/reports/`, newReport);
     setIsSubmitting(false);
   };
 
