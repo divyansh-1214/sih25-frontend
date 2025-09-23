@@ -4,9 +4,6 @@ import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import QRScanner from "@/components/qr-scanner"
-import SegregationFeedback from "@/components/segregation-feedback"
-import RouteNavigation from "@/components/route-navigation"
 import {
   QrCode,
   CheckCircle,
@@ -24,7 +21,6 @@ import { useRouter } from "next/navigation"
 
 export default function WorkerPortal() {
   const [isDarkMode, setIsDarkMode] = useState(false)
-  const [activeModule, setActiveModule] = useState<string | null>(null)
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode)
     document.documentElement.classList.toggle("dark")
@@ -91,9 +87,9 @@ export default function WorkerPortal() {
     router.push(link)
   }
 
-  const closeModule = () => {
-    setActiveModule(null)
-  }
+  // const closeModule = () => {
+  //   setActiveModule(null)
+  // }
 
   return (
     <div className="min-h-screen bg-background">

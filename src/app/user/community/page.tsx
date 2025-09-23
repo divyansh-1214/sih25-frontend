@@ -35,6 +35,20 @@ import {
 import { mockCommunityReports, type CommunityReport } from "@/lib/mock-data";
 import Link from "next/link";
 import axios from "axios";
+import Image from "next/image";
+
+// Type definitions following project conventions
+type ReportCategory = "illegal_dumping" | "overflowing_bin" | "missed_collection" | "other";
+type ReportPriority = "low" | "medium" | "high";
+
+interface ReportFormData {
+  title: string;
+  description: string;
+  category: ReportCategory | "";
+  location: string;
+  priority: ReportPriority;
+  imageUrl: string;
+}
 
 export default function CommunityPage() {
   const [reports, setReports] =
@@ -311,7 +325,7 @@ export default function CommunityPage() {
                         </div>
                       </div>
                       <div className="flex gap-2">
-                        <Link href={`/community/${report.id}`}>
+                        <Link href={`/user/community/${report.id}`}>
                           <Button
                             variant="outline"
                             size="sm"
@@ -386,8 +400,8 @@ interface ReportFormProps {
   onSubmit: (report: CommunityReport) => void;
 }
 
-function ReportForm({ onClose, onSubmit }: ReportFormProps) {
-  const [formData, setFormData] = useState({
+function ReportForm({ onClose }: ReportFormProps) {
+  const [formData, setFormData] = useState<ReportFormData>({
     title: "",
     description: "",
     category: "",
@@ -436,12 +450,12 @@ function ReportForm({ onClose, onSubmit }: ReportFormProps) {
       id: Date.now().toString(),
       title: formData.title,
       description: formData.description,
-      category: formData.category as any,
+      category: formData.category as ReportCategory, // Type assertion with proper type
       location: formData.location,
       status: "pending",
       reportedAt: new Date().toISOString(),
       reportedBy: "Current User",
-      priority: formData.priority as any,
+      priority: formData.priority,
       imageUrl: getFinalImageUrl(),
     };
     console.log(newReport);
@@ -470,7 +484,7 @@ function ReportForm({ onClose, onSubmit }: ReportFormProps) {
         <Select
           required
           value={formData.category}
-          onValueChange={(value) =>
+          onValueChange={(value: ReportCategory) =>
             setFormData({ ...formData, category: value })
           }
         >
@@ -506,7 +520,7 @@ function ReportForm({ onClose, onSubmit }: ReportFormProps) {
         </label>
         <Select
           value={formData.priority}
-          onValueChange={(value) =>
+          onValueChange={(value: ReportPriority) =>
             setFormData({ ...formData, priority: value })
           }
         >
@@ -575,9 +589,11 @@ function ReportForm({ onClose, onSubmit }: ReportFormProps) {
               URL Image Preview:
             </p>
             <div className="relative inline-block">
-              <img
+              <Image
                 src={formData.imageUrl}
                 alt="URL Preview"
+                width={128}
+                height={128}
                 className="w-32 h-32 object-cover rounded-lg border"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
@@ -624,9 +640,11 @@ function ReportForm({ onClose, onSubmit }: ReportFormProps) {
         {imagePreview ? (
           <div className="space-y-3">
             <div className="relative inline-block">
-              <img
+              <Image
                 src={imagePreview}
                 alt="Preview"
+                width={128}
+                height={128}
                 className="w-32 h-32 object-cover rounded-lg border"
               />
               <Button

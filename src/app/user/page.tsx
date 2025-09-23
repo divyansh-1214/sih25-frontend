@@ -7,11 +7,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import {
   Camera,
   BookOpen,
-  QrCode,
   Users,
   MapPin,
   Truck,
@@ -19,14 +17,19 @@ import {
   Recycle,
 } from "lucide-react";
 import Link from "next/link";
-import Cookies from "js-cookie";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
 export default function HomePage() {
-  const [token, setToken] = useState<string | undefined>(undefined);
+  const [token, setToken] = useState<string | null>();
+  const getCookie = (name: string): string | null => {
+    if (typeof document === "undefined") return null;
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop()?.split(";").shift() || null;
+    return null;
+  };
   useEffect(() => {
-    setToken(Cookies.get("authToken"));
-    console.log("Token:", Cookies.get("authToken"));
+
+    setToken(getCookie("authToken"));
   }, []);
   return (
     <div className="min-h-screen bg-background">
@@ -41,7 +44,9 @@ export default function HomePage() {
             </div>
             <div className="flex items-center gap-2">
               <Button>
-                <Link href={"/user/profile"}>{token ? "Profile" : "Login"}</Link>
+                <Link href={"/user/profile"}>
+                  {token ? "Profile" : "Login"}
+                </Link>
               </Button>
             </div>
           </div>

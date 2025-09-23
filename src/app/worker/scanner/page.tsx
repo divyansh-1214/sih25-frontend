@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { QrReader } from "react-qr-reader";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -9,18 +9,26 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { Camera, Video, StopCircle, RotateCcw, Send, Star } from "lucide-react";
-import axios from "axios";
+import { Camera, Video, StopCircle, RotateCcw, Send } from "lucide-react";
+import axios, { AxiosError } from "axios";
 import jsQR from "jsqr";
+
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  address?: string;
+}
+
 export default function QrScanner() {
   const [data, setData] = useState("No result");
-  const [useVideoInput, setUseVideoInput] = useState(false);
+  const [useVideoInput] = useState(false);
   const [isVideoActive, setIsVideoActive] = useState(false);
   const [stream, setStream] = useState<MediaStream | null>(null);
-  const [userData, setUserData] = useState<any>(null);
+  const [userData, setUserData] = useState<User | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string>("");
-  const [workerId,setWorkerId] = useState(null)
+  
   // Form state
   const [formData, setFormData] = useState({
     name: "",
@@ -38,8 +46,17 @@ export default function QrScanner() {
   const scanIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const port = process.env.NEXT_PUBLIC_API_URL;
 
-  // Fetch user data when QR is scanned
-  const fetchUserData = async (userId: string) => {
+  // Helper function to get cookie value
+  const getCookie = (name: string): string | null => {
+    if (typeof document === "undefined") return null;
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop()?.split(";").shift() || null;
+    return null;
+  };
+
+  // Fetch user data when QR is scanned (memoized to prevent unnecessary re-renders)
+  const fetchUserData = useCallback(async (userId: string) => {
     if (userId === "No result" || loading) return;
 
     console.log("Attempting to fetch user data for ID:", userId);
@@ -54,6 +71,8 @@ export default function QrScanner() {
       try {
         response = await axios.get(`${port}/api/auth/profile/${userId}`);
       } catch (firstError) {
+        console.log(firstError);
+        
         console.log("Direct profile fetch failed, trying alternative endpoint");
 
         // If that fails, try with the current user endpoint and pass ID as query
@@ -86,18 +105,41 @@ export default function QrScanner() {
         email: response.data.email || "",
         address: response.data.address || ""
       }));
-    } catch (error: any) {
+    } catch (error) {
       console.error("Error fetching user data:", error);
       setUserData(null);
-      setError(
-        `Failed to fetch user data: ${
-          error.response?.data?.message || error.message
-        }`
-      );
+      
+      let errorMessage = "Failed to fetch user data";
+      if (error instanceof AxiosError) {
+        errorMessage += `: ${error.response?.data?.message || error.message}`;
+      } else if (error instanceof Error) {
+        errorMessage += `: ${error.message}`;
+      }
+      
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }
-  };
+  }, [loading, port]);
+
+  // Stop video function (memoized to prevent unnecessary re-renders)
+  const stopVideo = useCallback(() => {
+    if (stream) {
+      stream.getTracks().forEach((track) => track.stop());
+      setStream(null);
+    }
+
+    if (scanIntervalRef.current) {
+      clearInterval(scanIntervalRef.current);
+      scanIntervalRef.current = null;
+    }
+
+    if (videoRef.current) {
+      videoRef.current.srcObject = null;
+    }
+
+    setIsVideoActive(false);
+  }, [stream]);
 
   // Start webcam video
   const startVideo = async () => {
@@ -125,42 +167,27 @@ export default function QrScanner() {
         // Wait a moment for video to initialize before starting detection
         setTimeout(startQRDetection, 1000);
       }
-    } catch (error: any) {
+    } catch (error) {
       console.error("Error accessing camera:", error);
       let errorMessage = "Failed to access camera. ";
 
-      if (error.name === "NotAllowedError") {
-        errorMessage +=
-          "Camera permission was denied. Please allow camera access and try again.";
-      } else if (error.name === "NotFoundError") {
-        errorMessage += "No camera found on this device.";
-      } else if (error.name === "NotSupportedError") {
-        errorMessage += "Camera is not supported in this browser.";
+      if (error instanceof Error) {
+        if (error.name === "NotAllowedError") {
+          errorMessage +=
+            "Camera permission was denied. Please allow camera access and try again.";
+        } else if (error.name === "NotFoundError") {
+          errorMessage += "No camera found on this device.";
+        } else if (error.name === "NotSupportedError") {
+          errorMessage += "Camera is not supported in this browser.";
+        } else {
+          errorMessage += error.message || "Please ensure camera permissions are granted.";
+        }
       } else {
-        errorMessage +=
-          error.message || "Please ensure camera permissions are granted.";
+        errorMessage += "Please ensure camera permissions are granted.";
       }
 
       setError(errorMessage);
     }
-  };
-
-  const stopVideo = () => {
-    if (stream) {
-      stream.getTracks().forEach((track) => track.stop());
-      setStream(null);
-    }
-
-    if (scanIntervalRef.current) {
-      clearInterval(scanIntervalRef.current);
-      scanIntervalRef.current = null;
-    }
-
-    if (videoRef.current) {
-      videoRef.current.srcObject = null;
-    }
-
-    setIsVideoActive(false);
   };
 
   // QR detection from video stream
@@ -220,6 +247,7 @@ export default function QrScanner() {
                 }
               }
             } catch (e) {
+              console.log(e);
               // Not JSON, use original data
             }
 
@@ -298,21 +326,20 @@ export default function QrScanner() {
       
       alert("Evaluation submitted successfully!");
       
-    } catch (error: any) {
+    } catch (error) {
       console.error("Error submitting evaluation:", error);
-      setError(`Failed to submit evaluation: ${error.response?.data?.message || error.message}`);
+      
+      let errorMessage = "Failed to submit evaluation";
+      if (error instanceof AxiosError) {
+        errorMessage += `: ${error.response?.data?.message || error.message}`;
+      } else if (error instanceof Error) {
+        errorMessage += `: ${error.message}`;
+      }
+      
+      setError(errorMessage);
     } finally {
       setIsSubmitting(false);
     }
-  };
-
-  // Helper function to get cookie value (add this if not already present)
-  const getCookie = (name: string): string | null => {
-    if (typeof document === "undefined") return null;
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop()?.split(";").shift() || null;
-    return null;
   };
 
   // Handle QR scan result
@@ -320,14 +347,14 @@ export default function QrScanner() {
     if (data !== "No result") {
       fetchUserData(data);
     }
-  }, [data]);
+  }, [data, fetchUserData]);
 
   // Cleanup on unmount
   useEffect(() => {
     return () => {
       stopVideo();
     };
-  }, []);
+  }, [stopVideo]);
 
   return (
     <div className="min-h-screen bg-background p-4">
@@ -371,7 +398,7 @@ export default function QrScanner() {
                         console.log("Scanned QR:", result.getText());
                       }
                       if (err && !result) {
-                        // log error, but don’t spam UI state
+                        // log error, but don't spam UI state
                         console.debug("Scanner error (ignored):", err);
                       }
                     }}
@@ -419,6 +446,9 @@ export default function QrScanner() {
                 )}
               </div>
             </div>
+
+            {/* Hidden canvas for QR detection */}
+            <canvas ref={canvasRef} style={{ display: 'none' }} />
 
             {/* Scan Result */}
             <div className="space-y-2">

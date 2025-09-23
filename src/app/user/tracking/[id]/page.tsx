@@ -185,7 +185,7 @@ export default function VehicleDetailPage() {
               <Card>
                 <CardHeader>
                   <CardTitle>Collection Schedule</CardTitle>
-                  <CardDescription>Today's planned stops</CardDescription>
+                  <CardDescription>Todays planned stops</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <div className="flex items-center justify-between p-3 bg-green-50 rounded-lg border border-green-200">

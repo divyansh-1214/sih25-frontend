@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import axios from "axios"
+import axios, { AxiosError } from "axios"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -20,6 +20,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Search, Eye, MapPin, Calendar, User, MessageSquare } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
+import Image from "next/image"
 
 interface CitizenReport {
   _id: string
@@ -37,76 +38,6 @@ interface CitizenReport {
   resolutionNote?: string
   resolvedDate?: string
 }
-
-const mockReports: CitizenReport[] = [
-  {
-    id: "RPT-001",
-    title: "Overflowing waste bins on Main Street",
-    description: "The waste bins near the market area have been overflowing for 3 days. Creating hygiene issues.",
-    category: "overflowing_bins",
-    status: "assigned",
-    priority: "high",
-    reportedBy: "Rajesh Kumar",
-    reportedDate: "2024-01-15",
-    assignedTo: "Worker Team A",
-    location: {
-      address: "Main Street, Near Market, Zone 1",
-      lat: 12.9716,
-      lng: 77.5946,
-    },
-    photoUrl: "/overflowing-waste-bins.jpg",
-  },
-  {
-    id: "RPT-002",
-    title: "Missed waste collection",
-    description: "Our street was skipped during yesterday's collection round. Multiple households affected.",
-    category: "missed_collection",
-    status: "new",
-    priority: "medium",
-    reportedBy: "Priya Sharma",
-    reportedDate: "2024-01-16",
-    location: {
-      address: "Green Avenue, Block B, Zone 2",
-      lat: 12.9616,
-      lng: 77.5846,
-    },
-  },
-  {
-    id: "RPT-003",
-    title: "Illegal dumping in vacant lot",
-    description: "Someone has been dumping construction waste in the vacant lot behind our building.",
-    category: "illegal_dumping",
-    status: "resolved",
-    priority: "urgent",
-    reportedBy: "Amit Patel",
-    reportedDate: "2024-01-12",
-    assignedTo: "Inspector Team B",
-    location: {
-      address: "Behind Sunrise Apartments, Zone 3",
-      lat: 12.9816,
-      lng: 77.6046,
-    },
-    photoUrl: "/illegal-construction-waste-dumping.jpg",
-    resolutionNote: "Waste removed and area cleaned. Warning issued to building management.",
-    resolvedDate: "2024-01-14",
-  },
-  {
-    id: "RPT-004",
-    title: "Broken waste bin needs replacement",
-    description: "The waste bin at bus stop is damaged and cannot be used properly.",
-    category: "other",
-    status: "in_progress",
-    priority: "low",
-    reportedBy: "Sunita Devi",
-    reportedDate: "2024-01-14",
-    assignedTo: "Maintenance Team",
-    location: {
-      address: "Bus Stop, Park Road, Zone 1",
-      lat: 12.9516,
-      lng: 77.5746,
-    },
-  },
-]
 
 export function ReportTable() {
   const { toast } = useToast()
@@ -126,13 +57,21 @@ export function ReportTable() {
         setLoading(true)
         setError(null)
         
-        const response = await axios.get("http://localhost:5000/api/reports/")
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/reports/`)
         console.log("Reports fetched:", response.data)
         
         setData(response.data)
-      } catch (error: any) {
+      } catch (error) {
         console.error("Error fetching reports:", error)
-        setError(`Failed to fetch reports: ${error.response?.data?.message || error.message}`)
+        
+        let errorMessage = "Failed to fetch reports"
+        if (error instanceof AxiosError) {
+          errorMessage = `Failed to fetch reports: ${error.response?.data?.message || error.message}`
+        } else if (error instanceof Error) {
+          errorMessage = `Failed to fetch reports: ${error.message}`
+        }
+        
+        setError(errorMessage)
       } finally {
         setLoading(false)
       }
@@ -390,10 +329,12 @@ export function ReportTable() {
                           {report.photoUrl && (
                             <div>
                               <Label className="text-sm font-medium">Photo Evidence</Label>
-                              <img
+                              <Image
                                 src={report.photoUrl || "/placeholder.svg"}
                                 alt="Report evidence"
                                 className="mt-1 rounded-lg border max-w-full h-48 object-cover"
+                                width={400}
+                                height={200}
                               />
                             </div>
                           )}

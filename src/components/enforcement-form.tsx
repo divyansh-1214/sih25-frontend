@@ -1,25 +1,42 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Badge } from "@/components/ui/badge"
-import { AlertTriangle, Send, Search } from "lucide-react"
-import { useToast } from "@/hooks/use-toast"
+import { useState } from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Badge } from "@/components/ui/badge";
+import { AlertTriangle, Send, Search } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 interface EnforcementFormData {
-  householdId: string
-  type: "warning" | "penalty"
-  reason: string
-  description: string
-  amount?: number
-  dueDate?: string
+  householdId: string;
+  type: "warning" | "penalty";
+  reason: string;
+  description: string;
+  amount?: number;
+  dueDate?: string;
+}
+interface SearchType {
+  id: string;
+  address: string;
+  zone: string;
 }
 
 const violationReasons = [
@@ -32,10 +49,10 @@ const violationReasons = [
   "Blocking collection vehicle access",
   "Non-compliance with QR code scanning",
   "Other",
-]
+];
 
 export function EnforcementForm() {
-  const { toast } = useToast()
+  const { toast } = useToast();
   const [formData, setFormData] = useState<EnforcementFormData>({
     householdId: "",
     type: "warning",
@@ -43,21 +60,23 @@ export function EnforcementForm() {
     description: "",
     amount: undefined,
     dueDate: "",
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [searchResults, setSearchResults] = useState<any[]>([])
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [searchResults, setSearchResults] = useState<SearchType[]>([]);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+    e.preventDefault();
+    setIsSubmitting(true);
 
     // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     toast({
       title: "Enforcement Action Issued",
-      description: `${formData.type === "warning" ? "Warning" : "Penalty"} has been issued to ${formData.householdId}`,
-    })
+      description: `${
+        formData.type === "warning" ? "Warning" : "Penalty"
+      } has been issued to ${formData.householdId}`,
+    });
 
     // Reset form
     setFormData({
@@ -67,23 +86,23 @@ export function EnforcementForm() {
       description: "",
       amount: undefined,
       dueDate: "",
-    })
-    setIsSubmitting(false)
-  }
+    });
+    setIsSubmitting(false);
+  };
 
   const handleHouseholdSearch = (value: string) => {
-    setFormData({ ...formData, householdId: value })
+    setFormData({ ...formData, householdId: value });
     // Mock search results
     if (value.length > 2) {
       setSearchResults([
         { id: "HH-001", address: "123 Green Street, Block A", zone: "Zone 1" },
         { id: "HH-002", address: "456 Eco Avenue, Block B", zone: "Zone 1" },
         { id: "HH-003", address: "789 Clean Road, Block C", zone: "Zone 2" },
-      ])
+      ]);
     } else {
-      setSearchResults([])
+      setSearchResults([]);
     }
-  }
+  };
 
   return (
     <Card>
@@ -92,7 +111,9 @@ export function EnforcementForm() {
           <AlertTriangle className="w-5 h-5" />
           Issue Enforcement Action
         </CardTitle>
-        <CardDescription>Issue warnings or penalties for non-compliance violations</CardDescription>
+        <CardDescription>
+          Issue warnings or penalties for non-compliance violations
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -117,12 +138,14 @@ export function EnforcementForm() {
                     key={result.id}
                     className="p-3 hover:bg-muted cursor-pointer border-b last:border-b-0"
                     onClick={() => {
-                      setFormData({ ...formData, householdId: result.id })
-                      setSearchResults([])
+                      setFormData({ ...formData, householdId: result.id });
+                      setSearchResults([]);
                     }}
                   >
                     <div className="font-medium">{result.id}</div>
-                    <div className="text-sm text-muted-foreground">{result.address}</div>
+                    <div className="text-sm text-muted-foreground">
+                      {result.address}
+                    </div>
                     <Badge variant="outline" className="mt-1">
                       {result.zone}
                     </Badge>
@@ -137,7 +160,9 @@ export function EnforcementForm() {
             <Label htmlFor="type">Enforcement Type</Label>
             <Select
               value={formData.type}
-              onValueChange={(value: "warning" | "penalty") => setFormData({ ...formData, type: value })}
+              onValueChange={(value: "warning" | "penalty") =>
+                setFormData({ ...formData, type: value })
+              }
             >
               <SelectTrigger>
                 <SelectValue />
@@ -152,7 +177,12 @@ export function EnforcementForm() {
           {/* Violation Reason */}
           <div className="space-y-2">
             <Label htmlFor="reason">Violation Reason</Label>
-            <Select value={formData.reason} onValueChange={(value) => setFormData({ ...formData, reason: value })}>
+            <Select
+              value={formData.reason}
+              onValueChange={(value) =>
+                setFormData({ ...formData, reason: value })
+              }
+            >
               <SelectTrigger>
                 <SelectValue placeholder="Select violation reason" />
               </SelectTrigger>
@@ -175,7 +205,12 @@ export function EnforcementForm() {
                 type="number"
                 placeholder="Enter penalty amount"
                 value={formData.amount || ""}
-                onChange={(e) => setFormData({ ...formData, amount: Number.parseInt(e.target.value) || undefined })}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    amount: Number.parseInt(e.target.value) || undefined,
+                  })
+                }
                 required={formData.type === "penalty"}
               />
             </div>
@@ -189,7 +224,9 @@ export function EnforcementForm() {
                 id="dueDate"
                 type="date"
                 value={formData.dueDate}
-                onChange={(e) => setFormData({ ...formData, dueDate: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, dueDate: e.target.value })
+                }
                 required={formData.type === "penalty"}
               />
             </div>
@@ -202,7 +239,9 @@ export function EnforcementForm() {
               id="description"
               placeholder="Provide additional details about the violation..."
               value={formData.description}
-              onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, description: e.target.value })
+              }
               rows={4}
               required
             />
@@ -222,5 +261,5 @@ export function EnforcementForm() {
         </form>
       </CardContent>
     </Card>
-  )
+  );
 }

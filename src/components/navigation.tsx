@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Badge } from "@/components/ui/badge";
 import {
   Menu,
   Home,
@@ -16,11 +15,9 @@ import {
   MapPin,
   Truck,
   ShoppingBag,
-  Award,
   Recycle,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import Cookies from "js-cookie";
 
 const navigation = [
   { name: "Home", href: "/user", icon: Home },
@@ -36,11 +33,18 @@ const navigation = [
 export function Navigation() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const [token, setToken] = useState<string | undefined>(undefined);
+  const [token, setToken] = useState<string | null>();
+  const getCookie = (name: string): string | null => {
+    if (typeof document === "undefined") return null;
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop()?.split(";").shift() || null;
+    return null;
+  };
   useEffect(() => {
-    setToken(Cookies.get("authToken"));
-    console.log("Token:", Cookies.get("authToken"));
-  }, []);
+    setToken(getCookie("authToken"));
+    console.log("Token:", token);
+  }, [token]);
   return (
     <header className="border-b bg-card/50 backdrop-blur-sm sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4">

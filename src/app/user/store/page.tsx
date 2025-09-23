@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Navigation } from "@/components/navigation"
 import { ShoppingBag, Award, Search, Gift, Ticket, Wrench, Star, ShoppingCart } from "lucide-react"
 import { mockStoreItems, type StoreItem } from "@/lib/mock-data"
+import Image from "next/image"
 
 export default function StorePage() {
   const [items] = useState<StoreItem[]>(mockStoreItems)
@@ -153,7 +154,7 @@ export default function StorePage() {
               <Card key={item.id} className={`hover:shadow-lg transition-shadow ${!item.inStock ? "opacity-60" : ""}`}>
                 <CardHeader className="pb-3">
                   <div className="aspect-square bg-muted rounded-lg mb-3 overflow-hidden">
-                    <img
+                    <Image
                       src={item.image || "/placeholder.svg?height=200&width=200"}
                       alt={item.name}
                       className="w-full h-full object-cover"

@@ -31,6 +31,7 @@ export function CameraCapture({ onCapture, onError }: CameraCaptureProps) {
       const errorMessage = "Camera access denied. Please allow camera permissions."
       setError(errorMessage)
       onError(errorMessage)
+      console.log(err)
     }
   }, [onError])
 

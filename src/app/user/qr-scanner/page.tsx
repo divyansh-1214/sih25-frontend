@@ -68,7 +68,7 @@ export default function QRScannerPage() {
         setScanResult(null)
       }
     } catch (err) {
-      setError("Camera access denied. Please allow camera permissions to scan QR codes.")
+      setError("Camera access denied. Please allow camera permissions to scan QR codes."+err)
     }
   }
 

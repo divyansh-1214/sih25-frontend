@@ -1,4 +1,4 @@
-import { EnforcementForm } from "@/components/enforcement-form"
+// import { EnforcementForm } from "@/components/enforcement-form"
 import { EnforcementHistory } from "@/components/enforcement-history"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { AlertTriangle, FileText, DollarSign, Clock } from "lucide-react"
@@ -73,7 +73,7 @@ export default function EnforcementPage() {
       <div className="grid gap-6 lg:grid-cols-3">
         {/* Enforcement Form */}
         <div className="lg:col-span-1">
-          <EnforcementForm />
+          {/* <EnforcementForm /> */}
         </div>
 
         {/* Enforcement History */}

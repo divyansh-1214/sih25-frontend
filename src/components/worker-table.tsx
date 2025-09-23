@@ -100,12 +100,11 @@ const mockWorkers: Worker[] = [
 ]
 
 export function WorkerTable({ onEditWorker }: { onEditWorker: (worker: Worker) => void }) {
-  const [data, setData] = useState(mockWorkers)
+  const [data] = useState(mockWorkers)
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedRole, setSelectedRole] = useState("all")
   const [selectedStatus, setSelectedStatus] = useState("all")
   const [selectedZone, setSelectedZone] = useState("all")
-
   const filteredData = data.filter((worker) => {
     const matchesSearch =
       worker.name.toLowerCase().includes(searchTerm.toLowerCase()) ||

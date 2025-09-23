@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { MapPin, Navigation, Clock, CheckCircle, AlertTriangle, X, Locate, Route } from "lucide-react"
+import { MapPin, Navigation, Clock, CheckCircle, AlertTriangle, Locate, Route } from "lucide-react"
 
 interface RouteStop {
   id: string
@@ -17,7 +17,7 @@ interface RouteStop {
 }
 
 export default function RouteNavigation() {
-  const [currentLocation, setCurrentLocation] = useState({ lat: 40.7128, lng: -74.006 })
+  // const [currentLocation, setCurrentLocation] = useState({ lat: 40.7128, lng: -74.006 })
   const [selectedStop, setSelectedStop] = useState<string | null>(null)
   const [routeStops, setRouteStops] = useState<RouteStop[]>([
     {

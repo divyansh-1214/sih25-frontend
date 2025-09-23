@@ -10,6 +10,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Navigation } from "@/components/navigation"
 import { Camera, Upload, RotateCcw, CheckCircle, AlertCircle, Recycle, Trash2, Leaf, Zap } from "lucide-react"
 import { mockWasteItems, type WasteItem } from "@/lib/mock-data"
+import Image from "next/image"
 
 interface IdentificationResult {
   item: WasteItem
@@ -49,7 +50,7 @@ export default function SegregationPage() {
         setError(null)
       }
     } catch (err) {
-      setError("Camera access denied. Please allow camera permissions or upload an image instead.")
+      setError("Camera access denied. Please allow camera permissions or upload an image instead."+err)
     }
   }
 
@@ -189,7 +190,7 @@ export default function SegregationPage() {
                 {/* Image Preview */}
                 {selectedImage && !isCameraActive && (
                   <div className="space-y-4">
-                    <img
+                    <Image
                       src={selectedImage || "/placeholder.svg"}
                       alt="Selected waste item"
                       className="w-full rounded-lg border bg-muted"

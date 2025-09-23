@@ -20,7 +20,6 @@ export default function QRScanner({ onClose }: { onClose: () => void }) {
   const [recentScans, setRecentScans] = useState<ScanResult[]>([])
   const [flashEnabled, setFlashEnabled] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
-  const canvasRef = useRef<HTMLCanvasElement>(null)
 
   // Simulate camera access and QR scanning
   const startScanning = async () => {

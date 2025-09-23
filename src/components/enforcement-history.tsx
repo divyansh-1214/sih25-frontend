@@ -78,7 +78,7 @@ const mockEnforcementHistory: EnforcementRecord[] = [
 ]
 
 export function EnforcementHistory() {
-  const [data, setData] = useState(mockEnforcementHistory)
+  const [data] = useState(mockEnforcementHistory)
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedType, setSelectedType] = useState("all")
   const [selectedStatus, setSelectedStatus] = useState("all")

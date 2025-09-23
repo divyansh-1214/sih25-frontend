@@ -1,7 +1,7 @@
 "use client";
 
 import type React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
@@ -19,7 +19,6 @@ import {
   Mail,
   Phone,
   MapPin,
-  Users,
   CreditCard,
   RefreshCw,
   LogOut,
@@ -27,8 +26,8 @@ import {
   Download,
   Briefcase,
 } from "lucide-react";
-// @ts-ignore
 import QRCode from "qrcode";
+import Image from "next/image";
 interface WorkerProfile {
   _id: string;
   role: string;
@@ -62,7 +61,7 @@ export default function ProfilePage() {
     document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/`;
   };
 
-  const fetchProfile = async () => {
+  const fetchProfile = useCallback (async () => {
     try {
       setIsLoading(true);
       setError(null);
@@ -124,7 +123,7 @@ export default function ProfilePage() {
     } finally {
       setIsLoading(false);
     }
-  };
+  },[router]);
 
   const generateQRCode = async (value: string) => {
     try {
@@ -161,7 +160,7 @@ export default function ProfilePage() {
 
   useEffect(() => {
     fetchProfile();
-  }, []);
+  }, [fetchProfile]);
 
   if (isLoading) {
     return (
@@ -337,7 +336,7 @@ export default function ProfilePage() {
               <div className="flex-shrink-0">
                 {url ? (
                   <div className="relative">
-                    <img 
+                    <Image
                       src={url} 
                       alt="Worker QR Code" 
                       className="w-48 h-48 border-2 border-gray-200 rounded-lg bg-white p-2"

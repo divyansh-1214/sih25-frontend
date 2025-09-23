@@ -1,7 +1,7 @@
 "use client";
 
 import type React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
@@ -26,8 +26,9 @@ import {
   QrCode,
   Download,
 } from "lucide-react";
-// @ts-ignore
 import QRCode from "qrcode";
+import Image from "next/image";
+
 interface PersonDetail {
   name: string;
   aadhar: string;
@@ -54,6 +55,7 @@ export default function ProfilePage() {
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
   const [url, setUrl] = useState<string | null>(null);
+
   // Helper function to get cookie value
   const getCookie = (name: string): string | null => {
     if (typeof document === "undefined") return null;
@@ -68,7 +70,8 @@ export default function ProfilePage() {
     document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/`;
   };
 
-  const fetchProfile = async () => {
+  // Memoize fetchProfile to prevent unnecessary re-renders
+  const fetchProfile = useCallback(async () => {
     try {
       setIsLoading(true);
       setError(null);
@@ -97,7 +100,7 @@ export default function ProfilePage() {
         `${process.env.NEXT_PUBLIC_API_URL}/api/auth/profile/${response.data.user.id}`
       );
       setProfile(responseUser.data);
-      generateQRCode(response.data.user.id)
+      generateQRCode(response.data.user.id);
     } catch (error) {
       console.error("Profile fetch error:", error);
       let errorMessage = "Failed to load profile data.";
@@ -126,7 +129,7 @@ export default function ProfilePage() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [router]); // Include router as dependency
 
   const generateQRCode = async (value: string) => {
     try {
@@ -148,6 +151,7 @@ export default function ProfilePage() {
     a.click();
     document.body.removeChild(a);
   }
+
   const handleLogout = () => {
     // Clear auth data
     deleteCookie("authToken");
@@ -163,7 +167,7 @@ export default function ProfilePage() {
 
   useEffect(() => {
     fetchProfile();
-  }, []);
+  }, [fetchProfile]); // Now fetchProfile is memoized and safe to include
 
   if (isLoading) {
     return (
@@ -384,9 +388,12 @@ export default function ProfilePage() {
               <div className="flex-shrink-0">
                 {url ? (
                   <div className="relative">
-                    <img 
+                    <Image
                       src={url} 
                       alt="User QR Code" 
+                      width={192}
+                      height={192}
+                      unoptimized
                       className="w-48 h-48 border-2 border-gray-200 rounded-lg bg-white p-2"
                     />
                     <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2">

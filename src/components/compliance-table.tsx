@@ -86,7 +86,7 @@ const mockComplianceData: ComplianceRecord[] = [
 ]
 
 export function ComplianceTable() {
-  const [data, setData] = useState(mockComplianceData)
+  const [data] = useState(mockComplianceData)
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedZone, setSelectedZone] = useState("all")
   const [selectedStatus, setSelectedStatus] = useState("all")

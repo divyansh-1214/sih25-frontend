@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { MapPin, Truck, Navigation } from "lucide-react"
 import type { VehicleTracking } from "@/lib/mock-data"
@@ -12,7 +12,7 @@ interface VehicleMapProps {
 }
 
 export function VehicleMap({ vehicles, selectedVehicle, onVehicleSelect }: VehicleMapProps) {
-  const [mapCenter, setMapCenter] = useState({ lat: 40.7128, lng: -74.006 })
+  // const [mapCenter, setMapCenter] = useState({ lat: 40.7128, lng: -74.006 })
 
   useEffect(() => {
     if (selectedVehicle) {

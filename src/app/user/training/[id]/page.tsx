@@ -48,7 +48,7 @@ export default function TrainingModulePage() {
   const completedLessons = module.lessons.filter((l) => l.completed).length
   const moduleProgress = (completedLessons / module.lessons.length) * 100
   const isLastLesson = currentLessonIndex === module.lessons.length - 1
-  const canProceed = currentLesson?.completed || currentLessonIndex === 0
+  // const canProceed = currentLesson?.completed || currentLessonIndex === 0
 
   const completeLesson = async () => {
     setIsCompleting(true)
@@ -291,7 +291,7 @@ export default function TrainingModulePage() {
                       </div>
                       <h3 className="text-lg font-bold text-foreground mb-2">Module Completed!</h3>
                       <p className="text-muted-foreground mb-4">
-                        Congratulations! You've earned {module.points} points.
+                        Congratulations! You have earned {module.points} points.
                       </p>
                       <Button onClick={() => router.push("/training")}>Back to Training Hub</Button>
                     </CardContent>

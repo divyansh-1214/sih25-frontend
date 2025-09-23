@@ -80,8 +80,8 @@ async function TodaySummaryCard() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Today's Summary</CardTitle>
-        <CardDescription>Key metrics for today's operations</CardDescription>
+        <CardTitle>Today s Summary</CardTitle>
+        <CardDescription>Key metrics for todays operations</CardDescription>
       </CardHeader>
       <CardContent>
         <div className="space-y-3">
