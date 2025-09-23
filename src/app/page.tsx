@@ -1,9 +1,12 @@
+'use client'
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Recycle, Users, Shield, Truck } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 export default function HomePage() {
+  const router = useRouter()
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-100">
       <div className="container mx-auto px-4 py-16">
@@ -52,7 +55,7 @@ export default function HomePage() {
             </CardContent>
           </Card>
 
-          <Card className="text-center hover:shadow-lg transition-shadow">
+          <Card className="text-center hover:shadow-lg transition-shadow" onClick={()=>router.push("/worker")}>
             <CardHeader>
               <div className="mx-auto bg-orange-100 p-3 rounded-full w-fit mb-4">
                 <Truck className="h-8 w-8 text-orange-600" />
@@ -70,7 +73,7 @@ export default function HomePage() {
             </CardContent>
           </Card>
 
-          <Card className="text-center hover:shadow-lg transition-shadow">
+          <Card className="text-center hover:shadow-lg transition-shadow" onClick={()=>router.push("/authority")}>
             <CardHeader>
               <div className="mx-auto bg-purple-100 p-3 rounded-full w-fit mb-4">
                 <Shield className="h-8 w-8 text-purple-600" />
