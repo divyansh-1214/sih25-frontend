@@ -1,7 +1,7 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Suspense } from "react"
-import "./globals.css"
+import "../globals.css"
 
 export const metadata: Metadata = {
   title: "GreenAuthority - Waste Management Portal",

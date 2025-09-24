@@ -15,7 +15,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { Camera, Video, StopCircle, RotateCcw, Send } from "lucide-react";
+import { Camera,  RotateCcw, Send } from "lucide-react";
 import axios, { AxiosError } from "axios";
 import jsQR from "jsqr";
 

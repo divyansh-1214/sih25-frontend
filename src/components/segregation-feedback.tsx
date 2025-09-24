@@ -66,10 +66,10 @@ export default function SegregationFeedback({ onClose }: { onClose: () => void }
   }
 
   const wasteCategories = [
-    { name: "Organic", color: "bg-green-500", examples: "Food scraps, garden waste" },
-    { name: "Recyclable", color: "bg-blue-500", examples: "Paper, plastic, metal" },
-    { name: "Hazardous", color: "bg-red-500", examples: "Batteries, chemicals" },
-    { name: "General", color: "bg-gray-500", examples: "Non-recyclable items" },
+    { name: "Organic", color: "bg-accent", examples: "Food scraps, garden waste" },
+    { name: "Recyclable", color: "bg-primary", examples: "Paper, plastic, metal" },
+    { name: "Hazardous", color: "bg-destructive", examples: "Batteries, chemicals" },
+    { name: "General", color: "bg-secondary", examples: "Non-recyclable items" },
   ]
 
   return (

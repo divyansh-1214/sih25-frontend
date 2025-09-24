@@ -44,72 +44,74 @@
 }
 
 :root {
+  /* Modern Tech Theme - Digital, app-based, monitoring focused */
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --background: oklch(1.0 0 0); /* Pure White - crisp, high-contrast background */
+  --foreground: oklch(0.15 0 0); /* Almost Black - excellent readability */
+  --card: oklch(1.0 0 0); /* Pure White card background */
+  --card-foreground: oklch(0.15 0 0); /* Almost Black text on cards */
+  --popover: oklch(1.0 0 0); /* Pure White popover background */
+  --popover-foreground: oklch(0.15 0 0); /* Almost Black popover text */
+  --primary: oklch(0.55 0.20 250); /* Bright Blue - primary color for tech/digital */
+  --primary-foreground: oklch(1.0 0 0); /* Pure White text on primary */
+  --secondary: oklch(0.50 0.01 250); /* Slate Grey - professional secondary color */
+  --secondary-foreground: oklch(1.0 0 0); /* Pure White text on secondary */
+  --muted: oklch(0.96 0.005 250); /* Light grey - muted background */
+  --muted-foreground: oklch(0.15 0 0); /* Almost Black muted text */
+  --accent: oklch(0.60 0.15 140); /* Success Green - accent for positive actions */
+  --accent-foreground: oklch(1.0 0 0); /* Pure White accent text */
+  --destructive: oklch(0.577 0.245 27.325); /* Keep existing destructive color */
+  --border: oklch(0.50 0.01 250); /* Slate Grey borders */
+  --input: oklch(1.0 0 0); /* Pure White input background */
+  --ring: oklch(0.55 0.20 250); /* Bright Blue focus ring */
+  --chart-1: oklch(0.55 0.20 250); /* Bright Blue chart color */
+  --chart-2: oklch(0.50 0.01 250); /* Slate Grey chart color */
+  --chart-3: oklch(0.60 0.15 140); /* Success Green chart color */
+  --chart-4: oklch(0.40 0.15 250); /* Darker blue chart color */
+  --chart-5: oklch(0.70 0.10 140); /* Light green chart color */
+  --sidebar: oklch(0.96 0.005 250); /* Light grey sidebar background */
+  --sidebar-foreground: oklch(0.15 0 0); /* Almost Black sidebar text */
+  --sidebar-primary: oklch(0.55 0.20 250); /* Bright Blue sidebar primary */
+  --sidebar-primary-foreground: oklch(1.0 0 0); /* Pure White sidebar primary text */
+  --sidebar-accent: oklch(0.60 0.15 140); /* Success Green sidebar accent */
+  --sidebar-accent-foreground: oklch(1.0 0 0); /* Pure White sidebar accent text */
+  --sidebar-border: oklch(0.50 0.01 250); /* Slate Grey sidebar border */
+  --sidebar-ring: oklch(0.55 0.20 250); /* Bright Blue sidebar ring */
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  /* Dark mode - maintaining modern tech theme with darker tones */
+  --background: oklch(0.10 0 0); /* Very dark background */
+  --foreground: oklch(0.95 0 0); /* Light text for dark mode */
+  --card: oklch(0.15 0 0); /* Dark card background */
+  --card-foreground: oklch(0.95 0 0); /* Light text on dark cards */
+  --popover: oklch(0.15 0 0); /* Dark popover background */
+  --popover-foreground: oklch(0.95 0 0); /* Light popover text */
+  --primary: oklch(0.65 0.20 250); /* Brighter blue for dark mode */
+  --primary-foreground: oklch(0.10 0 0); /* Dark text on primary */
+  --secondary: oklch(0.60 0.01 250); /* Lighter slate grey for dark mode */
+  --secondary-foreground: oklch(0.10 0 0); /* Dark text on secondary */
+  --muted: oklch(0.20 0 0); /* Dark muted background */
+  --muted-foreground: oklch(0.70 0 0); /* Muted light text */
+  --accent: oklch(0.70 0.15 140); /* Brighter success green for dark mode */
+  --accent-foreground: oklch(0.10 0 0); /* Dark text on accent */
+  --destructive: oklch(0.704 0.191 22.216); /* Keep existing destructive color */
+  --border: oklch(0.30 0 0); /* Dark borders */
+  --input: oklch(0.20 0 0); /* Dark input background */
+  --ring: oklch(0.65 0.20 250); /* Brighter blue focus ring */
+  --chart-1: oklch(0.65 0.20 250); /* Brighter blue chart color */
+  --chart-2: oklch(0.60 0.01 250); /* Lighter slate grey chart color */
+  --chart-3: oklch(0.70 0.15 140); /* Brighter success green chart color */
+  --chart-4: oklch(0.50 0.15 250); /* Medium blue chart color */
+  --chart-5: oklch(0.80 0.10 140); /* Light green chart color */
+  --sidebar: oklch(0.15 0 0); /* Dark sidebar background */
+  --sidebar-foreground: oklch(0.95 0 0); /* Light sidebar text */
+  --sidebar-primary: oklch(0.65 0.20 250); /* Brighter blue sidebar primary */
+  --sidebar-primary-foreground: oklch(0.10 0 0); /* Dark sidebar primary text */
+  --sidebar-accent: oklch(0.70 0.15 140); /* Brighter success green sidebar accent */
+  --sidebar-accent-foreground: oklch(0.10 0 0); /* Dark sidebar accent text */
+  --sidebar-border: oklch(0.30 0 0); /* Dark sidebar border */
+  --sidebar-ring: oklch(0.65 0.20 250); /* Brighter blue sidebar ring */
 }
 
 @layer base {

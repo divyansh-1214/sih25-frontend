@@ -103,24 +103,24 @@ export function MapView() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "active":
-        return "bg-green-500"
+        return "bg-accent" // Success Green for active vehicles
       case "idle":
-        return "bg-yellow-500"
+        return "bg-secondary" // Slate Grey for idle vehicles
       case "maintenance":
-        return "bg-red-500"
+        return "bg-destructive" // Red for maintenance
       default:
-        return "bg-gray-500"
+        return "bg-muted" // Muted color for unknown status
     }
   }
 
   const getStatusBadge = (status: string) => {
     switch (status) {
       case "active":
-        return <Badge className="bg-green-100 text-green-800 hover:bg-green-100">Active</Badge>
+        return <Badge className="bg-accent/20 text-accent-foreground hover:bg-accent/30">Active</Badge>
       case "idle":
-        return <Badge className="bg-yellow-100 text-yellow-800 hover:bg-yellow-100">Idle</Badge>
+        return <Badge className="bg-secondary/20 text-secondary-foreground hover:bg-secondary/30">Idle</Badge>
       case "maintenance":
-        return <Badge className="bg-red-100 text-red-800 hover:bg-red-100">Maintenance</Badge>
+        return <Badge className="bg-destructive/20 text-destructive-foreground hover:bg-destructive/30">Maintenance</Badge>
       default:
         return <Badge variant="secondary">Unknown</Badge>
     }
