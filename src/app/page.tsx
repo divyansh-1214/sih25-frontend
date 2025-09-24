@@ -13,7 +13,6 @@ import { Recycle, Users, Shield, Truck, ArrowRight, CheckCircle } from "lucide-r
 import { useRouter } from "next/navigation";
 
 export default function HomePage() {
-  const router = useRouter();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-100">
@@ -61,7 +60,7 @@ export default function HomePage() {
                 ))}
               </ul>
               <Button asChild className="w-full bg-blue-600 hover:bg-blue-700 group">
-                <Link href="/user/auth/login" className="flex items-center justify-center">
+                <Link href="/auth/login" className="flex items-center justify-center">
                   Login as Citizen
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
@@ -95,7 +94,7 @@ export default function HomePage() {
                 ))}
               </ul>
               <Button asChild className="w-full bg-orange-600 hover:bg-orange-700 group">
-                <Link href="/worker/auth/login" className="flex items-center justify-center">
+                <Link href="/worker" className="flex items-center justify-center">
                   Login as Worker
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
@@ -129,7 +128,7 @@ export default function HomePage() {
                 ))}
               </ul>
               <Button asChild className="w-full bg-purple-600 hover:bg-purple-700 group">
-                <Link href="/authority/auth/login" className="flex items-center justify-center">
+                <Link href="/authority" className="flex items-center justify-center">
                   Login as Administrator
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
@@ -183,7 +182,7 @@ export default function HomePage() {
           <p className="text-gray-600 mb-6 text-lg">Ready to make waste management smarter?</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
             <Button asChild size="lg" className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 shadow-lg">
-              <Link href="/user/auth/signup" className="flex items-center">
+              <Link href="/auth/signup" className="flex items-center">
                 Get Started
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
