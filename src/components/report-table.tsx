@@ -21,7 +21,7 @@ import { Label } from "@/components/ui/label"
 import { Search, Eye, MapPin, Calendar, User, MessageSquare } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 import Image from "next/image"
-
+import {ward,type wardType} from "@/lib/ward"
 interface CitizenReport {
   _id: string
   author: string
@@ -49,7 +49,8 @@ export function ReportTable() {
   const [selectedPriority, setSelectedPriority] = useState("all")
   const [selectedReport, setSelectedReport] = useState<CitizenReport | null>(null)
   const [resolutionNote, setResolutionNote] = useState("")
-
+  const [assignedTo, setAssignedTo] = useState<String>("a")
+  const [zone, SetZone] = useState<number>(0)
   // Fetch reports from API
   useEffect(() => {
     const fetchReports = async () => {
@@ -79,7 +80,18 @@ export function ReportTable() {
 
     fetchReports()
   }, [])
-
+  const  findHead = async (location: string) => {
+    for (const v of ward) {
+      for (const d of v.mohalla) {
+        if (d === location) {
+          await setAssignedTo(v.corporator.name);
+          await SetZone(v.ward_no);
+          return; // Stop after first match
+        }
+      }
+    }
+  }
+  
   const filteredData = data.filter((report) => {
     const matchesSearch =
       report.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -275,7 +287,7 @@ export function ReportTable() {
                   <TableCell>
                     <Dialog>
                       <DialogTrigger asChild>
-                        <Button variant="ghost" size="sm" onClick={() => setSelectedReport(report)}>
+                        <Button variant="ghost" size="sm" onClick={() => {setSelectedReport(report); findHead(report.location)}}>
                           <Eye className="w-4 h-4" />
                         </Button>
                       </DialogTrigger>
@@ -338,25 +350,22 @@ export function ReportTable() {
                               />
                             </div>
                           )}
-
-                          {report.assignedTo && (
+                          {assignedTo && (
                             <div>
-                              <Label className="text-sm font-medium">Assigned To</Label>
-                              <p className="mt-1 text-sm">{report.assignedTo}</p>
+                              <Label className="text-sm font-medium">Assigning to</Label>
+                              <p className="mt-1 text-sm">{assignedTo}</p>
                             </div>
                           )}
-
                           {report.resolutionNote && (
                             <div>
-                              <Label className="text-sm font-medium">Resolution Note</Label>
+                              <Label className="text-sm font-medium">Add note Note</Label>
                               <p className="mt-1 text-sm">{report.resolutionNote}</p>
                               <p className="text-xs text-muted-foreground">Resolved on {report.resolvedDate}</p>
                             </div>
                           )}
-
                           {report.status !== "resolved" && report.status !== "closed" && (
                             <div className="space-y-2">
-                              <Label htmlFor="resolution">Resolution Note</Label>
+                              <Label htmlFor="resolution">Feedback Note</Label>
                               <Textarea
                                 id="resolution"
                                 placeholder="Enter resolution details..."
@@ -365,7 +374,7 @@ export function ReportTable() {
                                 rows={3}
                               />
                               <Button onClick={handleResolve} disabled={!resolutionNote.trim()}>
-                                Mark as Resolved
+                                Assign to
                               </Button>
                             </div>
                           )}

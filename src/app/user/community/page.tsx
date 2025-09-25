@@ -1,7 +1,5 @@
 "use client";
-
 import type React from "react";
-
 import { useEffect, useState } from "react";
 import {
   Card,
@@ -36,9 +34,13 @@ import { mockCommunityReports, type CommunityReport } from "@/lib/mock-data";
 import Link from "next/link";
 import axios from "axios";
 import Image from "next/image";
+import { mohalla } from "@/lib/ward";
 
-// Type definitions following project conventions
-type ReportCategory = "illegal_dumping" | "overflowing_bin" | "missed_collection" | "other";
+type ReportCategory =
+  | "illegal_dumping"
+  | "overflowing_bin"
+  | "missed_collection"
+  | "other";
 type ReportPriority = "low" | "medium" | "high";
 
 interface ReportFormData {
@@ -62,7 +64,9 @@ export default function CommunityPage() {
     fechReport();
     async function fechReport() {
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/reports/`);
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}/api/reports/`
+        );
         setReports(response.data);
       } catch (error) {
         console.log(error);
@@ -459,7 +463,10 @@ function ReportForm({ onClose }: ReportFormProps) {
       imageUrl: getFinalImageUrl(),
     };
     console.log(newReport);
-    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/reports/`, newReport);
+    await axios.post(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/reports/`,
+      newReport
+    );
     setIsSubmitting(false);
   };
 
@@ -500,18 +507,29 @@ function ReportForm({ onClose }: ReportFormProps) {
         </Select>
       </div>
 
+      {/* Fixed Location Section */}
       <div>
         <label className="block text-sm font-medium text-foreground mb-2">
           Location
         </label>
-        <Input
+        <Select
           required
           value={formData.location}
-          onChange={(e) =>
-            setFormData({ ...formData, location: e.target.value })
+          onValueChange={(value: string) =>
+            setFormData({ ...formData, location: value })
           }
-          placeholder="Where is this issue located?"
-        />
+        >
+          <SelectTrigger>
+            <SelectValue placeholder="Select location/mohalla" />
+          </SelectTrigger>
+          <SelectContent className="max-h-60 overflow-y-auto">
+            {mohalla.map((location, index) => (
+              <SelectItem key={index} value={location}>
+                {location}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
 
       <div>

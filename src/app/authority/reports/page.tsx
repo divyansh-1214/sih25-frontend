@@ -20,7 +20,6 @@ export default function ReportsPage() {
         <h1 className="text-3xl font-bold text-balance">Citizen Reports</h1>
         <p className="text-muted-foreground">Manage and resolve citizen complaints and reports</p>
       </div>
-
       {/* Summary Cards */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
@@ -33,7 +32,6 @@ export default function ReportsPage() {
             <p className="text-xs text-muted-foreground">+{reportsSummary.reportsToday} today</p>
           </CardContent>
         </Card>
-
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">In Progress</CardTitle>
@@ -44,7 +42,6 @@ export default function ReportsPage() {
             <p className="text-xs text-muted-foreground">Being worked on</p>
           </CardContent>
         </Card>
-
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Resolved</CardTitle>
@@ -55,7 +52,6 @@ export default function ReportsPage() {
             <p className="text-xs text-green-600">Avg: {reportsSummary.avgResolutionTime}</p>
           </CardContent>
         </Card>
-
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Urgent Reports</CardTitle>
@@ -67,7 +63,6 @@ export default function ReportsPage() {
           </CardContent>
         </Card>
       </div>
-
       {/* Reports Table */}
       <ReportTable />
     </div>
