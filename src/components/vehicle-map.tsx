@@ -24,13 +24,13 @@ export function VehicleMap({ vehicles, selectedVehicle, onVehicleSelect }: Vehic
   const getStatusColor = (status: string) => {
     switch (status) {
       case "on_route":
-        return "#3b82f6" // blue
+        return "hsl(var(--primary))" // Bright Blue for on route
       case "collecting":
-        return "#f59e0b" // orange
+        return "hsl(var(--secondary))" // Slate Grey for collecting
       case "completed":
-        return "#10b981" // green
+        return "hsl(var(--accent))" // Success Green for completed
       default:
-        return "#6b7280" // gray
+        return "hsl(var(--muted-foreground))" // Muted color for default
     }
   }
 

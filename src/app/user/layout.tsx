@@ -1,13 +1,12 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Suspense } from "react"
-import "./globals.css"
+import "../globals.css"
 
 export const metadata: Metadata = {
   title: "GreenHome - Smart Waste Management",
   description:
     "Municipal waste management app with AI-powered segregation, community reporting, and green points system",
-  generator: "v0.app",
 }
 
 export default function RootLayout({

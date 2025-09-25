@@ -45,19 +45,19 @@ const mockZoneData: ZoneData[] = [
 
 export function ComplianceHeatmap() {
   const getComplianceColor = (rate: number) => {
-    if (rate >= 90) return "bg-green-500"
-    if (rate >= 80) return "bg-green-400"
-    if (rate >= 70) return "bg-yellow-400"
-    if (rate >= 60) return "bg-orange-400"
-    return "bg-red-500"
+    if (rate >= 90) return "bg-accent" // Success Green for excellent compliance
+    if (rate >= 80) return "bg-accent/80" // Slightly lighter success green
+    if (rate >= 70) return "bg-primary/60" // Lighter bright blue for good compliance
+    if (rate >= 60) return "bg-secondary/60" // Lighter slate grey for fair compliance
+    return "bg-destructive" // Red for poor compliance
   }
 
   const getComplianceTextColor = (rate: number) => {
-    if (rate >= 90) return "text-green-700"
-    if (rate >= 80) return "text-green-600"
-    if (rate >= 70) return "text-yellow-700"
-    if (rate >= 60) return "text-orange-700"
-    return "text-red-700"
+    if (rate >= 90) return "text-accent-foreground"
+    if (rate >= 80) return "text-accent-foreground"
+    if (rate >= 70) return "text-primary-foreground"
+    if (rate >= 60) return "text-secondary-foreground"
+    return "text-destructive-foreground"
   }
 
   return (

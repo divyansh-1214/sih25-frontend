@@ -7,17 +7,57 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { Camera, Video, StopCircle, RotateCcw, Send } from "lucide-react";
+import { Camera, RotateCcw, Send } from "lucide-react";
 import axios, { AxiosError } from "axios";
 import jsQR from "jsqr";
 
-interface User {
+// Type definitions
+interface UserData {
   id: string;
   name: string;
   email: string;
   address?: string;
+  phoneNumber?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+interface FormData {
+  name: string;
+  email: string;
+  address: string;
+  behavior: string;
+  segregationQuality: string;
+  wasteWeight: string;
+  comments: string;
+}
+
+interface ApiError {
+  message: string;
+  status?: number;
+}
+
+interface SubmissionData extends FormData {
+  uId: string;
+  date: string;
+  wId: string;
+  scannedAt: string;
+}
+
+interface WorkerProfileResponse {
+  user: {
+    id: string;
+    name: string;
+    email: string;
+  };
 }
 
 export default function QrScanner() {
@@ -25,19 +65,18 @@ export default function QrScanner() {
   const [useVideoInput] = useState(false);
   const [isVideoActive, setIsVideoActive] = useState(false);
   const [stream, setStream] = useState<MediaStream | null>(null);
-  const [userData, setUserData] = useState<User | null>(null);
+  const [userData, setUserData] = useState<UserData | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string>("");
-  
   // Form state
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
     address: "",
     behavior: "",
     segregationQuality: "",
     wasteWeight: "",
-    comments: ""
+    comments: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -47,99 +86,85 @@ export default function QrScanner() {
   const port = process.env.NEXT_PUBLIC_API_URL;
 
   // Helper function to get cookie value
-  const getCookie = (name: string): string | null => {
+  const getCookie = useCallback((name: string): string | null => {
     if (typeof document === "undefined") return null;
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) return parts.pop()?.split(";").shift() || null;
     return null;
-  };
+  }, []);
 
-  // Fetch user data when QR is scanned (memoized to prevent unnecessary re-renders)
-  const fetchUserData = useCallback(async (userId: string) => {
-    if (userId === "No result" || loading) return;
+  // Fetch user data when QR is scanned
+  const fetchUserData = useCallback(
+    async (userId: string) => {
+      if (userId === "No result" || loading) return;
 
-    console.log("Attempting to fetch user data for ID:", userId);
-    setLoading(true);
-    setError(""); // Clear previous errors
+      console.log("Attempting to fetch user data for ID:", userId);
+      setLoading(true);
+      setError(""); // Clear previous errors
 
-    try {
-      // Try different API endpoints based on the data format
-      let response;
-
-      // First try direct profile fetch
       try {
-        response = await axios.get(`${port}/api/auth/profile/${userId}`);
-      } catch (firstError) {
-        console.log(firstError);
-        
-        console.log("Direct profile fetch failed, trying alternative endpoint");
+        // Try different API endpoints based on the data format
+        let response;
 
-        // If that fails, try with the current user endpoint and pass ID as query
+        // First try direct profile fetch
         try {
-          response = await axios.get(`${port}/api/auth/profile`, {
-            params: { userId: userId },
-          });
-        } catch (secondError) {
-          console.log("Alternative endpoint failed, checking if it's a URL");
+          response = await axios.get<UserData>(
+            `${port}/api/auth/profile/${userId}`
+          );
+        } catch (firstError) {
+          console.log(
+            "Direct profile fetch failed, trying alternative endpoint",
+            firstError
+          );
 
-          // If the QR contains a URL, extract the ID from it
-          if (userId.startsWith("http") && userId.includes("/profile/")) {
-            const extractedId = userId.split("/profile/")[1];
-            response = await axios.get(
-              `${port}/api/auth/profile/${extractedId}`
-            );
-          } else {
-            throw secondError;
+          // If that fails, try with the current user endpoint and pass ID as query
+          try {
+            response = await axios.get<UserData>(`${port}/api/auth/profile`, {
+              params: { userId: userId },
+            });
+          } catch (secondError) {
+            console.log("Alternative endpoint failed, checking if it's a URL");
+
+            // If the QR contains a URL, extract the ID from it
+            if (userId.startsWith("http") && userId.includes("/profile/")) {
+              const extractedId = userId.split("/profile/")[1];
+              response = await axios.get<UserData>(
+                `${port}/api/auth/profile/${extractedId}`
+              );
+            } else {
+              throw secondError;
+            }
           }
         }
+
+        setUserData(response.data);
+        console.log("User data fetched successfully:", response.data);
+
+        // Pre-populate form with user data
+        setFormData((prev) => ({
+          ...prev,
+          name: response.data.name || "",
+          email: response.data.email || "",
+          address: response.data.address || "",
+        }));
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+        setUserData(null);
+
+        const axiosError = error as AxiosError<ApiError>;
+        const errorMessage =
+          axiosError.response?.data?.message ||
+          axiosError.message ||
+          "Unknown error occurred";
+
+        setError(`Failed to fetch user data: ${errorMessage}`);
+      } finally {
+        setLoading(false);
       }
-
-      setUserData(response.data);
-      console.log("User data fetched successfully:", response.data);
-      
-      // Pre-populate form with user data
-      setFormData(prev => ({
-        ...prev,
-        name: response.data.name || "",
-        email: response.data.email || "",
-        address: response.data.address || ""
-      }));
-    } catch (error) {
-      console.error("Error fetching user data:", error);
-      setUserData(null);
-      
-      let errorMessage = "Failed to fetch user data";
-      if (error instanceof AxiosError) {
-        errorMessage += `: ${error.response?.data?.message || error.message}`;
-      } else if (error instanceof Error) {
-        errorMessage += `: ${error.message}`;
-      }
-      
-      setError(errorMessage);
-    } finally {
-      setLoading(false);
-    }
-  }, [loading, port]);
-
-  // Stop video function (memoized to prevent unnecessary re-renders)
-  const stopVideo = useCallback(() => {
-    if (stream) {
-      stream.getTracks().forEach((track) => track.stop());
-      setStream(null);
-    }
-
-    if (scanIntervalRef.current) {
-      clearInterval(scanIntervalRef.current);
-      scanIntervalRef.current = null;
-    }
-
-    if (videoRef.current) {
-      videoRef.current.srcObject = null;
-    }
-
-    setIsVideoActive(false);
-  }, [stream]);
+    },
+    [port, loading]
+  );
 
   // Start webcam video
   const startVideo = async () => {
@@ -171,24 +196,40 @@ export default function QrScanner() {
       console.error("Error accessing camera:", error);
       let errorMessage = "Failed to access camera. ";
 
-      if (error instanceof Error) {
-        if (error.name === "NotAllowedError") {
-          errorMessage +=
-            "Camera permission was denied. Please allow camera access and try again.";
-        } else if (error.name === "NotFoundError") {
-          errorMessage += "No camera found on this device.";
-        } else if (error.name === "NotSupportedError") {
-          errorMessage += "Camera is not supported in this browser.";
-        } else {
-          errorMessage += error.message || "Please ensure camera permissions are granted.";
-        }
+      const mediaError = error as { name?: string; message?: string };
+      if (mediaError.name === "NotAllowedError") {
+        errorMessage +=
+          "Camera permission was denied. Please allow camera access and try again.";
+      } else if (mediaError.name === "NotFoundError") {
+        errorMessage += "No camera found on this device.";
+      } else if (mediaError.name === "NotSupportedError") {
+        errorMessage += "Camera is not supported in this browser.";
       } else {
-        errorMessage += "Please ensure camera permissions are granted.";
+        errorMessage +=
+          mediaError.message || "Please ensure camera permissions are granted.";
       }
 
       setError(errorMessage);
     }
   };
+
+  const stopVideo = useCallback(() => {
+    if (stream) {
+      stream.getTracks().forEach((track) => track.stop());
+      setStream(null);
+    }
+
+    if (scanIntervalRef.current) {
+      clearInterval(scanIntervalRef.current);
+      scanIntervalRef.current = null;
+    }
+
+    if (videoRef.current) {
+      videoRef.current.srcObject = null;
+    }
+
+    setIsVideoActive(false);
+  }, [stream]);
 
   // QR detection from video stream
   const startQRDetection = () => {
@@ -241,13 +282,17 @@ export default function QrScanner() {
             // If it looks like JSON, try to parse it
             try {
               if (qrCode.data.startsWith("{")) {
-                const parsedData = JSON.parse(qrCode.data);
+                const parsedData = JSON.parse(qrCode.data) as {
+                  userId?: string;
+                  id?: string;
+                };
                 if (parsedData.userId || parsedData.id) {
-                  processedData = parsedData.userId || parsedData.id;
+                  processedData =
+                    parsedData.userId || parsedData.id || qrCode.data;
                 }
               }
             } catch (e) {
-              console.log(e);
+              console.log("Failed to parse JSON:", e);
               // Not JSON, use original data
             }
 
@@ -266,14 +311,14 @@ export default function QrScanner() {
     e.preventDefault();
     setIsSubmitting(true);
     setError("");
-    
+
     try {
       const token = getCookie("authToken");
       if (!token) {
         throw new Error("No authentication token found. Please login again.");
       }
       // Fetch worker profile to get worker ID
-      const workerProfileRes = await axios.get(
+      const workerProfileRes = await axios.get<WorkerProfileResponse>(
         `${port}/api/auth/worker/profile`,
         {
           headers: {
@@ -285,7 +330,7 @@ export default function QrScanner() {
       );
       const workerId = workerProfileRes.data.user.id;
 
-      const submissionData = {
+      const submissionData: SubmissionData = {
         ...formData,
         uId: data, // The scanned user ID
         date: new Date().toISOString(),
@@ -294,7 +339,7 @@ export default function QrScanner() {
       };
 
       console.log("Submitting evaluation:", submissionData);
-      
+
       // Submit to your evaluation/feedback API endpoint
       const response = await axios.post(
         `${port}/api/worker/feedback/`,
@@ -306,9 +351,9 @@ export default function QrScanner() {
           },
         }
       );
-      
+
       console.log("Evaluation submitted successfully:", response.data);
-      
+
       // Reset form after successful submission
       setFormData({
         name: "",
@@ -317,44 +362,38 @@ export default function QrScanner() {
         behavior: "",
         segregationQuality: "",
         wasteWeight: "",
-        comments: ""
+        comments: "",
       });
-      
+
       // Reset scanner
       setData("No result");
       setUserData(null);
-      
+
       alert("Evaluation submitted successfully!");
-      
     } catch (error) {
       console.error("Error submitting evaluation:", error);
-      
-      let errorMessage = "Failed to submit evaluation";
-      if (error instanceof AxiosError) {
-        errorMessage += `: ${error.response?.data?.message || error.message}`;
-      } else if (error instanceof Error) {
-        errorMessage += `: ${error.message}`;
-      }
-      
-      setError(errorMessage);
+      const axiosError = error as AxiosError<ApiError>;
+      const errorMessage =
+        axiosError.response?.data?.message ||
+        axiosError.message ||
+        "Unknown error occurred";
+      setError(`Failed to submit evaluation: ${errorMessage}`);
     } finally {
       setIsSubmitting(false);
     }
   };
-
+  const t = 0;
   // Handle QR scan result
   useEffect(() => {
     if (data !== "No result") {
       fetchUserData(data);
     }
-  }, [data, fetchUserData]);
+  }, [data, t]);
 
   // Cleanup on unmount
   useEffect(() => {
-    return () => {
-      stopVideo();
-    };
-  }, [stopVideo]);
+    startVideo();
+  }, []);
 
   return (
     <div className="min-h-screen bg-background p-4">
@@ -411,44 +450,24 @@ export default function QrScanner() {
                 ref={videoRef}
                 className="w-full h-64 object-cover"
                 autoPlay
-                muted
                 playsInline
               />
               {isVideoActive && (
-                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                      <div className="border-2 border-green-500 bg-transparent w-48 h-48 rounded-lg relative">
-                        <div className="absolute top-0 left-0 w-6 h-6 border-l-4 border-t-4 border-green-500"></div>
-                        <div className="absolute top-0 right-0 w-6 h-6 border-r-4 border-t-4 border-green-500"></div>
-                        <div className="absolute bottom-0 left-0 w-6 h-6 border-l-4 border-b-4 border-green-500"></div>
-                        <div className="absolute bottom-0 right-0 w-6 h-6 border-r-4 border-b-4 border-green-500"></div>
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <p className="text-green-500 text-sm font-medium">
-                            Scanning for QR Code...
-                          </p>
-                        </div>
-                      </div>
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <div className="border-2 border-green-500 bg-transparent w-48 h-48 rounded-lg relative">
+                    <div className="absolute top-0 left-0 w-6 h-6 border-l-4 border-t-4 border-green-500"></div>
+                    <div className="absolute top-0 right-0 w-6 h-6 border-r-4 border-t-4 border-green-500"></div>
+                    <div className="absolute bottom-0 left-0 w-6 h-6 border-l-4 border-b-4 border-green-500"></div>
+                    <div className="absolute bottom-0 right-0 w-6 h-6 border-r-4 border-b-4 border-green-500"></div>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <p className="text-green-500 text-sm font-medium">
+                        Scanning for QR Code...
+                      </p>
                     </div>
-                  )}
-              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
-                {!isVideoActive ? (
-                  <Button
-                    onClick={startVideo}
-                    className="bg-green-600 hover:bg-green-700"
-                  >
-                    <Video className="w-4 h-4 mr-2" />
-                    Start Camera
-                  </Button>
-                ) : (
-                  <Button onClick={stopVideo} variant="destructive">
-                    <StopCircle className="w-4 h-4 mr-2" />
-                    Stop Camera
-                  </Button>
-                )}
-              </div>
+                  </div>
+                </div>
+              )}
             </div>
-
-            {/* Hidden canvas for QR detection */}
-            <canvas ref={canvasRef} style={{ display: 'none' }} />
 
             {/* Scan Result */}
             <div className="space-y-2">
@@ -487,7 +506,9 @@ export default function QrScanner() {
                       : "String"}
                   </p>
                   <p>Length: {data.length} characters</p>
-                  <p>API Call: {process.env.NEXT_PUBLIC_API_URL}/api/auth/profile/{data}</p>
+                  <p>
+                    API Call: {port}/api/auth/profile/{data}
+                  </p>
                 </div>
               )}
             </div>
@@ -533,13 +554,15 @@ export default function QrScanner() {
                 </div>
               )}
             </CardContent>
-            
+
             {/* Evaluation Form */}
             <CardContent>
               <form onSubmit={handleFormSubmit} className="space-y-4">
                 <div className="border-t pt-4">
-                  <h3 className="text-lg font-semibold mb-4">User Evaluation Form</h3>
-                  
+                  <h3 className="text-lg font-semibold mb-4">
+                    User Evaluation Form
+                  </h3>
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {/* Name Field */}
                     <div className="space-y-2">
@@ -547,7 +570,12 @@ export default function QrScanner() {
                       <Input
                         id="name"
                         value={formData.name}
-                        onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                        onChange={(e) =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            name: e.target.value,
+                          }))
+                        }
                         placeholder="Enter user name"
                         required
                       />
@@ -560,7 +588,12 @@ export default function QrScanner() {
                         id="email"
                         type="email"
                         value={formData.email}
-                        onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                        onChange={(e) =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            email: e.target.value,
+                          }))
+                        }
                         placeholder="Enter email address"
                       />
                     </div>
@@ -572,7 +605,12 @@ export default function QrScanner() {
                     <Textarea
                       id="address"
                       value={formData.address}
-                      onChange={(e) => setFormData(prev => ({ ...prev, address: e.target.value }))}
+                      onChange={(e) =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          address: e.target.value,
+                        }))
+                      }
                       placeholder="Enter full address"
                       rows={2}
                     />
@@ -584,17 +622,29 @@ export default function QrScanner() {
                       <Label htmlFor="behavior">User Behavior</Label>
                       <Select
                         value={formData.behavior}
-                        onValueChange={(value) => setFormData(prev => ({ ...prev, behavior: value }))}
+                        onValueChange={(value) =>
+                          setFormData((prev) => ({ ...prev, behavior: value }))
+                        }
                       >
                         <SelectTrigger>
                           <SelectValue placeholder="Select behavior rating" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="excellent">Excellent - Very cooperative</SelectItem>
-                          <SelectItem value="good">Good - Cooperative</SelectItem>
-                          <SelectItem value="average">Average - Somewhat cooperative</SelectItem>
-                          <SelectItem value="poor">Poor - Uncooperative</SelectItem>
-                          <SelectItem value="very-poor">Very Poor - Hostile</SelectItem>
+                          <SelectItem value="excellent">
+                            Excellent - Very cooperative
+                          </SelectItem>
+                          <SelectItem value="good">
+                            Good - Cooperative
+                          </SelectItem>
+                          <SelectItem value="average">
+                            Average - Somewhat cooperative
+                          </SelectItem>
+                          <SelectItem value="poor">
+                            Poor - Uncooperative
+                          </SelectItem>
+                          <SelectItem value="very-poor">
+                            Very Poor - Hostile
+                          </SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
@@ -604,17 +654,32 @@ export default function QrScanner() {
                       <Label htmlFor="segregation">Segregation Quality</Label>
                       <Select
                         value={formData.segregationQuality}
-                        onValueChange={(value) => setFormData(prev => ({ ...prev, segregationQuality: value }))}
+                        onValueChange={(value) =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            segregationQuality: value,
+                          }))
+                        }
                       >
                         <SelectTrigger>
                           <SelectValue placeholder="Select segregation quality" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="excellent">Excellent - Perfect segregation</SelectItem>
-                          <SelectItem value="good">Good - Well segregated</SelectItem>
-                          <SelectItem value="average">Average - Partially segregated</SelectItem>
-                          <SelectItem value="poor">Poor - Poorly segregated</SelectItem>
-                          <SelectItem value="none">None - No segregation</SelectItem>
+                          <SelectItem value="excellent">
+                            Excellent - Perfect segregation
+                          </SelectItem>
+                          <SelectItem value="good">
+                            Good - Well segregated
+                          </SelectItem>
+                          <SelectItem value="average">
+                            Average - Partially segregated
+                          </SelectItem>
+                          <SelectItem value="poor">
+                            Poor - Poorly segregated
+                          </SelectItem>
+                          <SelectItem value="none">
+                            None - No segregation
+                          </SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
@@ -629,7 +694,12 @@ export default function QrScanner() {
                       step="0.1"
                       min="0"
                       value={formData.wasteWeight}
-                      onChange={(e) => setFormData(prev => ({ ...prev, wasteWeight: e.target.value }))}
+                      onChange={(e) =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          wasteWeight: e.target.value,
+                        }))
+                      }
                       placeholder="Enter waste weight in kg"
                       required
                     />
@@ -641,7 +711,12 @@ export default function QrScanner() {
                     <Textarea
                       id="comments"
                       value={formData.comments}
-                      onChange={(e) => setFormData(prev => ({ ...prev, comments: e.target.value }))}
+                      onChange={(e) =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          comments: e.target.value,
+                        }))
+                      }
                       placeholder="Any additional observations or comments"
                       rows={3}
                     />
@@ -649,9 +724,11 @@ export default function QrScanner() {
 
                   {/* Submit Button */}
                   <div className="flex gap-2 pt-4">
-                    <Button 
-                      type="submit" 
-                      disabled={isSubmitting || !formData.name || !formData.wasteWeight}
+                    <Button
+                      type="submit"
+                      disabled={
+                        isSubmitting || !formData.name || !formData.wasteWeight
+                      }
                       className="flex-1"
                     >
                       {isSubmitting ? (
@@ -666,8 +743,8 @@ export default function QrScanner() {
                         </>
                       )}
                     </Button>
-                    
-                    <Button 
+
+                    <Button
                       type="button"
                       variant="outline"
                       onClick={() => {
@@ -678,7 +755,7 @@ export default function QrScanner() {
                           behavior: "",
                           segregationQuality: "",
                           wasteWeight: "",
-                          comments: ""
+                          comments: "",
                         });
                       }}
                     >
@@ -690,6 +767,8 @@ export default function QrScanner() {
             </CardContent>
           </Card>
         )}
+
+        <canvas ref={canvasRef} className="hidden" />
       </div>
     </div>
   );

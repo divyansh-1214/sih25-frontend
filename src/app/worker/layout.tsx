@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
-import './globals.css'
+import '../globals.css'
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
-  generator: 'v0.app',
+  title: " - Smart Waste Management",
+  description:
+    "Municipal waste management app with AI-powered segregation, community reporting, and green points system",
 }
 
 export default function RootLayout({

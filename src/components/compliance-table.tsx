@@ -104,11 +104,11 @@ export function ComplianceTable() {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case "compliant":
-        return <Badge className="bg-green-100 text-green-800 hover:bg-green-100">Compliant</Badge>
+        return <Badge className="bg-accent/20 text-accent-foreground hover:bg-accent/30">Compliant</Badge>
       case "warning":
-        return <Badge className="bg-yellow-100 text-yellow-800 hover:bg-yellow-100">Warning</Badge>
+        return <Badge className="bg-primary/20 text-primary-foreground hover:bg-primary/30">Warning</Badge>
       case "violation":
-        return <Badge className="bg-red-100 text-red-800 hover:bg-red-100">Violation</Badge>
+        return <Badge className="bg-destructive/20 text-destructive-foreground hover:bg-destructive/30">Violation</Badge>
       default:
         return <Badge variant="secondary">Unknown</Badge>
     }
@@ -117,20 +117,20 @@ export function ComplianceTable() {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case "compliant":
-        return <CheckCircle className="w-4 h-4 text-green-600" />
+        return <CheckCircle className="w-4 h-4 text-accent" />
       case "warning":
-        return <AlertTriangle className="w-4 h-4 text-yellow-600" />
+        return <AlertTriangle className="w-4 h-4 text-primary" />
       case "violation":
-        return <XCircle className="w-4 h-4 text-red-600" />
+        return <XCircle className="w-4 h-4 text-destructive" />
       default:
         return null
     }
   }
 
   const getComplianceColor = (rate: number) => {
-    if (rate >= 90) return "text-green-600"
-    if (rate >= 70) return "text-yellow-600"
-    return "text-red-600"
+    if (rate >= 90) return "text-accent"
+    if (rate >= 70) return "text-primary"
+    return "text-destructive"
   }
 
   return (

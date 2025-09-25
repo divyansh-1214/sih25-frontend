@@ -135,7 +135,7 @@ export default function LoginPage() {
           </div>
           <CardTitle className="text-2xl">Welcome Back</CardTitle>
           <CardDescription>
-            Sign in to your waste management portal
+            login as the Worker
           </CardDescription>
         </CardHeader>
         <CardContent>
