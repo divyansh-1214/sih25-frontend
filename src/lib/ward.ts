@@ -11,14 +11,14 @@ export interface wardType {
 
 export const ward: wardType[] = [
   {
-    "ward_no": 1,
-    "ward_name": "IBRAHIM PUR WARD",
-    "corporator": {
-      "name": "Smt. SUNITA YADAV",
-      "address": "591KA/004 CHIRAYA BAGH SECTER-7 C, VRANDAVAN YOJNA, LUCKNOW",
-      "phone_no": "9415418424"
+    ward_no: 1,
+    ward_name: "IBRAHIM PUR WARD",
+    corporator: {
+      name: "Smt. SUNITA YADAV",
+      address: "591KA/004 CHIRAYA BAGH SECTER-7 C, VRANDAVAN YOJNA, LUCKNOW",
+      phone_no: "9415418424",
     },
-    "mohalla": [
+    mohalla: [
       "NILMATHA",
       "ΝΑΙ BASTI",
       "IBRAHIM PUR",
@@ -32,18 +32,18 @@ export const ward: wardType[] = [
       "PANCH KHEDA",
       "SARSWATI PURAM",
       "UTRATIYA",
-      "SINCHAI COLONY"
-    ]
+      "SINCHAI COLONY",
+    ],
   },
   {
-    "ward_no": 2,
-    "ward_name": "RAJA BIJLI PASI WARD",
-    "corporator": {
-      "name": "Smt. KAMALA YADAV",
-      "address": "586KA/086 MIRAJAPUR MAJRA AORANGABAD, LUCKNOW",
-      "phone_no": null
+    ward_no: 2,
+    ward_name: "RAJA BIJLI PASI WARD",
+    corporator: {
+      name: "Smt. KAMALA YADAV",
+      address: "586KA/086 MIRAJAPUR MAJRA AORANGABAD, LUCKNOW",
+      phone_no: null,
     },
-    "mohalla": [
+    mohalla: [
       "ASHIAANA-M",
       "ASHIAANA-N",
       "ASHIAANA M-1",
@@ -64,33 +64,33 @@ export const ward: wardType[] = [
       "CHUWARA KHEDA",
       "SWAROOP CHANDRA KHERA",
       "BIRHANA KHEDA",
-      "KHWAZAPUR"
-    ]
+      "KHWAZAPUR",
+    ],
   },
   {
-    "ward_no": 3,
-    "ward_name": "TILAK NAGAR WARD",
-    "corporator": {
-      "name": "SRI NARENDRA KUMAR SHARMA",
-      "address": "255KA/67/47 INDRANI NAGAR, LUCKNOW",
-      "phone_no": "9415105942"
+    ward_no: 3,
+    ward_name: "TILAK NAGAR WARD",
+    corporator: {
+      name: "SRI NARENDRA KUMAR SHARMA",
+      address: "255KA/67/47 INDRANI NAGAR, LUCKNOW",
+      phone_no: "9415105942",
     },
-    "mohalla": [
+    mohalla: [
       "AISHBAGH RAM NAGAR",
       "KHAJUHА",
       "ΝΕΤΑ ΚΑNHAIYA LAL COLONY",
-      "TILAK NAGAR"
-    ]
+      "TILAK NAGAR",
+    ],
   },
   {
-    "ward_no": 4,
-    "ward_name": "SAROJNI NAGAR WARD PART-1",
-    "corporator": {
-      "name": "Smt. GEETA VERMA",
-      "address": "578/325,KIRTI GAS SERVICE, GORO BAJAR, SAROJANI NAGR. LUCKNOW",
-      "phone_no": "9839742034"
+    ward_no: 4,
+    ward_name: "SAROJNI NAGAR WARD PART-1",
+    corporator: {
+      name: "Smt. GEETA VERMA",
+      address: "578/325,KIRTI GAS SERVICE, GORO BAJAR, SAROJANI NAGR. LUCKNOW",
+      phone_no: "9839742034",
     },
-    "mohalla": [
+    mohalla: [
       "HINDU KHEDA",
       "HADAIN KHEDA",
       "GEHRU",
@@ -101,46 +101,46 @@ export const ward: wardType[] = [
       "GAURI",
       "JAIRAJ PURI",
       "HANUMAN PURI",
-      "NAVEEN GAURI"
-    ]
+      "NAVEEN GAURI",
+    ],
   },
   {
-    "ward_no": 5,
-    "ward_name": "AMBEDKAR NAGAR WARD PART-2",
-    "corporator": {
-      "name": "SRI AJAY AWASTHI",
-      "address": "285KA/309 SANJAY NAGAR, AISHBAGH. LUCKNOW",
-      "phone_no": "9335103989"
+    ward_no: 5,
+    ward_name: "AMBEDKAR NAGAR WARD PART-2",
+    corporator: {
+      name: "SRI AJAY AWASTHI",
+      address: "285KA/309 SANJAY NAGAR, AISHBAGH. LUCKNOW",
+      phone_no: "9335103989",
     },
-    "mohalla": [
+    mohalla: [
       "GOVERNMENT PRESS",
       "CHITTA KHEDA",
       "KAREHTA",
       "GULJAR NAGAR",
-      "MILL ROAD"
-    ]
+      "MILL ROAD",
+    ],
   },
   {
-    "ward_no": 6,
-    "ward_name": "SAHEED BHAGAT SINGH WARD",
-    "corporator": {
-      "name": "Smt. RAJESHWARI",
-      "address": "HO NO. 133 GRAM-KANCHANPUR MATIYARI POST-CHUNHAT, LUCKNOW",
-      "phone_no": "7897037718"
+    ward_no: 6,
+    ward_name: "SAHEED BHAGAT SINGH WARD",
+    corporator: {
+      name: "Smt. RAJESHWARI",
+      address: "HO NO. 133 GRAM-KANCHANPUR MATIYARI POST-CHUNHAT, LUCKNOW",
+      phone_no: "7897037718",
     },
-    "mohalla": [
-      "SAMTA NAGAR, ANAND VIHAR, TAKROHI BAZAR, SRIKRISHAN VIHAR, BADSHAH KHEDA, AMRAI GAON, DEEN DAYAL PURAM, TAKROHI GAON, RAMDEEN PURWA, FATWA PURWA, HARDASI KHEDA, KANCHANPUR MATYARI, SANTPURAM, JAI NAGAR, RAFI NAGAR, DUDA COLONY"
-    ]
+    mohalla: [
+      "SAMTA NAGAR, ANAND VIHAR, TAKROHI BAZAR, SRIKRISHAN VIHAR, BADSHAH KHEDA, AMRAI GAON, DEEN DAYAL PURAM, TAKROHI GAON, RAMDEEN PURWA, FATWA PURWA, HARDASI KHEDA, KANCHANPUR MATYARI, SANTPURAM, JAI NAGAR, RAFI NAGAR, DUDA COLONY",
+    ],
   },
   {
-    "ward_no": 7,
-    "ward_name": "MALVIYA NAGAR WARD",
-    "corporator": {
-      "name": "SMT. MAMTA CHOUDHARI",
-      "address": "15/7 MALVIYA NAGAR, AISHBAGH LUCKNOW",
-      "phone_no": "9935631890, 8303651777"
+    ward_no: 7,
+    ward_name: "MALVIYA NAGAR WARD",
+    corporator: {
+      name: "SMT. MAMTA CHOUDHARI",
+      address: "15/7 MALVIYA NAGAR, AISHBAGH LUCKNOW",
+      phone_no: "9935631890, 8303651777",
     },
-    "mohalla": [
+    mohalla: [
       "AUPAM NAGAR",
       "PANDEY KA TALAB",
       "CHIRAINDHA PURWA",
@@ -152,49 +152,49 @@ export const ward: wardType[] = [
       "POLE KHEDA",
       "DARU GODAM",
       "HABEEB NAGAR",
-      "LAKSHMAN GANJ"
-    ]
+      "LAKSHMAN GANJ",
+    ],
   },
   {
-    "ward_no": 8,
-    "ward_name": "LAL BAHADUR SHASTRI WARD PART-1",
-    "corporator": {
-      "name": "SRI RAKESH KUMAR SINGH",
-      "address": "A-1499/7 INDIRA NAGAR, LUCKNOW",
-      "phone_no": "9452175946"
+    ward_no: 8,
+    ward_name: "LAL BAHADUR SHASTRI WARD PART-1",
+    corporator: {
+      name: "SRI RAKESH KUMAR SINGH",
+      address: "A-1499/7 INDIRA NAGAR, LUCKNOW",
+      phone_no: "9452175946",
     },
-    "mohalla": [
+    mohalla: [
       "A BLOCK INDIRA NAGAR",
       "SECTOR-22,23,24",
       "SARVODAYA NAGAR",
       "LUV KUSH NAGAR PARTLY",
-      "SECTOR 20, PRAKASH LOK, SAMADDIPUR"
-    ]
+      "SECTOR 20, PRAKASH LOK, SAMADDIPUR",
+    ],
   },
   {
-    "ward_no": 9,
-    "ward_name": "KANHAIYA MADHAV PUR WARD",
-    "corporator": {
-      "name": "SRI RAM NARESH CHAURASIYA",
-      "address": "544/160, ΕΚTE NAGAR, KAMPWEL ROAD, BALAGANJ, LUCKNOW",
-      "phone_no": "9793401357"
+    ward_no: 9,
+    ward_name: "KANHAIYA MADHAV PUR WARD",
+    corporator: {
+      name: "SRI RAM NARESH CHAURASIYA",
+      address: "544/160, ΕΚTE NAGAR, KAMPWEL ROAD, BALAGANJ, LUCKNOW",
+      phone_no: "9793401357",
     },
-    "mohalla": [
+    mohalla: [
       "IBARARA HUSAIN BADI, AHISKHEDA, FARIDIPUR",
       "SARDAAR NAGAR, BEGARIYA, MADHAV PUR",
       "ILMAS BAG, KANAHIYA KHEDA, AZAD NAGAR B-BLOCK, EKTAPUR",
-      "GOVINDPURAM"
-    ]
+      "GOVINDPURAM",
+    ],
   },
   {
-    "ward_no": 10,
-    "ward_name": "KHARIKA WARD",
-    "corporator": {
-      "name": "SRI PRATAP SINGH",
-      "address": "592DA/63 RAJEEV NAGAR, GHASIYANA, KHARAIKA TELIBAGH, LUCKNOW",
-      "phone_no": "9044605239"
+    ward_no: 10,
+    ward_name: "KHARIKA WARD",
+    corporator: {
+      name: "SRI PRATAP SINGH",
+      address: "592DA/63 RAJEEV NAGAR, GHASIYANA, KHARAIKA TELIBAGH, LUCKNOW",
+      phone_no: "9044605239",
     },
-    "mohalla": [
+    mohalla: [
       "SUBHANI KHERA",
       "GHOSIYANA",
       "KUMHAAR MANDI",
@@ -208,35 +208,35 @@ export const ward: wardType[] = [
       "GANDHI NAGAR",
       "LONGA KHEDA",
       "CHAMRAHI",
-      "MOHARI BAGH"
-    ]
+      "MOHARI BAGH",
+    ],
   },
   {
-    "ward_no": 11,
-    "ward_name": "CHINHAT WARD",
-    "corporator": {
-      "name": "SRI DINESH",
-      "address": "GRAM-GULAM HUSAIN PURWA, VIBHUTI KHAND, GOMTI NAGAR, LUCKNOW",
-      "phone_no": "9336559155"
+    ward_no: 11,
+    ward_name: "CHINHAT WARD",
+    corporator: {
+      name: "SRI DINESH",
+      address: "GRAM-GULAM HUSAIN PURWA, VIBHUTI KHAND, GOMTI NAGAR, LUCKNOW",
+      phone_no: "9336559155",
     },
-    "mohalla": [
+    mohalla: [
       "NAYA GAON",
       "VIJAYI PUR",
       "KATOTHA",
       "TAKVA",
       "RISHA PARTLY",
-      "CHINHAT A B C,D,E,F,H BLOCK VINEET KHAND"
-    ]
+      "CHINHAT A B C,D,E,F,H BLOCK VINEET KHAND",
+    ],
   },
   {
-    "ward_no": 12,
-    "ward_name": "FAIZULLAH GANJ WARD",
-    "corporator": {
-      "name": "SMT. VIDHYA RAWAT",
-      "address": "538KA/1677 SHIVLOK, TRIVENI NAGAR- III LUCKNOW",
-      "phone_no": "9455932600"
+    ward_no: 12,
+    ward_name: "FAIZULLAH GANJ WARD",
+    corporator: {
+      name: "SMT. VIDHYA RAWAT",
+      address: "538KA/1677 SHIVLOK, TRIVENI NAGAR- III LUCKNOW",
+      phone_no: "9455932600",
     },
-    "mohalla": [
+    mohalla: [
       "YOGI NAGAR PARTLY",
       "SHIVLOK",
       "DHANAK PURWA",
@@ -256,18 +256,18 @@ export const ward: wardType[] = [
       "GAZIPUR BALRAM",
       "DUDAULI",
       "RAHEEM NAGAR",
-      "NAUBASTA"
-    ]
+      "NAUBASTA",
+    ],
   },
   {
-    "ward_no": 13,
-    "ward_name": "LALKUAN WARD",
-    "corporator": {
-      "name": "SRI AMIT",
-      "address": "68/595 CHITWAPUR PAJAVA, LALKUAN LUCKNOW",
-      "phone_no": "9889874359"
+    ward_no: 13,
+    ward_name: "LALKUAN WARD",
+    corporator: {
+      name: "SRI AMIT",
+      address: "68/595 CHITWAPUR PAJAVA, LALKUAN LUCKNOW",
+      phone_no: "9889874359",
     },
-    "mohalla": [
+    mohalla: [
       "STATION ROAD",
       "HATA RASOOL KHAN",
       "GADAIYA CHITWAPUR ROAD",
@@ -277,36 +277,36 @@ export const ward: wardType[] = [
       "KATRA MAQBOOLGANJ",
       "CHITWAPUR PAJAWA",
       "BHEDI MANDI",
-      "GAUTAM BUDH MARG"
-    ]
+      "GAUTAM BUDH MARG",
+    ],
   },
   {
-    "ward_no": 14,
-    "ward_name": "AMBEDKAR NAGAR WARD-IST",
-    "corporator": {
-      "name": "SRI SUBHASH CHANDRA",
-      "address": "283/92 GADHI KANAURA LUCKNOW",
-      "phone_no": null
+    ward_no: 14,
+    ward_name: "AMBEDKAR NAGAR WARD-IST",
+    corporator: {
+      name: "SRI SUBHASH CHANDRA",
+      address: "283/92 GADHI KANAURA LUCKNOW",
+      phone_no: null,
     },
-    "mohalla": [
+    mohalla: [
       "ARTI NAGAR",
       "HERCHANDPUR GADHI KANURA",
       "GADHI KANOURA",
       "AMBEDKER NAGAR",
       "INDUSTRIAL AREA",
       "N.E.R. RAILWAY COLONY",
-      "PREMWATI NAGAR"
-    ]
+      "PREMWATI NAGAR",
+    ],
   },
   {
-    "ward_no": 15,
-    "ward_name": "SAROJNI NAGAR WARD IIND",
-    "corporator": {
-      "name": "SRI RAVI KUMAR",
-      "address": "40, HIRA LAL NAGAR, SAROJANI NAGAR, LUCKNOW",
-      "phone_no": null
+    ward_no: 15,
+    ward_name: "SAROJNI NAGAR WARD IIND",
+    corporator: {
+      name: "SRI RAVI KUMAR",
+      address: "40, HIRA LAL NAGAR, SAROJANI NAGAR, LUCKNOW",
+      phone_no: null,
     },
-    "mohalla": [
+    mohalla: [
       "ANAURA",
       "AMAUSI",
       "BEHLA",
@@ -327,18 +327,18 @@ export const ward: wardType[] = [
       "VISHNU LOK",
       "SHALI NAGAR",
       "T.C.L. COLONY",
-      "MURLI VIHAR"
-    ]
+      "MURLI VIHAR",
+    ],
   },
   {
-    "ward_no": 16,
-    "ward_name": "HAIDAR GANJ WARD IIND",
-    "corporator": {
-      "name": "SMT PALAK RAWAT",
-      "address": "BHATAMAU, ALAMNAGAR ROAD, BUDHESWAR, LUCKNOW",
-      "phone_no": "96281919"
+    ward_no: 16,
+    ward_name: "HAIDAR GANJ WARD IIND",
+    corporator: {
+      name: "SMT PALAK RAWAT",
+      address: "BHATAMAU, ALAMNAGAR ROAD, BUDHESWAR, LUCKNOW",
+      phone_no: "96281919",
     },
-    "mohalla": [
+    mohalla: [
       "NARPAT KHEDA",
       "CHUNNU KHEDA",
       "MUNNU KHEDA",
@@ -356,18 +356,18 @@ export const ward: wardType[] = [
       "SHAHPUR",
       "MOHAN ROAD",
       "ALAM VIHAR",
-      "MONA VIHAR, BUDHESHWAR VIHAR, MALLPUR"
-    ]
+      "MONA VIHAR, BUDHESHWAR VIHAR, MALLPUR",
+    ],
   },
   {
-    "ward_no": 17,
-    "ward_name": "HAZRAT GANJ WARD",
-    "corporator": {
-      "name": "SRI PRADEΕΡ ΚΑΝΟΙΑ",
-      "address": "43/136/8 NAWAL KISHOR ROAD, HAZRATGANJ, LUCKNOW",
-      "phone_no": "9628700009, 9452270009"
+    ward_no: 17,
+    ward_name: "HAZRAT GANJ WARD",
+    corporator: {
+      name: "SRI PRADEΕΡ ΚΑΝΟΙΑ",
+      address: "43/136/8 NAWAL KISHOR ROAD, HAZRATGANJ, LUCKNOW",
+      phone_no: "9628700009, 9452270009",
     },
-    "mohalla": [
+    mohalla: [
       "MAHATMA GAHDHI ROAD",
       "BALMIKI MARG",
       "MAKBARA ROAD SHAHJANAF ROAD",
@@ -380,18 +380,19 @@ export const ward: wardType[] = [
       "KHANDARI PURWA",
       "TRILOK NATH ROAD",
       "BELDARI LANE",
-      "FROM UDA BAI CHAURAHA TO RIGHT SIDE RANA PRATAP MARG TO SHANI MANDIR, TILAK MARG & LAXMAN MELA STHAL TO RIGHT SIDE OF SIKNDAR"
-    ]
+      "FROM UDA BAI CHAURAHA TO RIGHT SIDE RANA PRATAP MARG TO SHANI MANDIR, TILAK MARG & LAXMAN MELA STHAL TO RIGHT SIDE OF SIKNDAR",
+    ],
   },
   {
-    "ward_no": 18,
-    "ward_name": "OM NAGAR WARD",
-    "corporator": {
-      "name": "SRI RATAN LAL",
-      "address": "566/331, ΝΑΙ BASTI, JAY PRAKASH NAGAR, NAI BASTI, OM NAGAR. ALAMBAGH, LUCKNOW",
-      "phone_no": "2454768, 5415104218"
+    ward_no: 18,
+    ward_name: "OM NAGAR WARD",
+    corporator: {
+      name: "SRI RATAN LAL",
+      address:
+        "566/331, ΝΑΙ BASTI, JAY PRAKASH NAGAR, NAI BASTI, OM NAGAR. ALAMBAGH, LUCKNOW",
+      phone_no: "2454768, 5415104218",
     },
-    "mohalla": [
+    mohalla: [
       "OM NAGAR",
       "CHANDAR NAGAR",
       "SARDARI KHERA OLD",
@@ -403,36 +404,36 @@ export const ward: wardType[] = [
       "AZAD NAGAR",
       "HASNAPUR",
       "SAKETPURI",
-      "JAIPRAKASH NAGAR"
-    ]
+      "JAIPRAKASH NAGAR",
+    ],
   },
   {
-    "ward_no": 19,
-    "ward_name": "KESARI KHERA WARD",
-    "corporator": {
-      "name": "SMT. RAMPATI",
-      "address": "555ΚΑ/598 ΚKANAUSI, MANAK NAGAR, LUCKNOW",
-      "phone_no": "9335204839, 8423359489"
+    ward_no: 19,
+    ward_name: "KESARI KHERA WARD",
+    corporator: {
+      name: "SMT. RAMPATI",
+      address: "555ΚΑ/598 ΚKANAUSI, MANAK NAGAR, LUCKNOW",
+      phone_no: "9335204839, 8423359489",
     },
-    "mohalla": [
+    mohalla: [
       "KESARI KHEDA",
       "GANGA KHEDA",
       "KANWOSI",
       "R.D.S.O.",
       "BALDEV KHERA",
       "DONDA KHERA",
-      "DHWODHA KHERA"
-    ]
+      "DHWODHA KHERA",
+    ],
   },
   {
-    "ward_no": 20,
-    "ward_name": "GURU GOVIND SINGH WARD",
-    "corporator": {
-      "name": "SRI ATUL KUMAR",
-      "address": "567/138 ANAND NAGAR, JAIL ROAD LUCKNOW",
-      "phone_no": "9415028071"
+    ward_no: 20,
+    ward_name: "GURU GOVIND SINGH WARD",
+    corporator: {
+      name: "SRI ATUL KUMAR",
+      address: "567/138 ANAND NAGAR, JAIL ROAD LUCKNOW",
+      phone_no: "9415028071",
     },
-    "mohalla": [
+    mohalla: [
       "SURYA NAGAR VIKRAM NAGAR",
       "CHURCH COLONY",
       "R.P.F.COLONY",
@@ -442,18 +443,18 @@ export const ward: wardType[] = [
       "ANAND NAGAR",
       "BADA BARAHA",
       "JILA KARAGAR AWAS",
-      "JILA KARAGAR"
-    ]
+      "JILA KARAGAR",
+    ],
   },
   {
-    "ward_no": 21,
-    "ward_name": "SHARDA NAGAR WARD",
-    "corporator": {
-      "name": "SMT. SANWARI CHAUDHRI",
-      "address": "5/153 RAJNI KHAND, SHARDA NAGAR LUCKNOW",
-      "phone_no": "9455281577"
+    ward_no: 21,
+    ward_name: "SHARDA NAGAR WARD",
+    corporator: {
+      name: "SMT. SANWARI CHAUDHRI",
+      address: "5/153 RAJNI KHAND, SHARDA NAGAR LUCKNOW",
+      phone_no: "9455281577",
     },
-    "mohalla": [
+    mohalla: [
       "BHADRUKH",
       "USARI",
       "SALEH NAGAR",
@@ -470,18 +471,18 @@ export const ward: wardType[] = [
       "ELDECO-II",
       "PIPROWLI",
       "SHEETAL KHERA",
-      "RATNAKAR KHAND"
-    ]
+      "RATNAKAR KHAND",
+    ],
   },
   {
-    "ward_no": 22,
-    "ward_name": "GURU NANAK NAGAR WARD",
-    "corporator": {
-      "name": "SRI SHIV KUMAR",
-      "address": "566/1W2, JAY PRAKASH NAGAR, ALAMBAGH, LUCKNOW",
-      "phone_no": "9415541139"
+    ward_no: 22,
+    ward_name: "GURU NANAK NAGAR WARD",
+    corporator: {
+      name: "SRI SHIV KUMAR",
+      address: "566/1W2, JAY PRAKASH NAGAR, ALAMBAGH, LUCKNOW",
+      phone_no: "9415541139",
     },
-    "mohalla": [
+    mohalla: [
       "GURU NANAK NAGAR",
       "SNEHA NAGAR",
       "PREM NAGAR",
@@ -492,18 +493,18 @@ export const ward: wardType[] = [
       "SUNDAR NAGAR",
       "NATKHEDA",
       "GOVIND NAGAR",
-      "JAI PRAKASH NAGAR PARTLY"
-    ]
+      "JAI PRAKASH NAGAR PARTLY",
+    ],
   },
   {
-    "ward_no": 23,
-    "ward_name": "JAGDISH CHANDRA BOSE WARD",
-    "corporator": {
-      "name": "SRI SYED, YAWAR HUSSAIN \"RESHU\"",
-      "address": "116/5 KALI BADI ROAD, GHASHYARI MANDI, LUCKNOW",
-      "phone_no": "2614853, 2231744, 9415006075"
+    ward_no: 23,
+    ward_name: "JAGDISH CHANDRA BOSE WARD",
+    corporator: {
+      name: 'SRI SYED, YAWAR HUSSAIN "RESHU"',
+      address: "116/5 KALI BADI ROAD, GHASHYARI MANDI, LUCKNOW",
+      phone_no: "2614853, 2231744, 9415006075",
     },
-    "mohalla": [
+    mohalla: [
       "GHASHYARI MANDI",
       "JAMBUR KHANA",
       "KANDHARI BAZAR",
@@ -514,36 +515,37 @@ export const ward: wardType[] = [
       "CHINA BAZAR",
       "BALAKADAR ROAD",
       "J.C.BOSE MARG",
-      "BAGH MUNNU"
-    ]
+      "BAGH MUNNU",
+    ],
   },
   {
-    "ward_no": 24,
-    "ward_name": "INDIRA PRIYADARSANI WARD",
-    "corporator": {
-      "name": "SRI PREM CHAND VERMA",
-      "address": "638/35 FARIDI NAGAR, PIKNIK SPOT ROAD, LUCKNOW",
-      "phone_no": "9918126165"
+    ward_no: 24,
+    ward_name: "INDIRA PRIYADARSANI WARD",
+    corporator: {
+      name: "SRI PREM CHAND VERMA",
+      address: "638/35 FARIDI NAGAR, PIKNIK SPOT ROAD, LUCKNOW",
+      phone_no: "9918126165",
     },
-    "mohalla": [
+    mohalla: [
       "SECTOR 14.11",
       "KHADAGPUR",
       "FARIDI NAGAR",
       "CHANDAN",
       "SUGGA MAU",
       "JARHARA",
-      "PANDIT PURWA"
-    ]
+      "PANDIT PURWA",
+    ],
   },
   {
-    "ward_no": 25,
-    "ward_name": "BALA GANJ WARD",
-    "corporator": {
-      "name": "SRI PANKAJ PATEL",
-      "address": "441/196KA AWASIY RAILWAY COLONY, JAL NIGAM ROAD, BALAGANJ, LUCKNOW",
-      "phone_no": "9984442555"
+    ward_no: 25,
+    ward_name: "BALA GANJ WARD",
+    corporator: {
+      name: "SRI PANKAJ PATEL",
+      address:
+        "441/196KA AWASIY RAILWAY COLONY, JAL NIGAM ROAD, BALAGANJ, LUCKNOW",
+      phone_no: "9984442555",
     },
-    "mohalla": [
+    mohalla: [
       "BALA GANJ",
       "BARI ROAD",
       "SARFARAJ GANJ",
@@ -558,33 +560,28 @@ export const ward: wardType[] = [
       "BARAWAN KALA",
       "DUBAGGA",
       "BARI KALA",
-      "CHUDDAYA"
-    ]
+      "CHUDDAYA",
+    ],
   },
   {
-    "ward_no": 26,
-    "ward_name": "BABU KUNJ BIHARI LAL WARD",
-    "corporator": {
-      "name": "SMT. SARITA MISHRA",
-      "address": "554/1480 PAWAN PURI, ALAMBAGH",
-      "phone_no": "9415409415"
+    ward_no: 26,
+    ward_name: "BABU KUNJ BIHARI LAL WARD",
+    corporator: {
+      name: "SMT. SARITA MISHRA",
+      address: "554/1480 PAWAN PURI, ALAMBAGH",
+      phone_no: "9415409415",
     },
-    "mohalla": [
-      "SUJAAN PURA",
-      "AHEMAD PUR",
-      "CHHOTA BARHA",
-      "PAWANPURI"
-    ]
+    mohalla: ["SUJAAN PURA", "AHEMAD PUR", "CHHOTA BARHA", "PAWANPURI"],
   },
   {
-    "ward_no": 27,
-    "ward_name": "NIRALA NAGAR WARD",
-    "corporator": {
-      "name": "SRI SURYA KUMAR",
-      "address": "497/54(32) BABU GANJ, LUCKNOW",
-      "phone_no": "9415107771"
+    ward_no: 27,
+    ward_name: "NIRALA NAGAR WARD",
+    corporator: {
+      name: "SRI SURYA KUMAR",
+      address: "497/54(32) BABU GANJ, LUCKNOW",
+      phone_no: "9415107771",
     },
-    "mohalla": [
+    mohalla: [
       "NIRALA NAGAR",
       "NIRALA NAGAR SECTOR-H",
       "BABU GANJ (ATTACHED FAIZABAD ROAD)",
@@ -592,36 +589,36 @@ export const ward: wardType[] = [
       "SARAY HASAN GANJ",
       "PASHUPALAN & MATSYA VIBHAG COLONY",
       "BABA KI BAGIYA",
-      "VISHWAVIDHYALAY PARISAR"
-    ]
+      "VISHWAVIDHYALAY PARISAR",
+    ],
   },
   {
-    "ward_no": 28,
-    "ward_name": "GEETA PALLI WARD",
-    "corporator": {
-      "name": "SMT. SUNITA YADAV",
-      "address": "MADHUBAN NAGAR, 551KA/342GA ALAMBAGH, LUCKNOW",
-      "phone_no": "9956097875"
+    ward_no: 28,
+    ward_name: "GEETA PALLI WARD",
+    corporator: {
+      name: "SMT. SUNITA YADAV",
+      address: "MADHUBAN NAGAR, 551KA/342GA ALAMBAGH, LUCKNOW",
+      phone_no: "9956097875",
     },
-    "mohalla": [
+    mohalla: [
       "GITA PALLI",
       "KRISHNA PALLI",
       "PAKREE",
       "HASNA PUR PARTLY",
       "MUSLIM NAGAR",
       "SANIK NAGAR",
-      "VISHVESHWAR NAGAR"
-    ]
+      "VISHVESHWAR NAGAR",
+    ],
   },
   {
-    "ward_no": 29,
-    "ward_name": "RAM MOHAN RAI WARD",
-    "corporator": {
-      "name": "SMT. MADHU SINGH",
-      "address": "11 F. SANAJAF ROAD, LUCKNOW",
-      "phone_no": "9415038099"
+    ward_no: 29,
+    ward_name: "RAM MOHAN RAI WARD",
+    corporator: {
+      name: "SMT. MADHU SINGH",
+      address: "11 F. SANAJAF ROAD, LUCKNOW",
+      phone_no: "9415038099",
     },
-    "mohalla": [
+    mohalla: [
       "TILAK MARG",
       "BATLAR ROAD",
       "MADAN MOHAN MALVIYA MARG",
@@ -631,18 +628,18 @@ export const ward: wardType[] = [
       "WAZEER HASAN ROAD",
       "RAM MOHAN RAI MARG",
       "RANA PRATAP MARG RIGHT SIDE",
-      "FROM SANKALY VATIKA TO DALIBAGH"
-    ]
+      "FROM SANKALY VATIKA TO DALIBAGH",
+    ],
   },
   {
-    "ward_no": 30,
-    "ward_name": "SHANKAR PURVA WARD IIND",
-    "corporator": {
-      "name": "SRI RAMU PAL",
-      "address": "A-1 PRAGATI VIHAR, KALYANPUR WEST, LUCKNOW",
-      "phone_no": "9415003847"
+    ward_no: 30,
+    ward_name: "SHANKAR PURVA WARD IIND",
+    corporator: {
+      name: "SRI RAMU PAL",
+      address: "A-1 PRAGATI VIHAR, KALYANPUR WEST, LUCKNOW",
+      phone_no: "9415003847",
     },
-    "mohalla": [
+    mohalla: [
       "ADIL NAGAR",
       "GANNEY KA PURWA",
       "KALYANPUR, WEST",
@@ -659,31 +656,29 @@ export const ward: wardType[] = [
       "BAJRANG NAGAR",
       "AHILYA BAI NAGAR",
       "SHIV VIHAR COLONY",
-      "SECTOR 10 TO 14 VIKAS NAGAR EXTENTION"
-    ]
+      "SECTOR 10 TO 14 VIKAS NAGAR EXTENTION",
+    ],
   },
   {
-    "ward_no": 31,
-    "ward_name": "NISHAT GANJ WARD",
-    "corporator": {
-      "name": "SRI MOHAMMAD OBESH",
-      "address": "512/249 5TH LEAN, NISHAT GANJ, LUCKNOW",
-      "phone_no": "9335920931"
+    ward_no: 31,
+    ward_name: "NISHAT GANJ WARD",
+    corporator: {
+      name: "SRI MOHAMMAD OBESH",
+      address: "512/249 5TH LEAN, NISHAT GANJ, LUCKNOW",
+      phone_no: "9335920931",
     },
-    "mohalla": [
-      "NISHAT GANJ",
-      "FAIZABAD ROAD"
-    ]
+    mohalla: ["NISHAT GANJ", "FAIZABAD ROAD"],
   },
   {
-    "ward_no": 32,
-    "ward_name": "FAIZULLAH GANJ WARD IST",
-    "corporator": {
-      "name": "SMT. BABITA DIXIT",
-      "address": "610/196(319) KESHAV NAGAR COLONY. FAZZULAGANJ, SITAPUR ROD. LUCKNOW",
-      "phone_no": "9415464082"
+    ward_no: 32,
+    ward_name: "FAIZULLAH GANJ WARD IST",
+    corporator: {
+      name: "SMT. BABITA DIXIT",
+      address:
+        "610/196(319) KESHAV NAGAR COLONY. FAZZULAGANJ, SITAPUR ROD. LUCKNOW",
+      phone_no: "9415464082",
     },
-    "mohalla": [
+    mohalla: [
       "SITAPUR ROAD TO KESHAV NAGAR RIGHT SIDE OF DIVIDER ROAD",
       "PRIYADARSHNI COLONY SECTOR-A.B",
       "KESHAV NAGAR",
@@ -696,18 +691,18 @@ export const ward: wardType[] = [
       "SRI NAGAR",
       "SIMRA GAUDHI COLONY",
       "SHERWANI NAGAR",
-      "SHANKARPUR"
-    ]
+      "SHANKARPUR",
+    ],
   },
   {
-    "ward_no": 33,
-    "ward_name": "RAJENDRA NAGAR WARD",
-    "corporator": {
-      "name": "SRI RAJESH KUMAR DIXIT",
-      "address": "D-2/4 PWD, COLONY RAJENDRA NAGAR, LUCKNOW",
-      "phone_no": "9194304000"
+    ward_no: 33,
+    ward_name: "RAJENDRA NAGAR WARD",
+    corporator: {
+      name: "SRI RAJESH KUMAR DIXIT",
+      address: "D-2/4 PWD, COLONY RAJENDRA NAGAR, LUCKNOW",
+      phone_no: "9194304000",
     },
-    "mohalla": [
+    mohalla: [
       "KHAS PURVA",
       "CHAK MANDI DUGAON",
       "CHAMER TOLIYA DUGAVA",
@@ -716,18 +711,18 @@ export const ward: wardType[] = [
       "RAJENDRA NAGAR SOUTH (BEGUM KHEDA)",
       "CHEDA KHAS PURVA",
       "NAKA HINDOLA",
-      "BIRHANA"
-    ]
+      "BIRHANA",
+    ],
   },
   {
-    "ward_no": 34,
-    "ward_name": "RANI LAXMI BAI WARD, AMINABAD",
-    "corporator": {
-      "name": "SRI SAFIKURREHMAN",
-      "address": "114/53 NAYA GAON WEST, LUCKNOW",
-      "phone_no": "9415138786, 0522-2623659"
+    ward_no: 34,
+    ward_name: "RANI LAXMI BAI WARD, AMINABAD",
+    corporator: {
+      name: "SRI SAFIKURREHMAN",
+      address: "114/53 NAYA GAON WEST, LUCKNOW",
+      phone_no: "9415138786, 0522-2623659",
     },
-    "mohalla": [
+    mohalla: [
       "GAUTAM BUDH MARG",
       "NAYA GAON WEST",
       "QUISAR BAGH, OLD NAZIRABAD",
@@ -736,18 +731,18 @@ export const ward: wardType[] = [
       "RAJA NAWAB ALI ROAD, KACHEHARI ROAD",
       "R.K.TANDON ROAD, CHAKBAST ROAD",
       "MARWARI GALI, GANNEY WALI GALI",
-      "GADBADJHALA, SRI RAM ROAD, AMINABAD PARK"
-    ]
+      "GADBADJHALA, SRI RAM ROAD, AMINABAD PARK",
+    ],
   },
   {
-    "ward_no": 35,
-    "ward_name": "JANKIPURAM WARD - IST",
-    "corporator": {
-      "name": "SRI CHAND SIDDIQUE",
-      "address": "647/648 MANIYAO GAON, JANKIPURAM LUCKNOW",
-      "phone_no": "9919980000, 9956767507"
+    ward_no: 35,
+    ward_name: "JANKIPURAM WARD - IST",
+    corporator: {
+      name: "SRI CHAND SIDDIQUE",
+      address: "647/648 MANIYAO GAON, JANKIPURAM LUCKNOW",
+      phone_no: "9919980000, 9956767507",
     },
-    "mohalla": [
+    mohalla: [
       "ENGINEERING COLLEGE ALLOVER",
       "AKANSHA PARISAR POCKET A & B WHOLE",
       "RANI KHEDHA",
@@ -762,18 +757,18 @@ export const ward: wardType[] = [
       "SITAPUR ROAD, ABHISHEK PURAM & OTHER",
       "MANIYAO GAON",
       "CHOWDHARI PURWA",
-      "GADERIAN KA PURVA"
-    ]
+      "GADERIAN KA PURVA",
+    ],
   },
   {
-    "ward_no": 36,
-    "ward_name": "RAJIV GANDHI WARD-IST",
-    "corporator": {
-      "name": "SMT. SNEH LATA SINGH",
-      "address": "E-4/703 VINYA KHAND, GOMTI NAGAR LUCKNOW",
-      "phone_no": "9415516935"
+    ward_no: 36,
+    ward_name: "RAJIV GANDHI WARD-IST",
+    corporator: {
+      name: "SMT. SNEH LATA SINGH",
+      address: "E-4/703 VINYA KHAND, GOMTI NAGAR LUCKNOW",
+      phone_no: "9415516935",
     },
-    "mohalla": [
+    mohalla: [
       "VIJAY KHAND",
       "UJARIAO",
       "LODHPURWA",
@@ -781,18 +776,18 @@ export const ward: wardType[] = [
       "BELHA",
       "VINAY KHAND PARTLY",
       "VIVEK KHAND",
-      "VIRAT KHAND"
-    ]
+      "VIRAT KHAND",
+    ],
   },
   {
-    "ward_no": 37,
-    "ward_name": "ISMILE GANJ WARD IST",
-    "corporator": {
-      "name": "SRI MUKESH SINGH CHAUHAN",
-      "address": "631/183 ISMAIL GANJ, FAIDABAD ROAD, LUCKNOW",
-      "phone_no": "9670199992"
+    ward_no: 37,
+    ward_name: "ISMILE GANJ WARD IST",
+    corporator: {
+      name: "SRI MUKESH SINGH CHAUHAN",
+      address: "631/183 ISMAIL GANJ, FAIDABAD ROAD, LUCKNOW",
+      phone_no: "9670199992",
     },
-    "mohalla": [
+    mohalla: [
       "SECTOR 9,10,12,13",
       "MUNSHI PULIA PARTLY",
       "NANDINI VIHAR",
@@ -802,54 +797,54 @@ export const ward: wardType[] = [
       "PANI GAON",
       "EHSAN NAGAR",
       "PATEL NAGAR PARTLY",
-      "LOHIYA VIHAR"
-    ]
+      "LOHIYA VIHAR",
+    ],
   },
   {
-    "ward_no": 38,
-    "ward_name": "MAITHLI SARAN GUPT WARD",
-    "corporator": {
-      "name": "SMT. SAROJ SRIVASTAVA",
-      "address": "C-1437/5 INDRA NAGAR, LUCKNOW",
-      "phone_no": "9415517018, 9415090019"
+    ward_no: 38,
+    ward_name: "MAITHLI SARAN GUPT WARD",
+    corporator: {
+      name: "SMT. SAROJ SRIVASTAVA",
+      address: "C-1437/5 INDRA NAGAR, LUCKNOW",
+      phone_no: "9415517018, 9415090019",
     },
-    "mohalla": [
+    mohalla: [
       "A BLOCK (Even Number)",
       "B Block (ODD NUMBER)",
       "B Block (EVEN NUMBER TILL 1424)",
       "ODD NUMBER-C BLOCK",
       "GAZIPUR GAON",
       "BASTOLI GAON",
-      "AMPRA PALI MARKET"
-    ]
+      "AMPRA PALI MARKET",
+    ],
   },
   {
-    "ward_no": 39,
-    "ward_name": "AISHBAGH WARD",
-    "corporator": {
-      "name": "SRI SAKET SHARMA",
-      "address": "268/2 MASTAR KANAHYA LAL ROAD, LUCKNOW",
-      "phone_no": "9415062538"
+    ward_no: 39,
+    ward_name: "AISHBAGH WARD",
+    corporator: {
+      name: "SRI SAKET SHARMA",
+      address: "268/2 MASTAR KANAHYA LAL ROAD, LUCKNOW",
+      phone_no: "9415062538",
     },
-    "mohalla": [
+    mohalla: [
       "AISHBAGH EAST RAMLEELA",
       "S.D.A.COLONY",
       "I.T.COLONY",
       "AISHBAGH SRAMIK BASTI",
       "WATER WORKS ROAD",
       "INDRANI NAGAR",
-      "BHADEVA NEW BASTI"
-    ]
+      "BHADEVA NEW BASTI",
+    ],
   },
   {
-    "ward_no": 40,
-    "ward_name": "RAFI AHMAD KIDWAI WARD",
-    "corporator": {
-      "name": "SMT. MALTI YADAV",
-      "address": "GRAM-GWARI KA PURWA, VIKAS KHAND-5 GOMTI NAGAR LUCKNOW",
-      "phone_no": "9415181067"
+    ward_no: 40,
+    ward_name: "RAFI AHMAD KIDWAI WARD",
+    corporator: {
+      name: "SMT. MALTI YADAV",
+      address: "GRAM-GWARI KA PURWA, VIKAS KHAND-5 GOMTI NAGAR LUCKNOW",
+      phone_no: "9415181067",
     },
-    "mohalla": [
+    mohalla: [
       "VISHAL KHAND",
       "VIPIN KHAND",
       "VIPUL KHAND",
@@ -857,30 +852,30 @@ export const ward: wardType[] = [
       "DIGDIGYIA",
       "GADRIYAN PURWA",
       "GWARI",
-      "SRIJAN VIHAR COLONY"
-    ]
+      "SRIJAN VIHAR COLONY",
+    ],
   },
   {
-    "ward_no": 41,
-    "ward_name": "ISMILE GANJ WARD IIND",
-    "corporator": {
-      "name": "SRI RUDRA PRATAP SINGH",
-      "address": "631/29 AJAY NAGAR, SHIV MANDIR KE PAAS, KAMTA, LUCKNOW",
-      "phone_no": "9838091806"
+    ward_no: 41,
+    ward_name: "ISMILE GANJ WARD IIND",
+    corporator: {
+      name: "SRI RUDRA PRATAP SINGH",
+      address: "631/29 AJAY NAGAR, SHIV MANDIR KE PAAS, KAMTA, LUCKNOW",
+      phone_no: "9838091806",
     },
-    "mohalla": [
-      "RAJO POLYTECHNIC, AKASHWANI, SECTOR-8, MANGAL PURI, SAMAR GARDEN, ASHOK VIHAR, SHALIMAR GARDEN, DEV NAGAR, DEEPAK NAGAR, PATEL NAGAR, PARTLY, ISMILE GANJ GAON, SURENDRA NAGAR, URMILA PURI, MULAYAM NAGAR, PREET NAGAR, HARIHAR NAGAR, KAMTA, SHIVPURI, SHANKAR PURI, PUNCHWATI, AZAM NAGAR, VIMAL NAGAR, SANATAN NAGAR, KALYAN VIHAR, KAMLA NEHRU NAGAR, RAGURAJ NAGAR, RAJEEV INAGAR, RAJVEER NAGAR"
-    ]
+    mohalla: [
+      "RAJO POLYTECHNIC, AKASHWANI, SECTOR-8, MANGAL PURI, SAMAR GARDEN, ASHOK VIHAR, SHALIMAR GARDEN, DEV NAGAR, DEEPAK NAGAR, PATEL NAGAR, PARTLY, ISMILE GANJ GAON, SURENDRA NAGAR, URMILA PURI, MULAYAM NAGAR, PREET NAGAR, HARIHAR NAGAR, KAMTA, SHIVPURI, SHANKAR PURI, PUNCHWATI, AZAM NAGAR, VIMAL NAGAR, SANATAN NAGAR, KALYAN VIHAR, KAMLA NEHRU NAGAR, RAGURAJ NAGAR, RAJEEV INAGAR, RAJVEER NAGAR",
+    ],
   },
   {
-    "ward_no": 42,
-    "ward_name": "COLVIN COLLEGE WARD",
-    "corporator": {
-      "name": "SRI PRAMOD SINGH",
-      "address": "250 POLICE LINE, UNIVERSITY ROAD, LUCKNOW",
-      "phone_no": "9838875610"
+    ward_no: 42,
+    ward_name: "COLVIN COLLEGE WARD",
+    corporator: {
+      name: "SRI PRAMOD SINGH",
+      address: "250 POLICE LINE, UNIVERSITY ROAD, LUCKNOW",
+      phone_no: "9838875610",
     },
-    "mohalla": [
+    mohalla: [
       "FAIZABAD ROAD TO IT",
       "OLD HYDERABAD",
       "NEW HYDERABAD",
@@ -888,35 +883,35 @@ export const ward: wardType[] = [
       "BADSHAH NAGAR",
       "BIRBAL SAHANI ROAD",
       "BALDA ROAD COLONY",
-      "RAI BIHARI LAL ROAD"
-    ]
+      "RAI BIHARI LAL ROAD",
+    ],
   },
   {
-    "ward_no": 43,
-    "ward_name": "LALA LAZPAT RAI WARD",
-    "corporator": {
-      "name": "SMT. SHOBHA SINGH",
-      "address": "N-1/294, SECTOR-1. ALIGANJ, LUCKNOW",
-      "phone_no": "9415525229"
+    ward_no: 43,
+    ward_name: "LALA LAZPAT RAI WARD",
+    corporator: {
+      name: "SMT. SHOBHA SINGH",
+      address: "N-1/294, SECTOR-1. ALIGANJ, LUCKNOW",
+      phone_no: "9415525229",
     },
-    "mohalla": [
+    mohalla: [
       "ALIGANJ YOJNA SECTOR N.O & RING ROAD SOUTH SITAPUR ROAD YOJNA",
       "BATAHA, TIWARI PRATAP NAGAR",
       "AKILAPUR",
       "SABOLI",
       "TATARPUR SECTOR-M",
-      "NANDUPUR NEAR SECTOR C"
-    ]
+      "NANDUPUR NEAR SECTOR C",
+    ],
   },
   {
-    "ward_no": 44,
-    "ward_name": "CHITRA GUPT NAGAR WARD",
-    "corporator": {
-      "name": "SRI HAR SARAN LAL GUPTA",
-      "address": "555 G/45A, SUBHASH NAGAR, POST-MANAS NAGAR, LUCKNOW",
-      "phone_no": "2471732, 2471501"
+    ward_no: 44,
+    ward_name: "CHITRA GUPT NAGAR WARD",
+    corporator: {
+      name: "SRI HAR SARAN LAL GUPTA",
+      address: "555 G/45A, SUBHASH NAGAR, POST-MANAS NAGAR, LUCKNOW",
+      phone_no: "2471732, 2471501",
     },
-    "mohalla": [
+    mohalla: [
       "JAFAR KHERA",
       "BHOLA KHERA",
       "INDRA PURI",
@@ -930,18 +925,18 @@ export const ward: wardType[] = [
       "ASHUTOSH NAGAR",
       "VINAY NAGAR",
       "KRISHNA NAGAR",
-      "SINDHU NAGAR"
-    ]
+      "SINDHU NAGAR",
+    ],
   },
   {
-    "ward_no": 45,
-    "ward_name": "PAPER MILL COLONY WARD",
-    "corporator": {
-      "name": "SMT. DEEPANJALI SINGH",
-      "address": "S-13 PAPER MILL COLONY, LUCKNOW",
-      "phone_no": "9415403841, 9839025729"
+    ward_no: 45,
+    ward_name: "PAPER MILL COLONY WARD",
+    corporator: {
+      name: "SMT. DEEPANJALI SINGH",
+      address: "S-13 PAPER MILL COLONY, LUCKNOW",
+      phone_no: "9415403841, 9839025729",
     },
-    "mohalla": [
+    mohalla: [
       "PAPER MILL COLONY BLOCK-A,B,C,D,E,F,G,H",
       "JUGAULI",
       "NEHRU ENCLAVE",
@@ -954,18 +949,18 @@ export const ward: wardType[] = [
       "VISHWASH KHAND",
       "BALMIKI NAGAR",
       "BADSHAH NAGAR RAILWAY CROSSING TO KUKRAIL BANDHA",
-      "BADSHAH NAGAR RAILWAY COLONY & SACHIVALAYA COLONY"
-    ]
+      "BADSHAH NAGAR RAILWAY COLONY & SACHIVALAYA COLONY",
+    ],
   },
   {
-    "ward_no": 46,
-    "ward_name": "GOLAGANJ PEER JALEEL WARD",
-    "corporator": {
-      "name": "SMT. SANIYA RIZWAN",
-      "address": "165/110 HATA FAKEER MOHANMMAD AMINABAD, LUCKNOW",
-      "phone_no": "9415465455"
+    ward_no: 46,
+    ward_name: "GOLAGANJ PEER JALEEL WARD",
+    corporator: {
+      name: "SMT. SANIYA RIZWAN",
+      address: "165/110 HATA FAKEER MOHANMMAD AMINABAD, LUCKNOW",
+      phone_no: "9415465455",
     },
-    "mohalla": [
+    mohalla: [
       "Dr. B.N.VERMA ROAD",
       "PEER JALEEL",
       "OLD KANPUR ROAD",
@@ -975,33 +970,33 @@ export const ward: wardType[] = [
       "HATA FAKEER MOHAMMAD KACHHA",
       "HATA FAKEER MOHAMMAD PAKKA",
       "GOLAGANJ",
-      "TAKIYA AZAMBEG"
-    ]
+      "TAKIYA AZAMBEG",
+    ],
   },
   {
-    "ward_no": 47,
-    "ward_name": "HAIDAR GANJ WARD IST",
-    "corporator": {
-      "name": "SRI VIJAY KUMAR GUPTA",
-      "address": "368/20/2/18 LAKADMANDI, POS- RAJAJIPURAM, LUCKNOW",
-      "phone_no": "9415016030"
+    ward_no: 47,
+    ward_name: "HAIDAR GANJ WARD IST",
+    corporator: {
+      name: "SRI VIJAY KUMAR GUPTA",
+      address: "368/20/2/18 LAKADMANDI, POS- RAJAJIPURAM, LUCKNOW",
+      phone_no: "9415016030",
     },
-    "mohalla": [
+    mohalla: [
       "HAIDARGANJ, AMAN VIHAR, RIFA COLONY",
       "GULSHAN VIHAR, ASIA MAU",
       "KISHOR VIHAR, BRAHAM NAGAR",
-      "LAKADMANDI, BIBIGANJ, HAJJI TOLA"
-    ]
+      "LAKADMANDI, BIBIGANJ, HAJJI TOLA",
+    ],
   },
   {
-    "ward_no": 48,
-    "ward_name": "MAHATAMA GANDHI WARD",
-    "corporator": {
-      "name": "SMT. SANGEETA",
-      "address": "14/91 PURANA BARAPH KHANA, UDAYAGANJ, LUCKNOW",
-      "phone_no": "9307252939, 9305216555"
+    ward_no: 48,
+    ward_name: "MAHATAMA GANDHI WARD",
+    corporator: {
+      name: "SMT. SANGEETA",
+      address: "14/91 PURANA BARAPH KHANA, UDAYAGANJ, LUCKNOW",
+      phone_no: "9307252939, 9305216555",
     },
-    "mohalla": [
+    mohalla: [
       "VIDHAN SABHA MARG",
       "MAJOR BANK ROAD",
       "BURF KHANA",
@@ -1013,45 +1008,43 @@ export const ward: wardType[] = [
       "KHANDARI PURWA",
       "SAROJNI NAIDO MARG",
       "MAHATMA GANDHI MARG PARTLY",
-      "KURMI TOLA, HUSAINGANJ"
-    ]
+      "KURMI TOLA, HUSAINGANJ",
+    ],
   },
   {
-    "ward_no": 49,
-    "ward_name": "BABU JAGJIVAN RAM WARD",
-    "corporator": {
-      "name": "SMT. MADHURI SHUKLA",
-      "address": "640/34 SECTOR- 14 AWANTIPURAM, INDIRA NAGAR, LUCKNOW",
-      "phone_no": "9415545573"
+    ward_no: 49,
+    ward_name: "BABU JAGJIVAN RAM WARD",
+    corporator: {
+      name: "SMT. MADHURI SHUKLA",
+      address: "640/34 SECTOR- 14 AWANTIPURAM, INDIRA NAGAR, LUCKNOW",
+      phone_no: "9415545573",
     },
-    "mohalla": [
-      "SECTOR 25.21.19.16.17 & SARASWATI VIHAR"
-    ]
+    mohalla: ["SECTOR 25.21.19.16.17 & SARASWATI VIHAR"],
   },
   {
-    "ward_no": 50,
-    "ward_name": "HARDEEN RAI NAGAR WARD",
-    "corporator": {
-      "name": "SRI AJAY DIXIT",
-      "address": "C-5072 RAJAJIPURAM, LUCKNOW",
-      "phone_no": "9415023354"
+    ward_no: 50,
+    ward_name: "HARDEEN RAI NAGAR WARD",
+    corporator: {
+      name: "SRI AJAY DIXIT",
+      address: "C-5072 RAJAJIPURAM, LUCKNOW",
+      phone_no: "9415023354",
     },
-    "mohalla": [
+    mohalla: [
       "PARTLY RUKANDIPUR",
       "CHAMARAN KA PURWA",
       "PARTLY E-BLOCK",
-      "PARTLY C-BLOCK"
-    ]
+      "PARTLY C-BLOCK",
+    ],
   },
   {
-    "ward_no": 51,
-    "ward_name": "KADAM RASUL WARD",
-    "corporator": {
-      "name": "SMT. MUBASSHRA",
-      "address": "479/9 A, IRADAT NAGR, DALIGANJ LUCKNOW",
-      "phone_no": "9935294369"
+    ward_no: 51,
+    ward_name: "KADAM RASUL WARD",
+    corporator: {
+      name: "SMT. MUBASSHRA",
+      address: "479/9 A, IRADAT NAGR, DALIGANJ LUCKNOW",
+      phone_no: "9935294369",
     },
-    "mohalla": [
+    mohalla: [
       "TILAK VIHAR",
       "ERADAT NAGAR",
       "SIYA COLLEGE",
@@ -1066,18 +1059,18 @@ export const ward: wardType[] = [
       "MOHAN MEKING",
       "MASALCHI TOLA",
       "BHANDOA",
-      "ASHFAQ ULLAH NAGAR"
-    ]
+      "ASHFAQ ULLAH NAGAR",
+    ],
   },
   {
-    "ward_no": 52,
-    "ward_name": "GOMTI NAGAR WARD",
-    "corporator": {
-      "name": "SMT. KIRAN MISHRA",
-      "address": "B-9 PRATAP COLONY, MARUTI PURAM FAIJABAD ROAD, LUCKNOW",
-      "phone_no": "9335281297, 4007128(B)"
+    ward_no: 52,
+    ward_name: "GOMTI NAGAR WARD",
+    corporator: {
+      name: "SMT. KIRAN MISHRA",
+      address: "B-9 PRATAP COLONY, MARUTI PURAM FAIJABAD ROAD, LUCKNOW",
+      phone_no: "9335281297, 4007128(B)",
     },
-    "mohalla": [
+    mohalla: [
       "LAXMAN PURI",
       "ROHTAS ENCLAVE",
       "RAVINDRA PALLI",
@@ -1089,52 +1082,52 @@ export const ward: wardType[] = [
       "NARAYAN NAGAR",
       "FAIZABAD ROAD",
       "H.A.L. COLONY",
-      "VIBHUTI KHAND"
-    ]
+      "VIBHUTI KHAND",
+    ],
   },
   {
-    "ward_no": 53,
-    "ward_name": "MALLAHI TOLA WARD-IST",
-    "corporator": {
-      "name": "SRI ANURAG PANDEY",
-      "address": "444/451 PURANA BARAPH KHANA, (MISHRIBAGH) THAKURGANJ, LUCKNOW",
-      "phone_no": "9936044445"
+    ward_no: 53,
+    ward_name: "MALLAHI TOLA WARD-IST",
+    corporator: {
+      name: "SRI ANURAG PANDEY",
+      address: "444/451 PURANA BARAPH KHANA, (MISHRIBAGH) THAKURGANJ, LUCKNOW",
+      phone_no: "9936044445",
     },
-    "mohalla": [
+    mohalla: [
       "NAGARIYA",
       "GENRAIL GANJ",
       "MALLAHI TOLA",
       "LODH PURVA",
       "MISARI BAGH",
-      "MALIHABAD ROAD"
-    ]
+      "MALIHABAD ROAD",
+    ],
   },
   {
-    "ward_no": 54,
-    "ward_name": "KUNWER JYOTI PRASAD WARD-IIND",
-    "corporator": {
-      "name": "SRI ABHAY PRATAP SINGH",
-      "address": "357/53, RUKUNDIPUR, RAJAJIPURAM LUCKNOW",
-      "phone_no": "9415000062"
+    ward_no: 54,
+    ward_name: "KUNWER JYOTI PRASAD WARD-IIND",
+    corporator: {
+      name: "SRI ABHAY PRATAP SINGH",
+      address: "357/53, RUKUNDIPUR, RAJAJIPURAM LUCKNOW",
+      phone_no: "9415000062",
     },
-    "mohalla": [
+    mohalla: [
       "PARTLY E-BLOCK",
       "PARTLY F-BLOCK",
       "PARTLY E-BLOCK",
       "PARTLY ALAMNAGAR",
       "MURAU TOLA",
-      "GADI PEER MAKKA"
-    ]
+      "GADI PEER MAKKA",
+    ],
   },
   {
-    "ward_no": 55,
-    "ward_name": "MOTILAL NEHRU WARD",
-    "corporator": {
-      "name": "SRI SURENDRA SINGH \"RAJU GANDHI\"",
-      "address": "289/50 GANDHI BHAWAN, MOTI NAGAR, LUCKNOW",
-      "phone_no": "9415101121"
+    ward_no: 55,
+    ward_name: "MOTILAL NEHRU WARD",
+    corporator: {
+      name: 'SRI SURENDRA SINGH "RAJU GANDHI"',
+      address: "289/50 GANDHI BHAWAN, MOTI NAGAR, LUCKNOW",
+      phone_no: "9415101121",
     },
-    "mohalla": [
+    mohalla: [
       "MOTI NAGAR",
       "ARYA NAGAR",
       "AISHBAGH ROAD",
@@ -1142,18 +1135,18 @@ export const ward: wardType[] = [
       "NEHRU NAGAR",
       "KAYAM KHEDA",
       "NIWAZ KHEDA",
-      "PARTLY MAWAIYA"
-    ]
+      "PARTLY MAWAIYA",
+    ],
   },
   {
-    "ward_no": 56,
-    "ward_name": "DALIGANJ WARD",
-    "corporator": {
-      "name": "SRI MUNNI LAL",
-      "address": "489/9 KA RANIGANJ, DALIGANJ LUCKNOW",
-      "phone_no": "9956059059"
+    ward_no: 56,
+    ward_name: "DALIGANJ WARD",
+    corporator: {
+      name: "SRI MUNNI LAL",
+      address: "489/9 KA RANIGANJ, DALIGANJ LUCKNOW",
+      phone_no: "9956059059",
     },
-    "mohalla": [
+    mohalla: [
       "GODIYAN TOLA",
       "LAHAUR GANJ",
       "DALIGANJ",
@@ -1165,18 +1158,18 @@ export const ward: wardType[] = [
       "SITAPUR BRANCH ROAD",
       "HASAN GANJ (ATTACHED FAIZABAD ROAD)",
       "LEFT PORTION OF FAIZABAD ROAD FROM MANKAMNESHWAR ROAD TO CHARCH",
-      "MAYA NAGAR"
-    ]
+      "MAYA NAGAR",
+    ],
   },
   {
-    "ward_no": 57,
-    "ward_name": "VIKRMADITYA WARD",
-    "corporator": {
-      "name": "SRI NEERAJ YADAV",
-      "address": "274, JIYAMAU, HAZARATGANJ LUCKNOW",
-      "phone_no": "9450461207"
+    ward_no: 57,
+    ward_name: "VIKRMADITYA WARD",
+    corporator: {
+      name: "SRI NEERAJ YADAV",
+      address: "274, JIYAMAU, HAZARATGANJ LUCKNOW",
+      phone_no: "9450461207",
     },
-    "mohalla": [
+    mohalla: [
       "JIYAMAU",
       "LA.MATINIAR COLONY",
       "MARTIN PURWA",
@@ -1189,34 +1182,35 @@ export const ward: wardType[] = [
       "MALL AVENUE",
       "SHUBHAM NAGAR",
       "ABADI KABRISTAN",
-      "MAHATMA GANDHI MARG"
-    ]
+      "MAHATMA GANDHI MARG",
+    ],
   },
   {
-    "ward_no": 58,
-    "ward_name": "LAL BAHADUR SHASTRI WARD IIND",
-    "corporator": {
-      "name": "SRI DEVENDRA KUMAR VERMA",
-      "address": "628/511 SHAKTI NAGAR NEAR RAJAT GIRLS COLLEGE, FAIJABAD ROAD LUCKNOW",
-      "phone_no": "9415568627, 9415116895"
+    ward_no: 58,
+    ward_name: "LAL BAHADUR SHASTRI WARD IIND",
+    corporator: {
+      name: "SRI DEVENDRA KUMAR VERMA",
+      address:
+        "628/511 SHAKTI NAGAR NEAR RAJAT GIRLS COLLEGE, FAIJABAD ROAD LUCKNOW",
+      phone_no: "9415568627, 9415116895",
     },
-    "mohalla": [
+    mohalla: [
       "SHAKTI NAGAR",
       "KUMANCHAL NAGAR",
       "A BLOCK PARTLY",
       "LIBERTY COLONY PARTLY",
-      "SARVODAY NAGAR"
-    ]
+      "SARVODAY NAGAR",
+    ],
   },
   {
-    "ward_no": 59,
-    "ward_name": "HUSAINA BAD WARD",
-    "corporator": {
-      "name": "SRI FAISAL ALI KHAN",
-      "address": "467/0195 HUSAINABAD, LUCKNOW-3",
-      "phone_no": "9415087301, 9936060800"
+    ward_no: 59,
+    ward_name: "HUSAINA BAD WARD",
+    corporator: {
+      name: "SRI FAISAL ALI KHAN",
+      address: "467/0195 HUSAINABAD, LUCKNOW-3",
+      phone_no: "9415087301, 9936060800",
     },
-    "mohalla": [
+    mohalla: [
       "GEND KHANA",
       "MOHNI PURVA",
       "SHIVPURI",
@@ -1224,33 +1218,33 @@ export const ward: wardType[] = [
       "PEER BUKHARA",
       "TAHSEEN GANJ",
       "MALIHABAD ROAD",
-      "HUSSAINA BAD (SHEESH MAHAL)"
-    ]
+      "HUSSAINA BAD (SHEESH MAHAL)",
+    ],
   },
   {
-    "ward_no": 60,
-    "ward_name": "LABOUR COLONY WARD",
-    "corporator": {
-      "name": "SRI RAJESH KUMAR MALVIYA",
-      "address": "C-2611, RAJAJIPURAM, LUCNOW",
-      "phone_no": "9415180807, 9005529262"
+    ward_no: 60,
+    ward_name: "LABOUR COLONY WARD",
+    corporator: {
+      name: "SRI RAJESH KUMAR MALVIYA",
+      address: "C-2611, RAJAJIPURAM, LUCNOW",
+      phone_no: "9415180807, 9005529262",
     },
-    "mohalla": [
+    mohalla: [
       "NANDA KHEDA",
       "LABOUR COLONY (TIKET RAI)",
       "RAJAJIPURAM NEW C BLOCK",
-      "DARIYAPUR COLONY"
-    ]
+      "DARIYAPUR COLONY",
+    ],
   },
   {
-    "ward_no": 61,
-    "ward_name": "BEGUM HAZRAT MEHAL WARD",
-    "corporator": {
-      "name": "SRI MOD. SALEEM",
-      "address": "532KA/178, PANDEY TOLA, ALIGANJ LUCKNOW",
-      "phone_no": "9415180787"
+    ward_no: 61,
+    ward_name: "BEGUM HAZRAT MEHAL WARD",
+    corporator: {
+      name: "SRI MOD. SALEEM",
+      address: "532KA/178, PANDEY TOLA, ALIGANJ LUCKNOW",
+      phone_no: "9415180787",
     },
-    "mohalla": [
+    mohalla: [
       "BHARO PRASAD MARG",
       "BADA CHAND GANJ PARTLY",
       "MAHANAGAR EXTENTION",
@@ -1262,18 +1256,18 @@ export const ward: wardType[] = [
       "DANDAYIYA BAZAR LEFT SIDE",
       "MEHANDI TOLA",
       "BEGUM HAZRAT MAHAL SOUTH PORTION",
-      "SHEKHA PURA"
-    ]
+      "SHEKHA PURA",
+    ],
   },
   {
-    "ward_no": 62,
-    "ward_name": "MAHANAGAR WARD",
-    "corporator": {
-      "name": "SMT. SAROJ",
-      "address": "529/492, RAHEEM NAGAR MAHANAGAR, LUCKNOW",
-      "phone_no": "9450392518, 7860505305"
+    ward_no: 62,
+    ward_name: "MAHANAGAR WARD",
+    corporator: {
+      name: "SMT. SAROJ",
+      address: "529/492, RAHEEM NAGAR MAHANAGAR, LUCKNOW",
+      phone_no: "9450392518, 7860505305",
     },
-    "mohalla": [
+    mohalla: [
       "MAHANAGAR",
       "AMBAHI KA PURWA",
       "RAHEEM NAGAR",
@@ -1284,50 +1278,51 @@ export const ward: wardType[] = [
       "AKBAR NAGAR",
       "FAIZABAD ROAD NORTH",
       "DAYAL FORT",
-      "GOAL MARKET"
-    ]
+      "GOAL MARKET",
+    ],
   },
   {
-    "ward_no": 63,
-    "ward_name": "TRIVENI NAGAR WARD",
-    "corporator": {
-      "name": "SMT. ANURADHA",
-      "address": "538 A/1707/25 NEAR LAWYNCE RAJDHANI COLLEGE, YOGI NAGAR, TIRVENI NAGAR, LUCKNOW",
-      "phone_no": "9415022817"
+    ward_no: 63,
+    ward_name: "TRIVENI NAGAR WARD",
+    corporator: {
+      name: "SMT. ANURADHA",
+      address:
+        "538 A/1707/25 NEAR LAWYNCE RAJDHANI COLLEGE, YOGI NAGAR, TIRVENI NAGAR, LUCKNOW",
+      phone_no: "9415022817",
     },
-    "mohalla": [
+    mohalla: [
       "TRIVENI NAGAR-I",
       "TRIVENI NAGAR-II",
       "TRIVENI NAGAR-III",
       "BRAMHA NAGAR",
       "PATAURA GANJ",
-      "AHIBARANPUR"
-    ]
+      "AHIBARANPUR",
+    ],
   },
   {
-    "ward_no": 64,
-    "ward_name": "KUNWER JYOTI PRASAD WARD IST",
-    "corporator": {
-      "name": "SRI SHIVPAL",
-      "address": "F-1690, RAJAJIPURAM, LUCKNOW",
-      "phone_no": "9335202082"
+    ward_no: 64,
+    ward_name: "KUNWER JYOTI PRASAD WARD IST",
+    corporator: {
+      name: "SRI SHIVPAL",
+      address: "F-1690, RAJAJIPURAM, LUCKNOW",
+      phone_no: "9335202082",
     },
-    "mohalla": [
+    mohalla: [
       "PARTLY E-BLOCK",
       "PARTLY F-BLOCK",
       "PARTLY ALAMNAGAR",
-      "MEHANDI KHEDA"
-    ]
+      "MEHANDI KHEDA",
+    ],
   },
   {
-    "ward_no": 65,
-    "ward_name": "RAM TEERATH WARD",
-    "corporator": {
-      "name": "SRI ATUL YADAV \"BANTU\"",
-      "address": "41/2 NARAHI, LUCKNOW",
-      "phone_no": "9307975675"
+    ward_no: 65,
+    ward_name: "RAM TEERATH WARD",
+    corporator: {
+      name: 'SRI ATUL YADAV "BANTU"',
+      address: "41/2 NARAHI, LUCKNOW",
+      phone_no: "9307975675",
     },
-    "mohalla": [
+    mohalla: [
       "MIRJA PURWA",
       "NARAHI",
       "MEERA BAI MARG",
@@ -1344,18 +1339,18 @@ export const ward: wardType[] = [
       "MALLAH PUR BASTI",
       "STATE GUEST HOUSE",
       "SHAKTI BHAWAN TO DOORDARSHAN",
-      "RANA PRATAP MARG PARTLY"
-    ]
+      "RANA PRATAP MARG PARTLY",
+    ],
   },
   {
-    "ward_no": 66,
-    "ward_name": "HIND NAGAR WARD",
-    "corporator": {
-      "name": "SRI SAURABH SINGH \"MONU\"",
-      "address": "L-2/10 L.D.A. KANPUR ROAD, LUCKNOW",
-      "phone_no": "9839966777, 0522-4107700"
+    ward_no: 66,
+    ward_name: "HIND NAGAR WARD",
+    corporator: {
+      name: 'SRI SAURABH SINGH "MONU"',
+      address: "L-2/10 L.D.A. KANPUR ROAD, LUCKNOW",
+      phone_no: "9839966777, 0522-4107700",
     },
-    "mohalla": [
+    mohalla: [
       "HIND NAGAR",
       "RAMGAR COLONY",
       "BALDI KHERA",
@@ -1363,35 +1358,36 @@ export const ward: wardType[] = [
       "PAKRI KHEDA",
       "MADARI KHERA",
       "CHILLAWAN",
-      "LDA COLONY KANPUR ROAD BLOCK B.C.D"
-    ]
+      "LDA COLONY KANPUR ROAD BLOCK B.C.D",
+    ],
   },
   {
-    "ward_no": 67,
-    "ward_name": "ΜΑΝKAMESHWAR MANDIR WARD",
-    "corporator": {
-      "name": "SRI RANJEET SINGH",
-      "address": "505/74 JOSHI TOLA, DALIGANJ LUCKNOW",
-      "phone_no": "9415414111"
+    ward_no: 67,
+    ward_name: "ΜΑΝKAMESHWAR MANDIR WARD",
+    corporator: {
+      name: "SRI RANJEET SINGH",
+      address: "505/74 JOSHI TOLA, DALIGANJ LUCKNOW",
+      phone_no: "9415414111",
     },
-    "mohalla": [
+    mohalla: [
       "KUTUBPUR",
       "KABADIA PURVA",
       "MUKARIM NAGAR",
       "BARAULIYA",
       "TAIGORE MARG",
-      "JOSHI TOLA"
-    ]
+      "JOSHI TOLA",
+    ],
   },
   {
-    "ward_no": 68,
-    "ward_name": "CHANDRABHAN GUPT NAGAR WARD",
-    "corporator": {
-      "name": "SRI RAM GOPAL JAISWAL",
-      "address": "279/47 ΜΑΤHUR BULIDING, BACK LANE, GORKHA DHARAMSHALA ROAD, PANDARIBA, LUCKNOW",
-      "phone_no": "9936904242"
+    ward_no: 68,
+    ward_name: "CHANDRABHAN GUPT NAGAR WARD",
+    corporator: {
+      name: "SRI RAM GOPAL JAISWAL",
+      address:
+        "279/47 ΜΑΤHUR BULIDING, BACK LANE, GORKHA DHARAMSHALA ROAD, PANDARIBA, LUCKNOW",
+      phone_no: "9936904242",
     },
-    "mohalla": [
+    mohalla: [
       "MUNNI LAL DHARAMSHALA ROAD",
       "LOKMANYAGUNJ",
       "RAILWAY MULTI STORY",
@@ -1404,18 +1400,18 @@ export const ward: wardType[] = [
       "DURGAPURI BLUNT SQUARE",
       "PARTLY MAVAIYA",
       "GOOD SHADE COLONY",
-      "NOTIFIED AREAR, CHARBAGH RAILWAY COLONY. SEWAGRAM STADIUM COLONY"
-    ]
+      "NOTIFIED AREAR, CHARBAGH RAILWAY COLONY. SEWAGRAM STADIUM COLONY",
+    ],
   },
   {
-    "ward_no": 69,
-    "ward_name": "RAM JI LAL NAGAR WARD",
-    "corporator": {
-      "name": "SMT. SUMAN VERMA",
-      "address": "78F SAMAR VIHAR, ALAMBAGH, LUCKNOW",
-      "phone_no": "9369521971, 9839537055"
+    ward_no: 69,
+    ward_name: "RAM JI LAL NAGAR WARD",
+    corporator: {
+      name: "SMT. SUMAN VERMA",
+      address: "78F SAMAR VIHAR, ALAMBAGH, LUCKNOW",
+      phone_no: "9369521971, 9839537055",
     },
-    "mohalla": [
+    mohalla: [
       "HARIHAR PRASAD NAGAR",
       "RAM NAGAR",
       "MANGAL KHEDA",
@@ -1427,18 +1423,19 @@ export const ward: wardType[] = [
       "SHYAM NAGAR",
       "BAHADUR KHEDA",
       "SINGAR NAGAR",
-      "AMRUDI BAGH"
-    ]
+      "AMRUDI BAGH",
+    ],
   },
   {
-    "ward_no": 70,
-    "ward_name": "SAHADAT GANJ WARD",
-    "corporator": {
-      "name": "SMT. ARUNA YADAV",
-      "address": "363/008B HASANGANJ BAVALI, NEAR PATHARKATA MANDIR, SAHADAT GANJ, LUCKNOW",
-      "phone_no": "9415024660, 9621069516"
+    ward_no: 70,
+    ward_name: "SAHADAT GANJ WARD",
+    corporator: {
+      name: "SMT. ARUNA YADAV",
+      address:
+        "363/008B HASANGANJ BAVALI, NEAR PATHARKATA MANDIR, SAHADAT GANJ, LUCKNOW",
+      phone_no: "9415024660, 9621069516",
     },
-    "mohalla": [
+    mohalla: [
       "BIHARIPUR",
       "SAHADAT GANJ KHAS",
       "SARAY MUGAL",
@@ -1455,18 +1452,18 @@ export const ward: wardType[] = [
       "DURGADEEN ROAD",
       "BOTH SIDE OF MATADEEN ROAD",
       "DOH0A0 ROAD PARTLY",
-      "SHEKHPUR ROAD"
-    ]
+      "SHEKHPUR ROAD",
+    ],
   },
   {
-    "ward_no": 71,
-    "ward_name": "NETA JI SUBHASH WARD",
-    "corporator": {
-      "name": "SRI ANSHAR AHMAD",
-      "address": "195/99 4K, CHAUDHARI JAGAT NARAYAN ROAD, CROWN GATE",
-      "phone_no": "9839015733"
+    ward_no: 71,
+    ward_name: "NETA JI SUBHASH WARD",
+    corporator: {
+      name: "SRI ANSHAR AHMAD",
+      address: "195/99 4K, CHAUDHARI JAGAT NARAYAN ROAD, CROWN GATE",
+      phone_no: "9839015733",
     },
-    "mohalla": [
+    mohalla: [
       "PURI TOLA",
       "THATHERI TOLA",
       "CHACHI KUAN",
@@ -1480,18 +1477,18 @@ export const ward: wardType[] = [
       "AAGA MEER DYODI",
       "JOSHI TOLA",
       "IMAMBADA AGABAKAR",
-      "PATANALA"
-    ]
+      "PATANALA",
+    ],
   },
   {
-    "ward_no": 72,
-    "ward_name": "GANESH GANJ WARD",
-    "corporator": {
-      "name": "SRI LAKHWINDAR PAL SINGH",
-      "address": "62 NEW GANESHGANJ, LUCKNOW",
-      "phone_no": "9335920337"
+    ward_no: 72,
+    ward_name: "GANESH GANJ WARD",
+    corporator: {
+      name: "SRI LAKHWINDAR PAL SINGH",
+      address: "62 NEW GANESHGANJ, LUCKNOW",
+      phone_no: "9335920337",
     },
-    "mohalla": [
+    mohalla: [
       "ARYA SAMAJ MANDIR ROAD",
       "PURANA GANESH GANJ",
       "GRAIN MARKET",
@@ -1511,45 +1508,43 @@ export const ward: wardType[] = [
       "AMANI GANJ",
       "AMINABAD",
       "BHUSA MANDI",
-      "KASAI BADA"
-    ]
+      "KASAI BADA",
+    ],
   },
   {
-    "ward_no": 73,
-    "ward_name": "VIDHYAWATI DEVI WARD IIND",
-    "corporator": {
-      "name": "SMT. LAXMI SINGH",
-      "address": "S.S.-II/250, SECTOR-D-1 L.D.A. COLONY, KANPUR ROAD, LUCKNOW",
-      "phone_no": "9628077773, 9696716042"
+    ward_no: 73,
+    ward_name: "VIDHYAWATI DEVI WARD IIND",
+    corporator: {
+      name: "SMT. LAXMI SINGH",
+      address: "S.S.-II/250, SECTOR-D-1 L.D.A. COLONY, KANPUR ROAD, LUCKNOW",
+      phone_no: "9628077773, 9696716042",
     },
-    "mohalla": [
-      "L.D.A. COLONY KANPUR ROAD OF SECTOR H.G.D-1"
-    ]
+    mohalla: ["L.D.A. COLONY KANPUR ROAD OF SECTOR H.G.D-1"],
   },
   {
-    "ward_no": 74,
-    "ward_name": "MAHA KAVI JAI SHANKAR PRASAD",
-    "corporator": {
-      "name": "SRI SURESH CHANDRA AWASTHI",
-      "address": "LD.R. 540 SEC-Q ALIGANJ, LUCKNOW",
-      "phone_no": "9415089565"
+    ward_no: 74,
+    ward_name: "MAHA KAVI JAI SHANKAR PRASAD",
+    corporator: {
+      name: "SRI SURESH CHANDRA AWASTHI",
+      address: "LD.R. 540 SEC-Q ALIGANJ, LUCKNOW",
+      phone_no: "9415089565",
     },
-    "mohalla": [
+    mohalla: [
       "ALIGANJ YOJNA SECTOR C.D.K.P.C.S.D.C & L.K.S",
       "PURANIA",
       "USMAN PUR",
-      "INDIRA NAGRI"
-    ]
+      "INDIRA NAGRI",
+    ],
   },
   {
-    "ward_no": 75,
-    "ward_name": "SARDAR PATEL NAGAR WARD",
-    "corporator": {
-      "name": "SRI GIRISH KUMAR MISHRA",
-      "address": "L.D 31(M) RUNNING SHADE COLONY ALAMBAGH, LUCKNOW",
-      "phone_no": "9415929117"
+    ward_no: 75,
+    ward_name: "SARDAR PATEL NAGAR WARD",
+    corporator: {
+      name: "SRI GIRISH KUMAR MISHRA",
+      address: "L.D 31(M) RUNNING SHADE COLONY ALAMBAGH, LUCKNOW",
+      phone_no: "9415929117",
     },
-    "mohalla": [
+    mohalla: [
       "ALAMBAGH THANA",
       "L.D. COLONY",
       "RUNNING SHADE COLONY",
@@ -1564,18 +1559,18 @@ export const ward: wardType[] = [
       "TALKATORA ROAD",
       "JAGJIWAN RAM TRAINING CENTER",
       "TEJI KHEDA",
-      "PATEL NAGAR"
-    ]
+      "PATEL NAGAR",
+    ],
   },
   {
-    "ward_no": 76,
-    "ward_name": "BABU BANARSHI DAS WARD",
-    "corporator": {
-      "name": "SMT. ANEESHA",
-      "address": "12/23A/PURANA QILA, KANT ROAD LUCKNOW",
-      "phone_no": "9839231505"
+    ward_no: 76,
+    ward_name: "BABU BANARSHI DAS WARD",
+    corporator: {
+      name: "SMT. ANEESHA",
+      address: "12/23A/PURANA QILA, KANT ROAD LUCKNOW",
+      phone_no: "9839231505",
     },
-    "mohalla": [
+    mohalla: [
       "BARIYA MOHAL",
       "HATA GANI KHAN",
       "UDAI GANJ PARK",
@@ -1592,33 +1587,34 @@ export const ward: wardType[] = [
       "GARAIYA JOUHAR MEHTAR",
       "BAG AINA BIBI",
       "HATA KHAWAJA GAUHAR",
-      "TIL PURVA"
-    ]
+      "TIL PURVA",
+    ],
   },
   {
-    "ward_no": 77,
-    "ward_name": "BHARTENDU HARISH CHANDRA WARD",
-    "corporator": {
-      "name": "SRI BRUJ KISHOR PANDEY",
-      "address": "551/237 SECTOR-A SITAPUR ROAD YOJANA, LUCKNOW",
-      "phone_no": "9450095966"
+    ward_no: 77,
+    ward_name: "BHARTENDU HARISH CHANDRA WARD",
+    corporator: {
+      name: "SRI BRUJ KISHOR PANDEY",
+      address: "551/237 SECTOR-A SITAPUR ROAD YOJANA, LUCKNOW",
+      phone_no: "9450095966",
     },
-    "mohalla": [
+    mohalla: [
       "SITA PUR ROAD YOJNA (ALIGANJ YOJNA) SECTER-A,B,C",
       "PALTAN CHHAVANI",
       "ENGINERING COLLAGE KE DAKSHIN",
-      "KENDRIYA VIDYALAY SECTER-O"
-    ]
+      "KENDRIYA VIDYALAY SECTER-O",
+    ],
   },
   {
-    "ward_no": 78,
-    "ward_name": "ALAM NAGAR WARD",
-    "corporator": {
-      "name": "SRI NAGENDAR SINGH",
-      "address": "JALAL PUR CROSSING, PURANA-C BLOK RAJAJIPURAM, PITAMBAR KHEDA LUCKNOW",
-      "phone_no": "9839260955, 93335823777"
+    ward_no: 78,
+    ward_name: "ALAM NAGAR WARD",
+    corporator: {
+      name: "SRI NAGENDAR SINGH",
+      address:
+        "JALAL PUR CROSSING, PURANA-C BLOK RAJAJIPURAM, PITAMBAR KHEDA LUCKNOW",
+      phone_no: "9839260955, 93335823777",
     },
-    "mohalla": [
+    mohalla: [
       "JALAL PUR",
       "PITAMBER KHERA",
       "SHIV PURI",
@@ -1633,18 +1629,18 @@ export const ward: wardType[] = [
       "GAYATRI PURAM",
       "DEV PURA",
       "CHANDRODAY NAGAR",
-      "DOCTER KHERA"
-    ]
+      "DOCTER KHERA",
+    ],
   },
   {
-    "ward_no": 79,
-    "ward_name": "MASHK GANJ WARD",
-    "corporator": {
-      "name": "SRI LAXMI NARAYAN",
-      "address": "188/44, HATA DURGA PRASAD, MASHAKGANJ, LUCKNOW",
-      "phone_no": "8858988855"
+    ward_no: 79,
+    ward_name: "MASHK GANJ WARD",
+    corporator: {
+      name: "SRI LAXMI NARAYAN",
+      address: "188/44, HATA DURGA PRASAD, MASHAKGANJ, LUCKNOW",
+      phone_no: "8858988855",
     },
-    "mohalla": [
+    mohalla: [
       "GANGA PRASAD ROAD",
       "SUBHAS NAGAR",
       "KASHI DERA",
@@ -1659,18 +1655,18 @@ export const ward: wardType[] = [
       "MURG KHANA",
       "NAI BASTI",
       "BAGH SHER GANJ",
-      "CHIKMANDI"
-    ]
+      "CHIKMANDI",
+    ],
   },
   {
-    "ward_no": 80,
-    "ward_name": "SHEETLA DEVI WARD",
-    "corporator": {
-      "name": "SRI AMAR SAHYA",
-      "address": "342/206 NOUBASTA, TIKAIT NAGAR LUCKNOW",
-      "phone_no": "2261578, 9415082507"
+    ward_no: 80,
+    ward_name: "SHEETLA DEVI WARD",
+    corporator: {
+      name: "SRI AMAR SAHYA",
+      address: "342/206 NOUBASTA, TIKAIT NAGAR LUCKNOW",
+      phone_no: "2261578, 9415082507",
     },
-    "mohalla": [
+    mohalla: [
       "TRIVENI NAGAR",
       "BUDHU LAL TIWARI ROAD",
       "BRAHMANI TOLA",
@@ -1678,33 +1674,33 @@ export const ward: wardType[] = [
       "BAG SHEETLA JI",
       "PURANA TIKAIT GANJ",
       "KATRA KHUDA YAR KHAN",
-      "L.D.A. COLONY"
-    ]
+      "L.D.A. COLONY",
+    ],
   },
   {
-    "ward_no": 81,
-    "ward_name": "RAJEEV GANDHI WARD_IIND",
-    "corporator": {
-      "name": "SMT. MADHU TIWARI",
-      "address": "2/652 C-I VIRAM KHAND-2, GOMTI NAGAR, LUCKNOW",
-      "phone_no": "9415002205"
+    ward_no: 81,
+    ward_name: "RAJEEV GANDHI WARD_IIND",
+    corporator: {
+      name: "SMT. MADHU TIWARI",
+      address: "2/652 C-I VIRAM KHAND-2, GOMTI NAGAR, LUCKNOW",
+      phone_no: "9415002205",
     },
-    "mohalla": [
+    mohalla: [
       "VINAY KHAND-1,2",
       "VINAY KHAND-5",
       "VINAY KHAND-3,4 KA ANSIK BHAG",
-      "VIRAM KHAND"
-    ]
+      "VIRAM KHAND",
+    ],
   },
   {
-    "ward_no": 82,
-    "ward_name": "AYODHYA DAS WARD",
-    "corporator": {
-      "name": "SMT. NAJIYA MUSHABIR",
-      "address": "473/92 DEEN DAYAL NAGAR, SITAPUR ROAD, KHADRA, LUCKNOW",
-      "phone_no": "9838354344"
+    ward_no: 82,
+    ward_name: "AYODHYA DAS WARD",
+    corporator: {
+      name: "SMT. NAJIYA MUSHABIR",
+      address: "473/92 DEEN DAYAL NAGAR, SITAPUR ROAD, KHADRA, LUCKNOW",
+      phone_no: "9838354344",
     },
-    "mohalla": [
+    mohalla: [
       "BABA ΚΑ PURVA",
       "MURAI TOLA",
       "KHADRA",
@@ -1713,62 +1709,60 @@ export const ward: wardType[] = [
       "MADEYA GANJ",
       "MAKKA GANJ",
       "MEHDI GANJ",
-      "SITA PUR ROAD KA WEST BHAG SEVA SANSTHAN SE NANAK SHAR MANDIR"
-    ]
+      "SITA PUR ROAD KA WEST BHAG SEVA SANSTHAN SE NANAK SHAR MANDIR",
+    ],
   },
   {
-    "ward_no": 83,
-    "ward_name": "RAJAJI PURAM WARD",
-    "corporator": {
-      "name": "SRI JITENDRA UPADHYAY",
-      "address": "B-1678, RAJAJI PURAM, LUCKNOW",
-      "phone_no": "9415408223, 2414200"
+    ward_no: 83,
+    ward_name: "RAJAJI PURAM WARD",
+    corporator: {
+      name: "SRI JITENDRA UPADHYAY",
+      address: "B-1678, RAJAJI PURAM, LUCKNOW",
+      phone_no: "9415408223, 2414200",
     },
-    "mohalla": [
-      "RAJAJI PURAM- A,B,C, & D BLOCK",
-      "LINE KHERA"
-    ]
+    mohalla: ["RAJAJI PURAM- A,B,C, & D BLOCK", "LINE KHERA"],
   },
   {
-    "ward_no": 84,
-    "ward_name": "LOHIYA NAGAR WARD",
-    "corporator": {
-      "name": "SRI AKHILAESH GIRI",
-      "address": "3/523 VIKASH NAGAR, LUCKNOW",
-      "phone_no": "9565141414"
+    ward_no: 84,
+    ward_name: "LOHIYA NAGAR WARD",
+    corporator: {
+      name: "SRI AKHILAESH GIRI",
+      address: "3/523 VIKASH NAGAR, LUCKNOW",
+      phone_no: "9565141414",
     },
-    "mohalla": [
+    mohalla: [
       "VIKAS NAGAR SECTER-1 SE 6 TAK & 9 ANSIK NALE KE PASCHIMI BHAG",
       "KANHAI LAL PURVA",
-      "MAHESH NAGAR"
-    ]
+      "MAHESH NAGAR",
+    ],
   },
   {
-    "ward_no": 85,
-    "ward_name": "AMBAR GANJ WARD",
-    "corporator": {
-      "name": "SRI MOD. AHASAN",
-      "address": "390/99 GADHI PEER KHAN, DARIWALA MOHALLA, SHADATGANJ, LUCKNOW",
-      "phone_no": "9956696535"
+    ward_no: 85,
+    ward_name: "AMBAR GANJ WARD",
+    corporator: {
+      name: "SRI MOD. AHASAN",
+      address: "390/99 GADHI PEER KHAN, DARIWALA MOHALLA, SHADATGANJ, LUCKNOW",
+      phone_no: "9956696535",
     },
-    "mohalla": [
+    mohalla: [
       "TAMBAKU MANDI",
       "HARA SURAJ SINGH",
       "AMBAR GANJ",
       "MAHBOOB GANJ",
       "VAZEER BAGH",
-      "PASAND BAGH"
-    ]
+      "PASAND BAGH",
+    ],
   },
   {
-    "ward_no": 86,
-    "ward_name": "KASHMIRI MOHLLA WARD",
-    "corporator": {
-      "name": "SMT. SAYMA LAIK AAGA",
-      "address": "383/66, CHAWANI HUSAINUDDEEN KHAN, NOORBADI, SHADATGANJ, LUCKNOW",
-      "phone_no": "9454111337, 9305466290"
+    ward_no: 86,
+    ward_name: "KASHMIRI MOHLLA WARD",
+    corporator: {
+      name: "SMT. SAYMA LAIK AAGA",
+      address:
+        "383/66, CHAWANI HUSAINUDDEEN KHAN, NOORBADI, SHADATGANJ, LUCKNOW",
+      phone_no: "9454111337, 9305466290",
     },
-    "mohalla": [
+    mohalla: [
       "PUL GULAM HUSAIN ROAD",
       "MANSOOR NAGAR",
       "DARGAH HAZARAT ABBAS ROAD",
@@ -1786,45 +1780,42 @@ export const ward: wardType[] = [
       "KASHMIRI MOHLLA UTTARI",
       "KASHMIRI MOHLLA DAKSHINI",
       "GADI ADDA",
-      "PWRANA PAN DARIBA"
-    ]
+      "PWRANA PAN DARIBA",
+    ],
   },
   {
-    "ward_no": 87,
-    "ward_name": "INDRA NAGAR WARD",
-    "corporator": {
-      "name": "SMT. POONAM AGARWAL",
-      "address": "12B II-FLOOR, CHNADRMA SUPREEM COMLEX, SEC-12 INDRA NAGAR, LUCKNOW",
-      "phone_no": "9415024848"
+    ward_no: 87,
+    ward_name: "INDRA NAGAR WARD",
+    corporator: {
+      name: "SMT. POONAM AGARWAL",
+      address:
+        "12B II-FLOOR, CHNADRMA SUPREEM COMLEX, SEC-12 INDRA NAGAR, LUCKNOW",
+      phone_no: "9415024848",
     },
-    "mohalla": [
-      "INDRA NAGAR YOJNA",
-      "SECTER-18,1,7,15",
-      "TEEKA PURVA"
-    ]
+    mohalla: ["INDRA NAGAR YOJNA", "SECTER-18,1,7,15", "TEEKA PURVA"],
   },
   {
-    "ward_no": 88,
-    "ward_name": "VIDYAWATI DEVI WARD-1",
-    "corporator": {
-      "name": "SMT. SUSHMITA PANDEY",
-      "address": "K-814 D ASHIYANA COLONY, LUCKNOW",
-      "phone_no": "9335916286"
+    ward_no: 88,
+    ward_name: "VIDYAWATI DEVI WARD-1",
+    corporator: {
+      name: "SMT. SUSHMITA PANDEY",
+      address: "K-814 D ASHIYANA COLONY, LUCKNOW",
+      phone_no: "9335916286",
     },
-    "mohalla": [
+    mohalla: [
       "L.D.A. COLONY KANPUR ROAD KE SECTER E.F.K. K-9 (ASHIYANA)",
-      "SECTER- I, J, (ASHIYANA)"
-    ]
+      "SECTER- I, J, (ASHIYANA)",
+    ],
   },
   {
-    "ward_no": 89,
-    "ward_name": "ALI GANJ WARD",
-    "corporator": {
-      "name": "SMT. RAMSHRI MISHRA",
-      "address": "E-1/37 SEC-B ALIGANJ, LUCKNOW",
-      "phone_no": "2333201, 9335907732"
+    ward_no: 89,
+    ward_name: "ALI GANJ WARD",
+    corporator: {
+      name: "SMT. RAMSHRI MISHRA",
+      address: "E-1/37 SEC-B ALIGANJ, LUCKNOW",
+      phone_no: "2333201, 9335907732",
     },
-    "mohalla": [
+    mohalla: [
       "SHEKHA PUR",
       "MINDIYA TOLA",
       "ALI GANJ SECTER-A, B. F, I",
@@ -1834,18 +1825,18 @@ export const ward: wardType[] = [
       "CHANDRA LOCK COLONY",
       "CHAUDHARY TOLA",
       "RAVINDDRA GARDEN",
-      "MIRZA BAGH"
-    ]
+      "MIRZA BAGH",
+    ],
   },
   {
-    "ward_no": 90,
-    "ward_name": "ACHARYA NARENDRA DEV WARD",
-    "corporator": {
-      "name": "SMT. SHASHI SINGH",
-      "address": "414/141KHA, SARAY MALI KHAN, CHOK, LUCKNOW",
-      "phone_no": "9415577704"
+    ward_no: 90,
+    ward_name: "ACHARYA NARENDRA DEV WARD",
+    corporator: {
+      name: "SMT. SHASHI SINGH",
+      address: "414/141KHA, SARAY MALI KHAN, CHOK, LUCKNOW",
+      phone_no: "9415577704",
     },
-    "mohalla": [
+    mohalla: [
       "CHAUPATIYA",
       "CHAUPATIYA ROAD, KHET GALI",
       "FATAK ZIYA LAL",
@@ -1856,18 +1847,18 @@ export const ward: wardType[] = [
       "RANI KATRA",
       "HATA BHEEKHAM KHAN",
       "AHARI TOLA",
-      "PUL MOTI LAL"
-    ]
+      "PUL MOTI LAL",
+    ],
   },
   {
-    "ward_no": 91,
-    "ward_name": "JANKI PURAM WARD_IIND",
-    "corporator": {
-      "name": "SRI KAILASH YADAV",
-      "address": "6581/02A, SIKANDARPUR SEC-H. JANKIPURM, LUCKNOW",
-      "phone_no": null
+    ward_no: 91,
+    ward_name: "JANKI PURAM WARD_IIND",
+    corporator: {
+      name: "SRI KAILASH YADAV",
+      address: "6581/02A, SIKANDARPUR SEC-H. JANKIPURM, LUCKNOW",
+      phone_no: null,
     },
-    "mohalla": [
+    mohalla: [
       "SECTER G KA PURA BHAG PARISAR PURA",
       "ISRO RIMORT SENSING BAIOTECH",
       "SECTER-H KE TOTAL KHAND 1, 2, 3, 4",
@@ -1878,18 +1869,18 @@ export const ward: wardType[] = [
       "GURIYAN PURWA",
       "PAHAR PUR GANW",
       "GUDMBA THANA",
-      "SECTER J.L.D.A KI NAV NIRMIT COLONY & USKE AAGE KA TOTAL BHAG"
-    ]
+      "SECTER J.L.D.A KI NAV NIRMIT COLONY & USKE AAGE KA TOTAL BHAG",
+    ],
   },
   {
-    "ward_no": 92,
-    "ward_name": "DAULAT GANJ WARD",
-    "corporator": {
-      "name": "SMT. RANI KANAUJIYA",
-      "address": "452/87, PAJAWA, THAKURGANJ LUCKNOW",
-      "phone_no": "9838563367, 9506358053"
+    ward_no: 92,
+    ward_name: "DAULAT GANJ WARD",
+    corporator: {
+      name: "SMT. RANI KANAUJIYA",
+      address: "452/87, PAJAWA, THAKURGANJ LUCKNOW",
+      phone_no: "9838563367, 9506358053",
     },
-    "mohalla": [
+    mohalla: [
       "GIRDHARI LAL ROAD MADHOPUR ROAD",
       "PAJABA",
       "AHMAD GANJ",
@@ -1897,18 +1888,19 @@ export const ward: wardType[] = [
       "SAZZAD GANJ",
       "BRAMANI TOLA",
       "DAULAT GANJ",
-      "MURG KHANA"
-    ]
+      "MURG KHANA",
+    ],
   },
   {
-    "ward_no": 93,
-    "ward_name": "YADU NATH SANYAL WARD",
-    "corporator": {
-      "name": "SRI VINOD KRISHAN SINGHAL",
-      "address": "109/5S TALAB GAGANI SHUKL MODAL HUSE, NEAR KESHAV BHAWAN, LUCKNOW",
-      "phone_no": "9415018726"
+    ward_no: 93,
+    ward_name: "YADU NATH SANYAL WARD",
+    corporator: {
+      name: "SRI VINOD KRISHAN SINGHAL",
+      address:
+        "109/5S TALAB GAGANI SHUKL MODAL HUSE, NEAR KESHAV BHAWAN, LUCKNOW",
+      phone_no: "9415018726",
     },
-    "mohalla": [
+    mohalla: [
       "ASHOK NAGAR",
       "NAT KHERA",
       "KURMI TOLA",
@@ -1921,18 +1913,18 @@ export const ward: wardType[] = [
       "SAFDAL BAGH",
       "BAIRUNI KHANDAK",
       "SHIVAJI MARG",
-      "MODAL HOUSE"
-    ]
+      "MODAL HOUSE",
+    ],
   },
   {
-    "ward_no": 94,
-    "ward_name": "MOULVIYA GANJ WARD",
-    "corporator": {
-      "name": "SMT. TANWEER REHΜΑΝ",
-      "address": "155/306 MOULVIYA GANJ, LUCKNOW",
-      "phone_no": "9451720459"
+    ward_no: 94,
+    ward_name: "MOULVIYA GANJ WARD",
+    corporator: {
+      name: "SMT. TANWEER REHΜΑΝ",
+      address: "155/306 MOULVIYA GANJ, LUCKNOW",
+      phone_no: "9451720459",
     },
-    "mohalla": [
+    mohalla: [
       "GUAIN TALAB",
       "RATH KHANA",
       "LASHKARI RIKAB GANJ",
@@ -1947,18 +1939,18 @@ export const ward: wardType[] = [
       "CHARAS MANDI",
       "BHUSA MANDI",
       "CHHEDI LAL DHARAM SHALA",
-      "AMINU DDAULA PARK"
-    ]
+      "AMINU DDAULA PARK",
+    ],
   },
   {
-    "ward_no": 95,
-    "ward_name": "WAZEER GANJ WARD",
-    "corporator": {
-      "name": "SRI MOD. ΝΑΙΜ",
-      "address": "193/63 GAUS GANJ, WAZEERGANJ LUCKNOW",
-      "phone_no": "9415159989"
+    ward_no: 95,
+    ward_name: "WAZEER GANJ WARD",
+    corporator: {
+      name: "SRI MOD. ΝΑΙΜ",
+      address: "193/63 GAUS GANJ, WAZEERGANJ LUCKNOW",
+      phone_no: "9415159989",
     },
-    "mohalla": [
+    mohalla: [
       "WAZEER GANJ",
       "GAUS GANJ",
       "LAXMAN PRASAD ROAD",
@@ -1967,18 +1959,18 @@ export const ward: wardType[] = [
       "BAGH GHOSI",
       "JAWAHAR NAGAR",
       "BULAND BAGH",
-      "BARUD KHANA"
-    ]
+      "BARUD KHANA",
+    ],
   },
   {
-    "ward_no": 96,
-    "ward_name": "BASHEERAT GANJ WARD",
-    "corporator": {
-      "name": "SRI SATEESH SAHU",
-      "address": "136/62 DURVIJAY GANJ, (RANIGANJ) LUCKNOW",
-      "phone_no": "9415768919"
+    ward_no: 96,
+    ward_name: "BASHEERAT GANJ WARD",
+    corporator: {
+      name: "SRI SATEESH SAHU",
+      address: "136/62 DURVIJAY GANJ, (RANIGANJ) LUCKNOW",
+      phone_no: "9415768919",
     },
-    "mohalla": [
+    mohalla: [
       "AMINA BAD ROAD (SRI RAM ROAD CHAURAHE SE NAKA HINGDOLA CHAURAHE TAK)",
       "BASHEERAT GANJ",
       "RANI GANJ",
@@ -1992,35 +1984,35 @@ export const ward: wardType[] = [
       "HATI KHANA",
       "BHUSA MANDI",
       "CHARAS MANDI",
-      "HATAKHEME DOJAN"
-    ]
+      "HATAKHEME DOJAN",
+    ],
   },
   {
-    "ward_no": 97,
-    "ward_name": "BHAWANI GANJ",
-    "corporator": {
-      "name": "SRI ISHTIYAK ALI",
-      "address": "344/431 CO-OPRETIVE COLONY, BHAWANIGANJ, LUCKNOW",
-      "phone_no": "9936023786, 9335923653"
+    ward_no: 97,
+    ward_name: "BHAWANI GANJ",
+    corporator: {
+      name: "SRI ISHTIYAK ALI",
+      address: "344/431 CO-OPRETIVE COLONY, BHAWANIGANJ, LUCKNOW",
+      phone_no: "9936023786, 9335923653",
     },
-    "mohalla": [
+    mohalla: [
       "TULSIDAS MARG",
       "PURANA MARG",
       "MAHENDI GANJ",
       "BHAWANI GANJ",
       "LOADH PURWA",
-      "SADEEK BHADEWA"
-    ]
+      "SADEEK BHADEWA",
+    ],
   },
   {
-    "ward_no": 98,
-    "ward_name": "YAHIYA GANJ WARD",
-    "corporator": {
-      "name": "SRI RAJNEES KUMAR GUPTA",
-      "address": "215/121 SHUBHAS MARG, PANDEY GANJ LUCKNOW",
-      "phone_no": "9335912462, 9005573600"
+    ward_no: 98,
+    ward_name: "YAHIYA GANJ WARD",
+    corporator: {
+      name: "SRI RAJNEES KUMAR GUPTA",
+      address: "215/121 SHUBHAS MARG, PANDEY GANJ LUCKNOW",
+      phone_no: "9335912462, 9005573600",
     },
-    "mohalla": [
+    mohalla: [
       "SHERWALI GALI",
       "BHAWANI SINGH SHIWALA ROAD",
       "NALA BEGAM GANJ",
@@ -2036,18 +2028,18 @@ export const ward: wardType[] = [
       "ASHEEK KUNDRI RAKAB GANJ",
       "GOHIYANA",
       "SASHTRI NAGAR",
-      "KUNDRI COLONY"
-    ]
+      "KUNDRI COLONY",
+    ],
   },
   {
-    "ward_no": 99,
-    "ward_name": "SANKER PURVA WARD-IST",
-    "corporator": {
-      "name": "SRI RAM AJAY SINGH",
-      "address": "A-98, SHIVPURI, KALYANPUR, LUCKNOW",
-      "phone_no": "9648888813"
+    ward_no: 99,
+    ward_name: "SANKER PURVA WARD-IST",
+    corporator: {
+      name: "SRI RAM AJAY SINGH",
+      address: "A-98, SHIVPURI, KALYANPUR, LUCKNOW",
+      phone_no: "9648888813",
     },
-    "mohalla": [
+    mohalla: [
       "KUHRAM NAGAR",
       "ΡΑΝΤΗ NAGAR",
       "SAKEET BIHAR",
@@ -2064,34 +2056,34 @@ export const ward: wardType[] = [
       "MAYUR BIHAR",
       "ADARSH NAGAR",
       "SHIVANI BIHAR",
-      "RAJEEV NAGAR"
-    ]
+      "RAJEEV NAGAR",
+    ],
   },
   {
-    "ward_no": 100,
-    "ward_name": "NAZER BAGH WARD",
-    "corporator": {
-      "name": "SRI KAMRAN BEG",
-      "address": "105/234 PHOOL BAGH, LUCKNOW",
-      "phone_no": "2270846, 8799005646"
+    ward_no: 100,
+    ward_name: "NAZER BAGH WARD",
+    corporator: {
+      name: "SRI KAMRAN BEG",
+      address: "105/234 PHOOL BAGH, LUCKNOW",
+      phone_no: "2270846, 8799005646",
     },
-    "mohalla": [
+    mohalla: [
       "PHOOL BAGH",
       "NAZER BAGH",
       "BAHSHI MASHZID",
       "TALAB GAGNI SUKLA",
-      "NAYA GAAW-EAST"
-    ]
+      "NAYA GAAW-EAST",
+    ],
   },
   {
-    "ward_no": 101,
-    "ward_name": "ASHARFA BAD WARD",
-    "corporator": {
-      "name": "SRI GIRIRAJ DHARAN",
-      "address": "295/218 ASHARFABAD, LUCKNOW",
-      "phone_no": "9807187889, 8896151661"
+    ward_no: 101,
+    ward_name: "ASHARFA BAD WARD",
+    corporator: {
+      name: "SRI GIRIRAJ DHARAN",
+      address: "295/218 ASHARFABAD, LUCKNOW",
+      phone_no: "9807187889, 8896151661",
     },
-    "mohalla": [
+    mohalla: [
       "BAZER KAHLA",
       "ASHARFA BAD",
       "HATA SAGIBAIG",
@@ -2106,31 +2098,31 @@ export const ward: wardType[] = [
       "TAKAH SAAL",
       "FIRANGI MOHALA",
       "GALIPARCHA",
-      "JOHARI MOHALA"
-    ]
+      "JOHARI MOHALA",
+    ],
   },
   {
-    "ward_no": 102,
-    "ward_name": "BAJRANG BALI WARD",
-    "corporator": {
-      "name": "SRI PRAKASH GUPTA",
-      "address": "532KHA/133 MENHDI TOLA, ALIGANJ. LUCKNOW",
-      "phone_no": "9389494035"
+    ward_no: 102,
+    ward_name: "BAJRANG BALI WARD",
+    corporator: {
+      name: "SRI PRAKASH GUPTA",
+      address: "532KHA/133 MENHDI TOLA, ALIGANJ. LUCKNOW",
+      phone_no: "9389494035",
     },
-    "mohalla": [
+    mohalla: [
       "ALIGANJ YOUJANA SEC-G, H.I.J.L",
-      "KENDRIYA VIDHYALYA, KURSHI ROAD"
-    ]
+      "KENDRIYA VIDHYALYA, KURSHI ROAD",
+    ],
   },
   {
-    "ward_no": 103,
-    "ward_name": "VIVEKA NAND PURI WARD",
-    "corporator": {
-      "name": "SRI SHALENDRA SINGH",
-      "address": "498/206-20 Η VIVEKANAD PURI, FAIZABAD ROAD, LUCKNOW",
-      "phone_no": "9236811113"
+    ward_no: 103,
+    ward_name: "VIVEKA NAND PURI WARD",
+    corporator: {
+      name: "SRI SHALENDRA SINGH",
+      address: "498/206-20 Η VIVEKANAD PURI, FAIZABAD ROAD, LUCKNOW",
+      phone_no: "9236811113",
     },
-    "mohalla": [
+    mohalla: [
       "VIVEKA NAND PURI",
       "FAIZABAD ROAD, I.T.CHAOURAHA, NISHAT KI AUAR BAYA HISHAA",
       "MAHANAGAR SEC-A SAMPURDA",
@@ -2138,18 +2130,18 @@ export const ward: wardType[] = [
       "GWAR PURVA UMRAO HATA",
       "P.AND T COLONY, F.S.L. COLONY",
       "BADA CHAND GANJ ANSIEEK",
-      "B.D COLONY, CHAPER TALLA"
-    ]
+      "B.D COLONY, CHAPER TALLA",
+    ],
   },
   {
-    "ward_no": 104,
-    "ward_name": "CHOWK KALI JI BAZER WARD",
-    "corporator": {
-      "name": "SRI RAMESH KAPOOR",
-      "address": "323/2 KALIYAN TOLA, CHOWK. LUCKNOW",
-      "phone_no": "9935055150"
+    ward_no: 104,
+    ward_name: "CHOWK KALI JI BAZER WARD",
+    corporator: {
+      name: "SRI RAMESH KAPOOR",
+      address: "323/2 KALIYAN TOLA, CHOWK. LUCKNOW",
+      phone_no: "9935055150",
     },
-    "mohalla": [
+    mohalla: [
       "CHOCK ROAD, KAMLA NEHRU MARG GADIYALI, LAAZ PAAT NAGAR, GOAL DAAR WAJA, DAHLA KUWA, CHOODI WALI GALI",
       "CHOPADI TOLA, PHOOL WALI GALI",
       "BAGH TOLA KALIYAN TOLA",
@@ -2160,18 +2152,18 @@ export const ward: wardType[] = [
       "NAAYI BADA, KHUN-KHUN JI ROAD",
       "BAGH MAHANARYAN, MIRZA MANDI",
       "KUCHA TEEPAR CHANDRA TOKRI TOLA",
-      "SAROY MALI KHA, 1 TO 50, DARJI BAGHIYA"
-    ]
+      "SAROY MALI KHA, 1 TO 50, DARJI BAGHIYA",
+    ],
   },
   {
-    "ward_no": 105,
-    "ward_name": "GADI PEER KHA WARD",
-    "corporator": {
-      "name": "SRI AMIT DWIVEDI",
-      "address": "418/329 GADI PEER KHA, CHAOK LUCKNOW-3",
-      "phone_no": "9198127777"
+    ward_no: 105,
+    ward_name: "GADI PEER KHA WARD",
+    corporator: {
+      name: "SRI AMIT DWIVEDI",
+      address: "418/329 GADI PEER KHA, CHAOK LUCKNOW-3",
+      phone_no: "9198127777",
     },
-    "mohalla": [
+    mohalla: [
       "GADI PEER KHA",
       "RAM NAGAR",
       "YASEEN GANJ",
@@ -2182,18 +2174,18 @@ export const ward: wardType[] = [
       "NAPATI TOLA-1",
       "NAPATI TOLA-2",
       "TALAB JAHARIYAN",
-      "HATA GURDASAMEL"
-    ]
+      "HATA GURDASAMEL",
+    ],
   },
   {
-    "ward_no": 106,
-    "ward_name": "KUNDRI RAKABGANJ WARD",
-    "corporator": {
-      "name": "SRI MOD. AADIL",
-      "address": "257/33 KANDAHA TIKAITGANJ, LUCKNOW",
-      "phone_no": "9936839786"
+    ward_no: 106,
+    ward_name: "KUNDRI RAKABGANJ WARD",
+    corporator: {
+      name: "SRI MOD. AADIL",
+      address: "257/33 KANDAHA TIKAITGANJ, LUCKNOW",
+      phone_no: "9936839786",
     },
-    "mohalla": [
+    mohalla: [
       "RAKAB GANJ KDEEM",
       "NADAN MAHEL ROAD",
       "TIKAIT GANJ",
@@ -2205,18 +2197,18 @@ export const ward: wardType[] = [
       "FASAB PURA",
       "BILLAUCH PURA",
       "BHADEWA ANSIEK",
-      "VICKTROIA GANJ"
-    ]
+      "VICKTROIA GANJ",
+    ],
   },
   {
-    "ward_no": 107,
-    "ward_name": "MAULANA KALBEY ABEED WARD-1ST",
-    "corporator": {
-      "name": "SRI TANVEER HUSSAIN",
-      "address": "392/147 KASMIRI MOHALA, LUCKNOW",
-      "phone_no": "9335910575"
+    ward_no: 107,
+    ward_name: "MAULANA KALBEY ABEED WARD-1ST",
+    corporator: {
+      name: "SRI TANVEER HUSSAIN",
+      address: "392/147 KASMIRI MOHALA, LUCKNOW",
+      phone_no: "9335910575",
     },
-    "mohalla": [
+    mohalla: [
       "CHOCK ROAD",
       "KASMIR MOHALA ROAD",
       "MAHMOOD NAGAR",
@@ -2226,18 +2218,18 @@ export const ward: wardType[] = [
       "KATRA VIZAN BAIG",
       "RUSTAM NAGAR",
       "TIKADI JOLHAAN",
-      "HATA NOOR BAIG"
-    ]
+      "HATA NOOR BAIG",
+    ],
   },
   {
-    "ward_no": 108,
-    "ward_name": "MAULANA KALBEY ABEED WARD-2ND",
-    "corporator": {
-      "name": "SRI IFHAM ULLHA FAIZ",
-      "address": "401/40 MUIED BILLDING, ABDUL AZIZ ROAD, LUCKNOW",
-      "phone_no": "9415757909"
+    ward_no: 108,
+    ward_name: "MAULANA KALBEY ABEED WARD-2ND",
+    corporator: {
+      name: "SRI IFHAM ULLHA FAIZ",
+      address: "401/40 MUIED BILLDING, ABDUL AZIZ ROAD, LUCKNOW",
+      phone_no: "9415757909",
     },
-    "mohalla": [
+    mohalla: [
       "ABDUL AZIZ ROAD",
       "JAHWAI TOLA",
       "AHIR TOLA",
@@ -2248,35 +2240,36 @@ export const ward: wardType[] = [
       "BANDHWA KAHNA",
       "TAKIYA GULLU SHAH",
       "KATRA MOHMAD ALI KHA",
-      "KACHA POOL"
-    ]
+      "KACHA POOL",
+    ],
   },
   {
-    "ward_no": 109,
-    "ward_name": "MALLAHI TOLA WARD-2ND",
-    "corporator": {
-      "name": "SMT. NAJUK JAHA",
-      "address": "450/148/5KHA KALE KI GALI, CHOTE IMAMBADE KE SAMNE, HUSAINABAD, LUCKNOW",
-      "phone_no": "9415519097"
+    ward_no: 109,
+    ward_name: "MALLAHI TOLA WARD-2ND",
+    corporator: {
+      name: "SMT. NAJUK JAHA",
+      address:
+        "450/148/5KHA KALE KI GALI, CHOTE IMAMBADE KE SAMNE, HUSAINABAD, LUCKNOW",
+      phone_no: "9415519097",
     },
-    "mohalla": [
+    mohalla: [
       "BARAF KAHANA",
       "JAHKAADH KHANA",
       "MUSAHEEB GANJ",
       "MUFTI GANJ",
       "HATA MIRZA ALI KHA",
-      "HUSSAINA BAD TRUST ROAD"
-    ]
+      "HUSSAINA BAD TRUST ROAD",
+    ],
   },
   {
-    "ward_no": 110,
-    "ward_name": "RAJA BAZAR WARD",
-    "corporator": {
-      "name": "SRI SAYAD ABRARUL HASAN",
-      "address": "229/41 SUHBATIYA BAGH, RAJA BAZAR LUCKNOW",
-      "phone_no": "945313786"
+    ward_no: 110,
+    ward_name: "RAJA BAZAR WARD",
+    corporator: {
+      name: "SRI SAYAD ABRARUL HASAN",
+      address: "229/41 SUHBATIYA BAGH, RAJA BAZAR LUCKNOW",
+      phone_no: "945313786",
     },
-    "mohalla": [
+    mohalla: [
       "ASTABEL YAHIYA GANJ",
       "DARAYI TOLA",
       "CHIDI MAAR TOLA",
@@ -2290,7 +2283,958 @@ export const ward: wardType[] = [
       "RAJA BAZER",
       "BANJARI TOLA",
       "PATA NALA",
-      "KANKAD KUWA"
-    ]
-  }
-]
+      "KANKAD KUWA",
+    ],
+  },
+];
+
+export const mohalla:string[] = [
+  "NILMATHA",
+  "ΝΑΙ BASTI",
+  "IBRAHIM PUR",
+  "SHAKOOR PUR",
+  "BHGWANT NAGAR",
+  "BAROWLI",
+  "KHALILABAD",
+  "ISHWARI KHERA",
+  "CHIRREYA BAGH",
+  "HEWAT MAU MAVEYA",
+  "PANCH KHEDA",
+  "SARSWATI PURAM",
+  "UTRATIYA",
+  "SINCHAI COLONY",
+  "ASHIAANA-M",
+  "ASHIAANA-N",
+  "ASHIAANA M-1",
+  "ASHIAANA N-1",
+  "LDA COLONY SECTOR-F EXTENTION",
+  "RAHIMABAD",
+  "NEW RAHIMABAD",
+  "BEHSA",
+  "MUNSHI KHERA",
+  "T.P. NAGAR",
+  "KILA GAON",
+  "KILA MOHAMMADI NAGAR",
+  "GUDORA",
+  "BAGLI",
+  "AURANGABAD JAGEER",
+  "AURANGABAD KHALSA",
+  "MIRJAPUR",
+  "CHUWARA KHEDA",
+  "SWAROOP CHANDRA KHERA",
+  "BIRHANA KHEDA",
+  "KHWAZAPUR",
+  "AISHBAGH RAM NAGAR",
+  "KHAJUHА",
+  "ΝΕΤΑ ΚΑNHAIYA LAL COLONY",
+  "TILAK NAGAR",
+  "HINDU KHEDA",
+  "HADAIN KHEDA",
+  "GEHRU",
+  "BARATI KHEDA",
+  "GANGADEEN KHEDA",
+  "DAROGA KHEDA",
+  "SCOOTAR INDIA",
+  "GAURI",
+  "JAIRAJ PURI",
+  "HANUMAN PURI",
+  "NAVEEN GAURI",
+  "GOVERNMENT PRESS",
+  "CHITTA KHEDA",
+  "KAREHTA",
+  "GULJAR NAGAR",
+  "MILL ROAD",
+  "SAMTA NAGAR, ANAND VIHAR, TAKROHI BAZAR, SRIKRISHAN VIHAR, BADSHAH KHEDA, AMRAI GAON, DEEN DAYAL PURAM, TAKROHI GAON, RAMDEEN PURWA, FATWA PURWA, HARDASI KHEDA, KANCHANPUR MATYARI, SANTPURAM, JAI NAGAR, RAFI NAGAR, DUDA COLONY",
+  "AUPAM NAGAR",
+  "PANDEY KA TALAB",
+  "CHIRAINDHA PURWA",
+  "MOTIJHEEL COLONY",
+  "MALVIYA NAGAR",
+  "RAILWAY COLONY",
+  "GOODSHADE ROAD",
+  "SHEETAL KHEDA",
+  "POLE KHEDA",
+  "DARU GODAM",
+  "HABEEB NAGAR",
+  "LAKSHMAN GANJ",
+  "A BLOCK INDIRA NAGAR",
+  "SECTOR-22,23,24",
+  "SARVODAYA NAGAR",
+  "LUV KUSH NAGAR PARTLY",
+  "SECTOR 20, PRAKASH LOK, SAMADDIPUR",
+  "IBARARA HUSAIN BADI, AHISKHEDA, FARIDIPUR",
+  "SARDAAR NAGAR, BEGARIYA, MADHAV PUR",
+  "ILMAS BAG, KANAHIYA KHEDA, AZAD NAGAR B-BLOCK, EKTAPUR",
+  "GOVINDPURAM",
+  "SUBHANI KHERA",
+  "GHOSIYANA",
+  "KUMHAAR MANDI",
+  "RAVINDRA NAGAR",
+  "NEPAL GANJ",
+  "GOPAL NAGAR",
+  "NAYI TOLA",
+  "PASIYANA",
+  "BANGALI TOLA",
+  "RAIBARELI ROAD",
+  "GANDHI NAGAR",
+  "LONGA KHEDA",
+  "CHAMRAHI",
+  "MOHARI BAGH",
+  "NAYA GAON",
+  "VIJAYI PUR",
+  "KATOTHA",
+  "TAKVA",
+  "RISHA PARTLY",
+  "CHINHAT A B C,D,E,F,H BLOCK VINEET KHAND",
+  "YOGI NAGAR PARTLY",
+  "SHIVLOK",
+  "DHANAK PURWA",
+  "MANDI PRAISAD",
+  "PRIYADARSHNI YOJNA SECTOR-C & D",
+  "PRAGATI VIHAR",
+  "DILKUSH VIHAR",
+  "NAYA PURWA",
+  "JUGAL VIHAR",
+  "AMBER VIHAR",
+  "YASH NAGAR",
+  "SANT KABEER NAGAR",
+  "BASANT VIHAR",
+  "DAUD NAGAR",
+  "GAZIPUR",
+  "GAUR BHEET",
+  "GAZIPUR BALRAM",
+  "DUDAULI",
+  "RAHEEM NAGAR",
+  "NAUBASTA",
+  "STATION ROAD",
+  "HATA RASOOL KHAN",
+  "GADAIYA CHITWAPUR ROAD",
+  "GADAIYA CHITWAPUR ROAD",
+  "CHITWAPUR PAJAWA",
+  "GURUGOVIND SINGH MARG",
+  "KATRA MAQBOOLGANJ",
+  "CHITWAPUR PAJAWA",
+  "BHEDI MANDI",
+  "GAUTAM BUDH MARG",
+  "ARTI NAGAR",
+  "HERCHANDPUR GADHI KANURA",
+  "GADHI KANOURA",
+  "AMBEDKER NAGAR",
+  "INDUSTRIAL AREA",
+  "N.E.R. RAILWAY COLONY",
+  "PREMWATI NAGAR",
+  "ANAURA",
+  "AMAUSI",
+  "BEHLA",
+  "GINDAN KHERA",
+  "NADAR GANJ",
+  "AZAD NAGAR",
+  "TAPOWAN NAGAR",
+  "AWADH VIHAR",
+  "LALA KHEDA",
+  "ALI NAGAR SUNEHRA",
+  "BDALI KHERA",
+  "SATAY LOK",
+  "NARAYAN PURI",
+  "MANAS NAGAR",
+  "32 BATALIYAN P.A.C.",
+  "BEEMA HOSPITAL",
+  "SAKSHARTA NIKETAN",
+  "VISHNU LOK",
+  "SHALI NAGAR",
+  "T.C.L. COLONY",
+  "MURLI VIHAR",
+  "NARPAT KHEDA",
+  "CHUNNU KHEDA",
+  "MUNNU KHEDA",
+  "BIBI KHEDA",
+  "DIPTY KHEDA",
+  "HARUN KHEDA",
+  "BADSHAH KHEDA",
+  "PURVI DEEN KHEDA",
+  "PARA GAON NEW BASTI",
+  "PAKKA BAGH",
+  "ВНАРТA MAU",
+  "RAMNA",
+  "MUHAR",
+  "BHAMRAULI",
+  "SHAHPUR",
+  "MOHAN ROAD",
+  "ALAM VIHAR",
+  "MONA VIHAR, BUDHESHWAR VIHAR, MALLPUR",
+  "MAHATMA GAHDHI ROAD",
+  "BALMIKI MARG",
+  "MAKBARA ROAD SHAHJANAF ROAD",
+  "LAPLAS",
+  "SAPRU MARG",
+  "LAURANCE TERENCE",
+  "HAZRAT GANJ BAZAR",
+  "A.K.HALWASIA ROAD",
+  "CAIPAR ROAD",
+  "KHANDARI PURWA",
+  "TRILOK NATH ROAD",
+  "BELDARI LANE",
+  "FROM UDA BAI CHAURAHA TO RIGHT SIDE RANA PRATAP MARG TO SHANI MANDIR, TILAK MARG & LAXMAN MELA STHAL TO RIGHT SIDE OF SIKNDAR",
+  "OM NAGAR",
+  "CHANDAR NAGAR",
+  "SARDARI KHERA OLD",
+  "KORIYANA",
+  "BHILAVAN",
+  "SHAKTI NAGAR",
+  "RISHI NAGAR",
+  "MADHUBAN NAGAR",
+  "AZAD NAGAR",
+  "HASNAPUR",
+  "SAKETPURI",
+  "JAIPRAKASH NAGAR",
+  "KESARI KHEDA",
+  "GANGA KHEDA",
+  "KANWOSI",
+  "R.D.S.O.",
+  "BALDEV KHERA",
+  "DONDA KHERA",
+  "DHWODHA KHERA",
+  "SURYA NAGAR VIKRAM NAGAR",
+  "CHURCH COLONY",
+  "R.P.F.COLONY",
+  "C.P.L. COLONY",
+  "RAILWAY SIDING HOSPITAL",
+  "RAJKIYA UDHYAN",
+  "ANAND NAGAR",
+  "BADA BARAHA",
+  "JILA KARAGAR AWAS",
+  "JILA KARAGAR",
+  "BHADRUKH",
+  "USARI",
+  "SALEH NAGAR",
+  "FIRANGI KHEDA",
+  "DEVI KHERA",
+  "SARPOT GANJ",
+  "ELDECO-I",
+  "RUCHI KHAND",
+  "RASHMI KHAND",
+  "RAJNI KHAND",
+  "SANIK NAGAR",
+  "SENANI VIHAR",
+  "SOUTH CITY",
+  "ELDECO-II",
+  "PIPROWLI",
+  "SHEETAL KHERA",
+  "RATNAKAR KHAND",
+  "GURU NANAK NAGAR",
+  "SNEHA NAGAR",
+  "PREM NAGAR",
+  "VISHESHWAR NAGAR",
+  "DAMODAR NAGAR",
+  "NAYA SARDARI KHERA",
+  "POORAN NAGAR",
+  "SUNDAR NAGAR",
+  "NATKHEDA",
+  "GOVIND NAGAR",
+  "JAI PRAKASH NAGAR PARTLY",
+  "GHASHYARI MANDI",
+  "JAMBUR KHANA",
+  "KANDHARI BAZAR",
+  "FOUR SOUTH ROAD",
+  "RAKAB GANJ JADEED",
+  "QUINTON ROAD",
+  "CHOULAKHI",
+  "CHINA BAZAR",
+  "BALAKADAR ROAD",
+  "J.C.BOSE MARG",
+  "BAGH MUNNU",
+  "SECTOR 14.11",
+  "KHADAGPUR",
+  "FARIDI NAGAR",
+  "CHANDAN",
+  "SUGGA MAU",
+  "JARHARA",
+  "PANDIT PURWA",
+  "BALA GANJ",
+  "BARI ROAD",
+  "SARFARAJ GANJ",
+  "MALA PURAM",
+  "RAILWAY COLONY",
+  "GOPAL NAGAR",
+  "RASTOGI NAGAR",
+  "GOUSHALA ROAD",
+  "HARI NAGAR",
+  "PEER NAGAR",
+  "CHHANDOIYA KA PURWA",
+  "BARAWAN KALA",
+  "DUBAGGA",
+  "BARI KALA",
+  "CHUDDAYA",
+  "SUJAAN PURA",
+  "AHEMAD PUR",
+  "CHHOTA BARHA",
+  "PAWANPURI",
+  "NIRALA NAGAR",
+  "NIRALA NAGAR SECTOR-H",
+  "BABU GANJ (ATTACHED FAIZABAD ROAD)",
+  "CHOTA CHAND GANJ (ATTACHED FAIZABAD ROAD)",
+  "SARAY HASAN GANJ",
+  "PASHUPALAN & MATSYA VIBHAG COLONY",
+  "BABA KI BAGIYA",
+  "VISHWAVIDHYALAY PARISAR",
+  "GITA PALLI",
+  "KRISHNA PALLI",
+  "PAKREE",
+  "HASNA PUR PARTLY",
+  "MUSLIM NAGAR",
+  "SANIK NAGAR",
+  "VISHVESHWAR NAGAR",
+  "TILAK MARG",
+  "BATLAR ROAD",
+  "MADAN MOHAN MALVIYA MARG",
+  "GOKHLE MARG",
+  "PRAAG NARAYAN ROAD",
+  "LAJPAT RAI MARG",
+  "WAZEER HASAN ROAD",
+  "RAM MOHAN RAI MARG",
+  "RANA PRATAP MARG RIGHT SIDE",
+  "FROM SANKALY VATIKA TO DALIBAGH",
+  "ADIL NAGAR",
+  "GANNEY KA PURWA",
+  "KALYANPUR, WEST",
+  "GAYATRIPURAM",
+  "GAURA BAG",
+  "ATRAULI",
+  "JAHRAPUR",
+  "BAHADURPUR",
+  "UNITY CITY",
+  "BHEDHAPUR",
+  "MOHD.PUR KHATRI",
+  "SEEMANT NAGAR",
+  "PRAGATI VIHAR",
+  "BAJRANG NAGAR",
+  "AHILYA BAI NAGAR",
+  "SHIV VIHAR COLONY",
+  "SECTOR 10 TO 14 VIKAS NAGAR EXTENTION",
+  "NISHAT GANJ",
+  "FAIZABAD ROAD",
+  "SITAPUR ROAD TO KESHAV NAGAR RIGHT SIDE OF DIVIDER ROAD",
+  "PRIYADARSHNI COLONY SECTOR-A.B",
+  "KESHAV NAGAR",
+  "SNEHI NAGAR",
+  "BHARAT NAGAR",
+  "SATYA LOK",
+  "FAIZULLAH GANJ",
+  "INDAR GANJ",
+  "MOHIBULLAPUR",
+  "SRI NAGAR",
+  "SIMRA GAUDHI COLONY",
+  "SHERWANI NAGAR",
+  "SHANKARPUR",
+  "KHAS PURVA",
+  "CHAK MANDI DUGAON",
+  "CHAMER TOLIYA DUGAVA",
+  "RAJENDRA NAGAR (CHAMARAN TOLA)",
+  "RAJENDRA NAGAR (MADHYA)",
+  "RAJENDRA NAGAR SOUTH (BEGUM KHEDA)",
+  "CHEDA KHAS PURVA",
+  "NAKA HINDOLA",
+  "BIRHANA",
+  "GAUTAM BUDH MARG",
+  "NAYA GAON WEST",
+  "QUISAR BAGH, OLD NAZIRABAD",
+  "MITRA BANDHU ROAD, NAZIRABAD, SHYAMA PRASAD MUKHARJEE ROAD",
+  "BAZAR JHAU LAL, KHAYALI GANJ",
+  "RAJA NAWAB ALI ROAD, KACHEHARI ROAD",
+  "R.K.TANDON ROAD, CHAKBAST ROAD",
+  "MARWARI GALI, GANNEY WALI GALI",
+  "GADBADJHALA, SRI RAM ROAD, AMINABAD PARK",
+  "ENGINEERING COLLEGE ALLOVER",
+  "AKANSHA PARISAR POCKET A & B WHOLE",
+  "RANI KHEDHA",
+  "KHALEELABAD NEVADA GAON",
+  "SECTOR-I WHOLE",
+  "RAMPUR NISHP GAON",
+  "JANKI BIHAR, OTHER SOCIETY AND MADIYAV",
+  "SHIV BIHAR, ALEESH NAGAR",
+  "RADHEY SHYAM PURWA",
+  "UNIVERCITY NEW CAMPUS",
+  "SULTANPUR GAON & SOCIETY NEAR GAON",
+  "SITAPUR ROAD, ABHISHEK PURAM & OTHER",
+  "MANIYAO GAON",
+  "CHOWDHARI PURWA",
+  "GADERIAN KA PURVA",
+  "VIJAY KHAND",
+  "UJARIAO",
+  "LODHPURWA",
+  "CHAMRAHI",
+  "BELHA",
+  "VINAY KHAND PARTLY",
+  "VIVEK KHAND",
+  "VIRAT KHAND",
+  "SECTOR 9,10,12,13",
+  "MUNSHI PULIA PARTLY",
+  "NANDINI VIHAR",
+  "SURYA ENCLAVE",
+  "KAPISH KUNJ",
+  "INSAF NAGAR",
+  "PANI GAON",
+  "EHSAN NAGAR",
+  "PATEL NAGAR PARTLY",
+  "LOHIYA VIHAR",
+  "A BLOCK (Even Number)",
+  "B Block (ODD NUMBER)",
+  "B Block (EVEN NUMBER TILL 1424)",
+  "ODD NUMBER-C BLOCK",
+  "GAZIPUR GAON",
+  "BASTOLI GAON",
+  "AMPRA PALI MARKET",
+  "AISHBAGH EAST RAMLEELA",
+  "S.D.A.COLONY",
+  "I.T.COLONY",
+  "AISHBAGH SRAMIK BASTI",
+  "WATER WORKS ROAD",
+  "INDRANI NAGAR",
+  "BHADEVA NEW BASTI",
+  "VISHAL KHAND",
+  "VIPIN KHAND",
+  "VIPUL KHAND",
+  "VIKASH KHAND",
+  "DIGDIGYIA",
+  "GADRIYAN PURWA",
+  "GWARI",
+  "SRIJAN VIHAR COLONY",
+  "RAJO POLYTECHNIC, AKASHWANI, SECTOR-8, MANGAL PURI, SAMAR GARDEN, ASHOK VIHAR, SHALIMAR GARDEN, DEV NAGAR, DEEPAK NAGAR, PATEL NAGAR, PARTLY, ISMILE GANJ GAON, SURENDRA NAGAR, URMILA PURI, MULAYAM NAGAR, PREET NAGAR, HARIHAR NAGAR, KAMTA, SHIVPURI, SHANKAR PURI, PUNCHWATI, AZAM NAGAR, VIMAL NAGAR, SANATAN NAGAR, KALYAN VIHAR, KAMLA NEHRU NAGAR, RAGURAJ NAGAR, RAJEEV INAGAR, RAJVEER NAGAR",
+  "FAIZABAD ROAD TO IT",
+  "OLD HYDERABAD",
+  "NEW HYDERABAD",
+  "UNIVERCITY ROAD",
+  "BADSHAH NAGAR",
+  "BIRBAL SAHANI ROAD",
+  "BALDA ROAD COLONY",
+  "RAI BIHARI LAL ROAD",
+  "ALIGANJ YOJNA SECTOR N.O & RING ROAD SOUTH SITAPUR ROAD YOJNA",
+  "BATAHA, TIWARI PRATAP NAGAR",
+  "AKILAPUR",
+  "SABOLI",
+  "TATARPUR SECTOR-M",
+  "NANDUPUR NEAR SECTOR C",
+  "JAFAR KHERA",
+  "BHOLA KHERA",
+  "INDRA PURI",
+  "INDRALOK",
+  "BAJRANG NAGAR",
+  "TIWARI PURAM",
+  "PRATAP NAGAR",
+  "SHIVAM NAGAR",
+  "SUBHASH NAGAR",
+  "VIJAY NAGAR",
+  "ASHUTOSH NAGAR",
+  "VINAY NAGAR",
+  "KRISHNA NAGAR",
+  "SINDHU NAGAR",
+  "PAPER MILL COLONY BLOCK-A,B,C,D,E,F,G,H",
+  "JUGAULI",
+  "NEHRU ENCLAVE",
+  "ELDECO GREEN",
+  "SINCHAI COLONY",
+  "VIBHAV KHAND",
+  "R.R. VIBHAG",
+  "BHEEKAMPUR",
+  "SHIVAJI NAGAR",
+  "VISHWASH KHAND",
+  "BALMIKI NAGAR",
+  "BADSHAH NAGAR RAILWAY CROSSING TO KUKRAIL BANDHA",
+  "BADSHAH NAGAR RAILWAY COLONY & SACHIVALAYA COLONY",
+  "Dr. B.N.VERMA ROAD",
+  "PEER JALEEL",
+  "OLD KANPUR ROAD",
+  "JAGAT NARAYAN ROAD",
+  "RIVER BANK COLONY",
+  "PUL JHAULAL",
+  "HATA FAKEER MOHAMMAD KACHHA",
+  "HATA FAKEER MOHAMMAD PAKKA",
+  "GOLAGANJ",
+  "TAKIYA AZAMBEG",
+  "HAIDARGANJ, AMAN VIHAR, RIFA COLONY",
+  "GULSHAN VIHAR, ASIA MAU",
+  "KISHOR VIHAR, BRAHAM NAGAR",
+  "LAKADMANDI, BIBIGANJ, HAJJI TOLA",
+  "VIDHAN SABHA MARG",
+  "MAJOR BANK ROAD",
+  "BURF KHANA",
+  "KABEER MARG",
+  "HATA GANI KHAN",
+  "MURLI NAGAR",
+  "ADGADA HUSAIN GANJ",
+  "JAI NARAYAN ROAD",
+  "KHANDARI PURWA",
+  "SAROJNI NAIDO MARG",
+  "MAHATMA GANDHI MARG PARTLY",
+  "KURMI TOLA, HUSAINGANJ",
+  "SECTOR 25.21.19.16.17 & SARASWATI VIHAR",
+  "PARTLY RUKANDIPUR",
+  "CHAMARAN KA PURWA",
+  "PARTLY E-BLOCK",
+  "PARTLY C-BLOCK",
+  "TILAK VIHAR",
+  "ERADAT NAGAR",
+  "SIYA COLLEGE",
+  "KADAM RASOOL",
+  "PURANA BANS MANDI",
+  "RETI",
+  "JHABJALI TOLA",
+  "BAGH SHAH JI",
+  "KARBALA NASIRUDDEEN",
+  "BHISTI TOLA",
+  "NEW BASTI",
+  "MOHAN MEKING",
+  "MASALCHI TOLA",
+  "BHANDOA",
+  "ASHFAQ ULLAH NAGAR",
+  "LAXMAN PURI",
+  "ROHTAS ENCLAVE",
+  "RAVINDRA PALLI",
+  "HARI NAGAR",
+  "SANJAY GANDHI PURAM",
+  "KAILASH KUNJ",
+  "KASAILA",
+  "MARUTI PURAM",
+  "NARAYAN NAGAR",
+  "FAIZABAD ROAD",
+  "H.A.L. COLONY",
+  "VIBHUTI KHAND",
+  "NAGARIYA",
+  "GENRAIL GANJ",
+  "MALLAHI TOLA",
+  "LODH PURVA",
+  "MISARI BAGH",
+  "MALIHABAD ROAD",
+  "PARTLY F-BLOCK",
+  "PARTLY ALAMNAGAR",
+  "MURAU TOLA",
+  "GADI PEER MAKKA",
+  "MOTI NAGAR",
+  "ARYA NAGAR",
+  "AISHBAGH ROAD",
+  "AMEER NAGAR",
+  "NEHRU NAGAR",
+  "KAYAM KHEDA",
+  "NIWAZ KHEDA",
+  "PARTLY MAWAIYA",
+  "GODIYAN TOLA",
+  "LAHAUR GANJ",
+  "DALIGANJ",
+  "MUNSHI GANJ",
+  "MUNSHI GANJ (TAKIYA)",
+  "NAZEER GANJ",
+  "RANI GANJ",
+  "LAKARMANDI",
+  "SITAPUR BRANCH ROAD",
+  "HASAN GANJ (ATTACHED FAIZABAD ROAD)",
+  "LEFT PORTION OF FAIZABAD ROAD FROM MANKAMNESHWAR ROAD TO CHARCH",
+  "MAYA NAGAR",
+  "JIYAMAU",
+  "LA.MATINIAR COLONY",
+  "MARTIN PURWA",
+  "PIPRA GHAT",
+  "VIKRAMADITYA MARG",
+  "MILING TONIYA AVENYU",
+  "VIVEKANAND MARG",
+  "GULISTA COLONY",
+  "GAUTAM PALLI",
+  "MALL AVENUE",
+  "SHUBHAM NAGAR",
+  "ABADI KABRISTAN",
+  "MAHATMA GANDHI MARG",
+  "KUMANCHAL NAGAR",
+  "A BLOCK PARTLY",
+  "LIBERTY COLONY PARTLY",
+  "GEND KHANA",
+  "MOHNI PURVA",
+  "SHIVPURI",
+  "HATA SITARA BEGAM",
+  "PEER BUKHARA",
+  "TAHSEEN GANJ",
+  "HUSSAINA BAD (SHEESH MAHAL)",
+  "NANDA KHEDA",
+  "LABOUR COLONY (TIKET RAI)",
+  "RAJAJIPURAM NEW C BLOCK",
+  "DARIYAPUR COLONY",
+  "BHARO PRASAD MARG",
+  "BADA CHAND GANJ PARTLY",
+  "MAHANAGAR EXTENTION",
+  "MAHAVEER JI KA PURVA",
+  "PRATAP BAGH COLONY",
+  "MAI JI KI BAGIYA",
+  "PANDEY TOLA",
+  "DANDAYIA BAZAR SOUTH PORTION",
+  "DANDAYIYA BAZAR LEFT SIDE",
+  "MEHANDI TOLA",
+  "BEGUM HAZRAT MAHAL SOUTH PORTION",
+  "SHEKHA PURA",
+  "MAHANAGAR",
+  "AMBAHI KA PURWA",
+  "RAHEEM NAGAR",
+  "VISHNU PURI",
+  "P.W.D. QUARTER",
+  "BEGUM HAZRAT MAHAL NAGAR",
+  "DARSHAN GANJ",
+  "AKBAR NAGAR",
+  "FAIZABAD ROAD NORTH",
+  "DAYAL FORT",
+  "GOAL MARKET",
+  "TRIVENI NAGAR-I",
+  "TRIVENI NAGAR-II",
+  "TRIVENI NAGAR-III",
+  "BRAMHA NAGAR",
+  "PATAURA GANJ",
+  "AHIBARANPUR",
+  "MEHANDI KHEDA",
+  "MIRJA PURWA",
+  "NARAHI",
+  "MEERA BAI MARG",
+  "RAMTIRTH MARG",
+  "RANA PRATAP MARG",
+  "PARK ROAD",
+  "BANARSI BAGH",
+  "KAILASH TIWARI MARG",
+  "SAKET PALLI",
+  "SAROJNI NAIDU MARG",
+  "WINDSOR PALACE",
+  "RAJBHAWAN & RAJ BHAWAN COLONY",
+  "MAHATMA GANDHI MARG (PARTLY)",
+  "MALLAH PUR BASTI",
+  "STATE GUEST HOUSE",
+  "SHAKTI BHAWAN TO DOORDARSHAN",
+  "RANA PRATAP MARG PARTLY",
+  "HIND NAGAR",
+  "RAMGAR COLONY",
+  "BALDI KHERA",
+  "SAMBHAR KHERA",
+  "PAKRI KHEDA",
+  "MADARI KHERA",
+  "CHILLAWAN",
+  "LDA COLONY KANPUR ROAD BLOCK B.C.D",
+  "KUTUBPUR",
+  "KABADIA PURVA",
+  "MUKARIM NAGAR",
+  "BARAULIYA",
+  "TAIGORE MARG",
+  "JOSHI TOLA",
+  "MUNNI LAL DHARAMSHALA ROAD",
+  "LOKMANYAGUNJ",
+  "RAILWAY MULTI STORY",
+  "PAY & CASH COLONY",
+  "CHANDRABHANU GUPT NAGAR (PANDARIBA)",
+  "SUBHASH MARG (HAIDAR CANNAL TO CHARBAGH BOTH SIDE OF ROAD)",
+  "A P SEN ROAD",
+  "GAUTAM BUDHA MARG (G.H. CANNAL TO CHARBAGH)",
+  "G.R.P. COLONY",
+  "DURGAPURI BLUNT SQUARE",
+  "PARTLY MAVAIYA",
+  "GOOD SHADE COLONY",
+  "NOTIFIED AREAR, CHARBAGH RAILWAY COLONY. SEWAGRAM STADIUM COLONY",
+  "HARIHAR PRASAD NAGAR",
+  "RAM NAGAR",
+  "MANGAL KHEDA",
+  "BRAHAM NAGAR",
+  "RAM PRASAD KHEDA",
+  "SRI NAGAR",
+  "SAMAR VIHAR",
+  "CHITRAGUPT NAGAR",
+  "SHYAM NAGAR",
+  "BAHADUR KHEDA",
+  "SINGAR NAGAR",
+  "AMRUDI BAGH",
+  "BIHARIPUR",
+  "SAHADAT GANJ KHAS",
+  "SARAY MUGAL",
+  "HASAN GANJ BAWLI",
+  "BAWLI BAZAR",
+  "MOHAMMAD GANJ",
+  "FATOHA BAD",
+  "GADAIYA SULTAN PUR",
+  "SAMRAHI ROAD",
+  "BELWARI",
+  "HIYARD",
+  "KAGJI TOLA",
+  "PARASATA",
+  "DURGADEEN ROAD",
+  "BOTH SIDE OF MATADEEN ROAD",
+  "DOH0A0 ROAD PARTLY",
+  "SHEKHPUR ROAD",
+  "PURI TOLA",
+  "THATHERI TOLA",
+  "CHACHI KUAN",
+  "SUBHASH MARG (MEDICAL COLLEGE CHAOURAHA TO RAKABGANJ PUL)",
+  "SHAMINA ROAD",
+  "FHEEL KHANA",
+  "BAWARCHI TOLA",
+  "NAL BANDI TOLA",
+  "HAKEEM MEHANDI MAKBARA ROAD (JAGAT NARAYAN ROAD SAYAL)",
+  "CHOWDHARY GADAYIA",
+  "AAGA MEER DYODI",
+  "JOSHI TOLA",
+  "IMAMBADA AGABAKAR",
+  "PATANALA",
+  "ARYA SAMAJ MANDIR ROAD",
+  "PURANA GANESH GANJ",
+  "GRAIN MARKET",
+  "NAWAIYA GANESH GANJ",
+  "HATA MATA DEEN",
+  "NEW GANESH GANJ",
+  "TILPURWA",
+  "GURUDWARA ROAD",
+  "VIJAY NAGAR",
+  "KASMANDI",
+  "FATEHGANJ",
+  "TAKIYA GANESH GANJ",
+  "NALA FATEH GANJ",
+  "JANGLI GANJ",
+  "AMANI GANJ",
+  "AMINABAD",
+  "BHUSA MANDI",
+  "KASAI BADA",
+  "L.D.A. COLONY KANPUR ROAD OF SECTOR H.G.D-1",
+  "ALIGANJ YOJNA SECTOR C.D.K.P.C.S.D.C & L.K.S",
+  "PURANIA",
+  "USMAN PUR",
+  "INDIRA NAGRI",
+  "ALAMBAGH THANA",
+  "L.D. COLONY",
+  "RUNNING SHADE COLONY",
+  "40 QUARTERS",
+  "VEGITABLE GROUND",
+  "R.P.F. QUARTERS",
+  "MERIAL ROAD",
+  "BERI ROAD",
+  "BOUDAR ROAD",
+  "TEMPUL ARIA",
+  "SHAHI MASJIS",
+  "TALKATORA ROAD",
+  "JAGJIWAN RAM TRAINING CENTER",
+  "TEJI KHEDA",
+  "PATEL NAGAR",
+  "BARIYA MOHAL",
+  "UDAI GANJ PARK",
+  "SHUTUR KHANA",
+  "CHHITWA PUR",
+  "К.К.С./K.K.V COLONY",
+  "PURANA KILA",
+  "HAIDAR KAINAL",
+  "K.K.C. KE BAGAL NALA KINARA",
+  "HAIDAR KAINAL SICHAI BHAVAN KE BAGAL KA NALA",
+  "KAINAL COLONY SICHAI BHAVAN",
+  "HAIDAR KAINAL SHIV MANDIR SE NALE KA KINARA",
+  "GARAIYA JOUHAR MEHTAR",
+  "BAG AINA BIBI",
+  "HATA KHAWAJA GAUHAR",
+  "TIL PURVA",
+  "JALAL PUR",
+  "PITAMBER KHERA",
+  "SHIV PURI",
+  "MARDAN KHERA",
+  "SHEETLA PURAM",
+  "LAXMAN VIHAR",
+  "BALLI KHERA",
+  "BASAN VIHAR",
+  "PARA COLONY NEW",
+  "RAM VIHAR",
+  "VAISHRAV PURAM",
+  "GAYATRI PURAM",
+  "DEV PURA",
+  "CHANDRODAY NAGAR",
+  "DOCTER KHERA",
+  "GANGA PRASAD ROAD",
+  "SUBHAS NAGAR",
+  "KASHI DERA",
+  "TAI KHANA",
+  "ASTABAL CHAR BAGH",
+  "KHEMEDOJAN",
+  "PUL KUMHARAN",
+  "MLLAHI TOLA",
+  "FARRASH KHANA",
+  "HATA DURGA PRASAD",
+  "KHATREE TOLA",
+  "MURG KHANA",
+  "NAI BASTI",
+  "BAGH SHER GANJ",
+  "CHIKMANDI",
+  "TRIVENI NAGAR",
+  "BUDHU LAL TIWARI ROAD",
+  "BRAHMANI TOLA",
+  "NOU BASTA",
+  "BAG SHEETLA JI",
+  "PURANA TIKAIT GANJ",
+  "KATRA KHUDA YAR KHAN",
+  "L.D.A. COLONY",
+  "VINAY KHAND-1,2",
+  "VINAY KHAND-5",
+  "VINAY KHAND-3,4 KA ANSIK BHAG",
+  "VIRAM KHAND",
+  "BABA ΚΑ PURVA",
+  "MURAI TOLA",
+  "KHADRA",
+  "ROOP PUR KHADRA",
+  "LONI KATRA",
+  "MADEYA GANJ",
+  "MAKKA GANJ",
+  "MEHDI GANJ",
+  "SITA PUR ROAD KA WEST BHAG SEVA SANSTHAN SE NANAK SHAR MANDIR",
+  "RAJAJI PURAM- A,B,C, & D BLOCK",
+  "LINE KHERA",
+  "VIKAS NAGAR SECTER-1 SE 6 TAK & 9 ANSIK NALE KE PASCHIMI BHAG",
+  "KANHAI LAL PURVA",
+  "MAHESH NAGAR",
+  "TAMBAKU MANDI",
+  "HARA SURAJ SINGH",
+  "AMBAR GANJ",
+  "MAHBOOB GANJ",
+  "VAZEER BAGH",
+  "PASAND BAGH",
+  "PUL GULAM HUSAIN ROAD",
+  "MANSOOR NAGAR",
+  "DARGAH HAZARAT ABBAS ROAD",
+  "TIKARI KHURD",
+  "KHARIYAI",
+  "KACHA BAGH",
+  "PURANA CHABUTRA",
+  "KHIRKI AGAMEER",
+  "KATRA KHUDA YAR KHAN",
+  "CHHOTE SAHAB ALAM NAGAR ROAD",
+  "NOOR BARI",
+  "CHHAVANI HUSAINDDIN KHAN",
+  "FAZIL NAGAR",
+  "SIRKEVALI GALI",
+  "KASHMIRI MOHLLA UTTARI",
+  "KASHMIRI MOHLLA DAKSHINI",
+  "GADI ADDA",
+  "PWRANA PAN DARIBA",
+  "INDRA NAGAR YOJNA",
+  "SECTER-18,1,7,15",
+  "TEEKA PURVA",
+  "L.D.A. COLONY KANPUR ROAD KE SECTER E.F.K. K-9 (ASHIYANA)",
+  "SECTER- I, J, (ASHIYANA)",
+  "SHEKHA PUR",
+  "MINDIYA TOLA",
+  "ALI GANJ SECTER-A, B. F, I",
+  "FATEH PUR",
+  "TATAR PUR",
+  "CHAND GANJ",
+  "CHANDRA LOCK COLONY",
+  "CHAUDHARY TOLA",
+  "RAVINDDRA GARDEN",
+  "MIRZA BAGH",
+  "CHAUPATIYA",
+  "CHAUPATIYA ROAD, KHET GALI",
+  "FATAK ZIYA LAL",
+  "CHARHAI MAHU LAL",
+  "DILA RAM BARADRI",
+  "NIVAJ GANJ",
+  "SARAY MALI KHAN",
+  "RANI KATRA",
+  "HATA BHEEKHAM KHAN",
+  "AHARI TOLA",
+  "PUL MOTI LAL",
+  "SECTER G KA PURA BHAG PARISAR PURA",
+  "ISRO RIMORT SENSING BAIOTECH",
+  "SECTER-H KE TOTAL KHAND 1, 2, 3, 4",
+  "STATE BANK COLONY & SECTER-I KE KUCHH BHAWAN & AKANKSHA PARISAR C.P.W.D. KAА РОСКЕТ С",
+  "TOTAL SAHARA STATE",
+  "CHHUIYA PURWA",
+  "SIKANDAR PUR GANW",
+  "GURIYAN PURWA",
+  "PAHAR PUR GANW",
+  "GUDMBA THANA",
+  "SECTER J.L.D.A KI NAV NIRMIT COLONY & USKE AAGE KA TOTAL BHAG",
+  "GIRDHARI LAL ROAD MADHOPUR ROAD",
+  "PAJABA",
+  "AHMAD GANJ",
+  "GAUGHAT",
+  "SAZZAD GANJ",
+  "BRAMANI TOLA",
+  "DAULAT GANJ",
+  "MURG KHANA",
+  "ASHOK NAGAR",
+  "NAT KHERA",
+  "KURMI TOLA",
+  "RISALDAR PARK",
+  "JURIYAN TOLA",
+  "SUTUR KHANA",
+  "YOGENDRA PATHAK ROAD",
+  "YADU NATH SANYAL ROAD",
+  "SUNDER BAGH",
+  "SAFDAL BAGH",
+  "BAIRUNI KHANDAK",
+  "SHIVAJI MARG",
+  "MODAL HOUSE",
+  "GUAIN TALAB",
+  "RATH KHANA",
+  "LASHKARI RIKAB GANJ",
+  "TERHI BAZAR",
+  "SUBHAS MARG",
+  "MOULVIYA GANJ",
+  "PURVI BIRHANA",
+  "GAUS NAGAR",
+  "SUBHAN NAGAR",
+  "RASSI BATAN",
+  "GAIN GANJ",
+  "CHARAS MANDI",
+  "BHUSA MANDI",
+  "CHHEDI LAL DHARAM SHALA",
+  "AMINU DDAULA PARK",
+  "WAZEER GANJ",
+  "GAUS GANJ",
+  "LAXMAN PRASAD ROAD",
+  "NABI ULLAH ROAD",
+  "HAMID ROAD",
+  "BAGH GHOSI",
+  "JAWAHAR NAGAR",
+  "BULAND BAGH",
+  "BARUD KHANA",
+  "AMINA BAD ROAD (SRI RAM ROAD CHAURAHE SE NAKA HINGDOLA CHAURAHE TAK)",
+  "BASHEERAT GANJ",
+  "SARAY DURVIJAY GANJ",
+  "DURVIJAY GANJ",
+  "TRIPATHI NAGAR",
+  "HARI NAGAR DUGANWA",
+  "SUBHAS MARG NAKA SE BIRHANA PUL TAK",
+  "AMINA BAD ROAD, DURVIJAY GANJ NALE TAK",
+  "HATI KHANA",
+  "HATAKHEME DOJAN",
+  "TULSIDAS MARG",
+  "PURANA MARG",
+  "MAHENDI GANJ",
+  "BHAWANI GANJ",
+  "LOADH PURWA",
+  "SADEEK BHADEWA",
+  "SHERWALI GALI",
+  "BHAWANI SINGH SHIWALA ROAD",
+  "NALA BEGAM GANJ",
+  "YAHIYA GANJ ROAD",
+  "MURTZA HUSSAIN ROAD",
+  "LAKAD MUNDI",
+  "TAAT PATTI",
+  "SINGAHL",
+  "SINGHAL WALI GALI",
+  "CHAMER TOLIA",
+  "GANJI MUNDI",
+  "BAGH LAL JI",
+  "ASHEEK KUNDRI RAKAB GANJ",
+  "GOHIYANA",
+  "SASHTRI NAGAR",
+  "KUNDRI COLONY",
+  "KUHRAM NAGAR",
+  "ΡΑΝΤΗ NAGAR",
+  "SAKEET BIHAR",
+  "KAMLA NEHRU NAGAR",
+  "SADHAB COLONY",
+  "SEC-7, 8 & 9 VIKASH NAGAR",
+  "ROHTHAS APPARMENT",
+  "ABBRAR NAGAR",
+  "GANDHI NAGAR",
+  "KESHEV BIHAR",
+  "NEHRUBIHAR",
+  "KALYAN PUR",
+  "SAKEET PURVA",
+  "MAYUR BIHAR",
+  "ADARSH NAGAR",
+  "SHIVANI BIHAR",
+  "RAJEEV NAGAR",
+];

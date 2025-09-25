@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Textarea } from "@/components/ui/textarea"
-import { CheckCircle, XCircle, X, Camera, Clock, MapPin, AlertCircle } from "lucide-react"
+import { CheckCircle, XCircle, Camera, Clock, MapPin, AlertCircle } from "lucide-react"
 
 interface FeedbackEntry {
   id: string
