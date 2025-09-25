@@ -10,7 +10,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Recycle, Users, Shield, Truck, ArrowRight, CheckCircle } from "lucide-react";
-import { useRouter } from "next/navigation";
 
 export default function HomePage() {
 

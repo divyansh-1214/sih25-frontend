@@ -15,7 +15,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { Camera,  RotateCcw, Send } from "lucide-react";
+import { Camera, RotateCcw, Send } from "lucide-react";
 import axios, { AxiosError } from "axios";
 import jsQR from "jsqr";
 
@@ -392,10 +392,8 @@ export default function QrScanner() {
 
   // Cleanup on unmount
   useEffect(() => {
-    return () => {
-      stopVideo();
-    };
-  }, [stopVideo]);
+    startVideo();
+  }, []);
 
   return (
     <div className="min-h-screen bg-background p-4">
@@ -452,7 +450,6 @@ export default function QrScanner() {
                 ref={videoRef}
                 className="w-full h-64 object-cover"
                 autoPlay
-                muted
                 playsInline
               />
               {isVideoActive && (
