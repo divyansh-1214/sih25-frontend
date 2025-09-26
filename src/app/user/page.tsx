@@ -68,7 +68,7 @@ export default function HomePage() {
               )}
               <Button asChild>
                 <Link
-                  href={token ? "/user/profile" : "/user/auth/login"}
+                  href={token ? "/user/profile" : "/auth/login"}
                   className="flex items-center"
                 >
                   {token ? "Profile" : "Login"}
