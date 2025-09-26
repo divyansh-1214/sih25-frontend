@@ -70,3 +70,41 @@ export async function getTodaySummary(): Promise<TodaySummary> {
     penaltiesIssued: 3,
   }
 }
+
+
+// ...existing code...
+
+export interface Worker {
+  _id: string
+  role: string
+  name: string
+  aadhar: string
+  address: string
+  phoneNumber: string
+  workerType: 'garbage_collector' | 'sweeper' | 'recycling_worker' | 'supervisor' | 'maintenance' | 'driver' | 'other'
+  email: string
+  createdAt?: string
+  updatedAt?: string
+}
+
+export async function getAllWorkers(): Promise<Worker[]> {
+  try {
+    const response = await fetch('/api/auth/worker/get', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch workers')
+    }
+
+    return await response.json()
+  } catch (error) {
+    console.error('Error fetching workers:', error)
+    throw error
+  }
+}
+
+// ...existing code...

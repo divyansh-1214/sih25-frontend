@@ -59,9 +59,6 @@ export default function SignupPage() {
         password,
         email,
       };
-
-      console.log('Sending registration data:', requestData);
-
       const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/register`, requestData, {
         headers: {
           'Content-Type': 'application/json',
