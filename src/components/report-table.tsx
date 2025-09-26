@@ -18,10 +18,11 @@ import {
 } from "@/components/ui/dialog"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
-import { Search, Eye, MapPin, Calendar, User, MessageSquare } from "lucide-react"
+import { Search, Eye, MapPin, Calendar, User, MessageSquare, AlertCircle, RefreshCw } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 import Image from "next/image"
-import {ward,type wardType} from "@/lib/ward"
+import { ward } from "@/lib/ward"
+
 interface CitizenReport {
   _id: string
   author: string
@@ -49,47 +50,58 @@ export function ReportTable() {
   const [selectedPriority, setSelectedPriority] = useState("all")
   const [selectedReport, setSelectedReport] = useState<CitizenReport | null>(null)
   const [resolutionNote, setResolutionNote] = useState("")
-  const [assignedTo, setAssignedTo] = useState<String>("a")
-  const [zone, SetZone] = useState<number>(0)
-  // Fetch reports from API
-  useEffect(() => {
-    const fetchReports = async () => {
-      try {
-        setLoading(true)
-        setError(null)
-        
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/reports/`)
-        console.log("Reports fetched:", response.data)
-        
-        setData(response.data)
-      } catch (error) {
-        console.error("Error fetching reports:", error)
-        
-        let errorMessage = "Failed to fetch reports"
-        if (error instanceof AxiosError) {
-          errorMessage = `Failed to fetch reports: ${error.response?.data?.message || error.message}`
-        } else if (error instanceof Error) {
-          errorMessage = `Failed to fetch reports: ${error.message}`
-        }
-        
-        setError(errorMessage)
-      } finally {
-        setLoading(false)
-      }
-    }
+  const [assignedTo, setAssignedTo] = useState<string>("")
+  const [zone, setZone] = useState<number>(0)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
+  // Fetch reports from API
+  const fetchReports = async () => {
+    try {
+      setLoading(true)
+      setError(null)
+      
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/reports/`)
+      console.log("Reports fetched:", response.data)
+      
+      setData(response.data)
+    } catch (error) {
+      console.error("Error fetching reports:", error)
+      
+      let errorMessage = "Failed to fetch reports"
+      if (error instanceof AxiosError) {
+        errorMessage = `Failed to fetch reports: ${error.response?.data?.message || error.message}`
+      } else if (error instanceof Error) {
+        errorMessage = `Failed to fetch reports: ${error.message}`
+      }
+      
+      setError(errorMessage)
+      toast({
+        title: "Error",
+        description: errorMessage,
+        variant: "destructive",
+      })
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
     fetchReports()
   }, [])
-  const  findHead = async (location: string) => {
+
+  const findHead = async (location: string) => {
     for (const v of ward) {
       for (const d of v.mohalla) {
         if (d === location) {
-          await setAssignedTo(v.corporator.name);
-          await SetZone(v.ward_no);
-          return; // Stop after first match
+          setAssignedTo(v.corporator.name)
+          setZone(v.ward_no)
+          return
         }
       }
     }
+    // Reset if no match found
+    setAssignedTo("")
+    setZone(0)
   }
   
   const filteredData = data.filter((report) => {
@@ -153,58 +165,92 @@ export function ReportTable() {
     }
   }
 
-  const handleResolve = () => {
-    if (!selectedReport || !resolutionNote.trim()) return
+  const handleAssign = async () => {
+    if (!selectedReport || !resolutionNote.trim() || !assignedTo) return
 
-    setData((prev) =>
-      prev.map((report) =>
-        report._id === selectedReport._id
-          ? {
-              ...report,
-              status: "resolved",
-              resolutionNote,
-              resolvedDate: new Date().toISOString().split("T")[0],
-            }
-          : report,
-      ),
-    )
+    setIsSubmitting(true)
+    try {
+      // Update local state
+      setData((prev) =>
+        prev.map((report) =>
+          report._id === selectedReport._id
+            ? {
+                ...report,
+                status: "in_progress",
+                assignedTo: assignedTo,
+                resolutionNote,
+              }
+            : report,
+        ),
+      )
 
-    toast({
-      title: "Report Resolved",
-      description: `Report ${selectedReport._id} has been marked as resolved.`,
-    })
+      toast({
+        title: "Report Assigned",
+        description: `Report ${selectedReport._id} has been assigned to ${assignedTo}.`,
+      })
 
-    setSelectedReport(null)
-    setResolutionNote("")
+      // Reset form
+      setSelectedReport(null)
+      setResolutionNote("")
+      setAssignedTo("")
+      setZone(0)
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to assign report. Please try again.",
+        variant: "destructive",
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  const retryFetch = () => {
+    fetchReports()
   }
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <MessageSquare className="w-5 h-5" />
-          Citizen Reports
-        </CardTitle>
-        <CardDescription>Manage and resolve citizen complaints and reports</CardDescription>
+        <div className="flex items-center justify-between">
+          <div>
+            <CardTitle className="flex items-center gap-2">
+              <MessageSquare className="w-5 h-5" />
+              Citizen Reports
+            </CardTitle>
+            <CardDescription>Manage and resolve citizen complaints and reports</CardDescription>
+          </div>
+          {!loading && (
+            <Button variant="outline" size="sm" onClick={retryFetch}>
+              <RefreshCw className="w-4 h-4 mr-2" />
+              Refresh
+            </Button>
+          )}
+        </div>
       </CardHeader>
-      <CardContent>
+      <CardContent className="space-y-6">
         {/* Loading State */}
         {loading && (
-          <div className="flex justify-center items-center py-8">
+          <div className="flex justify-center items-center py-12">
             <div className="text-center">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 mx-auto"></div>
-              <p className="mt-2 text-sm text-muted-foreground">Loading reports...</p>
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
+              <p className="mt-4 text-sm text-muted-foreground">Loading reports...</p>
             </div>
           </div>
         )}
 
         {/* Error State */}
         {error && (
-          <div className="bg-red-50 border border-red-200 rounded-md p-4">
-            <div className="flex items-center">
-              <div className="text-red-800">
-                <h3 className="text-sm font-medium">Error Loading Reports</h3>
-                <p className="text-sm mt-1">{error}</p>
+          <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-6">
+            <div className="flex items-start gap-3">
+              <AlertCircle className="w-5 h-5 text-destructive mt-0.5" />
+              <div className="flex-1">
+                <h3 className="text-sm font-medium text-destructive">Error Loading Reports</h3>
+                <p className="text-sm text-destructive/80 mt-1">{error}</p>
+                <Button variant="outline" size="sm" onClick={retryFetch} className="mt-3">
+                  <RefreshCw className="w-4 h-4 mr-2" />
+                  Try Again
+                </Button>
               </div>
             </div>
           </div>
@@ -213,181 +259,272 @@ export function ReportTable() {
         {/* Main Content - only show if not loading and no error */}
         {!loading && !error && (
           <>
-        {/* Filters */}
-        <div className="flex flex-col sm:flex-row gap-4 mb-6">
-          <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-            <Input
-              placeholder="Search by report ID, title, or reporter..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10"
-            />
-          </div>
-          <Select value={selectedStatus} onValueChange={setSelectedStatus}>
-            <SelectTrigger className="w-full sm:w-40">
-              <SelectValue placeholder="Status" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All Status</SelectItem>
-              <SelectItem value="pending">Pending</SelectItem>
-              <SelectItem value="assigned">Assigned</SelectItem>
-              <SelectItem value="in_progress">In Progress</SelectItem>
-              <SelectItem value="resolved">Resolved</SelectItem>
-              <SelectItem value="closed">Closed</SelectItem>
-            </SelectContent>
-          </Select>
-          <Select value={selectedPriority} onValueChange={setSelectedPriority}>
-            <SelectTrigger className="w-full sm:w-40">
-              <SelectValue placeholder="Priority" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All Priority</SelectItem>
-              <SelectItem value="urgent">Urgent</SelectItem>
-              <SelectItem value="high">High</SelectItem>
-              <SelectItem value="medium">Medium</SelectItem>
-              <SelectItem value="low">Low</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
+            {/* Filters */}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                <Input
+                  placeholder="Search by report ID, title, reporter, or location..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="pl-10"
+                />
+              </div>
+              <Select value={selectedStatus} onValueChange={setSelectedStatus}>
+                <SelectTrigger className="w-full sm:w-40">
+                  <SelectValue placeholder="Status" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Status</SelectItem>
+                  <SelectItem value="pending">Pending</SelectItem>
+                  <SelectItem value="assigned">Assigned</SelectItem>
+                  <SelectItem value="in_progress">In Progress</SelectItem>
+                  <SelectItem value="resolved">Resolved</SelectItem>
+                  <SelectItem value="closed">Closed</SelectItem>
+                </SelectContent>
+              </Select>
+              <Select value={selectedPriority} onValueChange={setSelectedPriority}>
+                <SelectTrigger className="w-full sm:w-40">
+                  <SelectValue placeholder="Priority" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Priority</SelectItem>
+                  <SelectItem value="urgent">Urgent</SelectItem>
+                  <SelectItem value="high">High</SelectItem>
+                  <SelectItem value="medium">Medium</SelectItem>
+                  <SelectItem value="low">Low</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
 
-        {/* Results Summary */}
-        <div className="mb-4 text-sm text-muted-foreground">
-          Showing {filteredData.length} of {data.length} reports
-        </div>
+            {/* Results Summary */}
+            <div className="flex items-center justify-between">
+              <div className="text-sm text-muted-foreground">
+                Showing {filteredData.length} of {data.length} reports
+              </div>
+              {filteredData.length === 0 && data.length > 0 && (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    setSearchTerm("")
+                    setSelectedStatus("all")
+                    setSelectedPriority("all")
+                  }}
+                >
+                  Clear Filters
+                </Button>
+              )}
+            </div>
 
-        {/* Table */}
-        <div className="rounded-md border">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Report ID</TableHead>
-                <TableHead>Title</TableHead>
-                <TableHead>Category</TableHead>
-                <TableHead>Priority</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>Reporter</TableHead>
-                <TableHead>Date</TableHead>
-                <TableHead>Actions</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {filteredData.map((report) => (
-                <TableRow key={report._id}>
-                  <TableCell className="font-medium">{report._id}</TableCell>
-                  <TableCell className="max-w-xs">
-                    <div className="truncate font-medium">{report.title}</div>
-                    <div className="text-sm text-muted-foreground truncate">{report.description}</div>
-                  </TableCell>
-                  <TableCell>{getCategoryLabel(report.category)}</TableCell>
-                  <TableCell>{getPriorityBadge(report.priority)}</TableCell>
-                  <TableCell>{getStatusBadge(report.status)}</TableCell>
-                  <TableCell>{report.author}</TableCell>
-                  <TableCell>{new Date(report.reportedAt).toLocaleDateString()}</TableCell>
-                  <TableCell>
-                    <Dialog>
-                      <DialogTrigger asChild>
-                        <Button variant="ghost" size="sm" onClick={() => {setSelectedReport(report); findHead(report.location)}}>
-                          <Eye className="w-4 h-4" />
-                        </Button>
-                      </DialogTrigger>
-                      <DialogContent className="max-w-2xl">
-                        <DialogHeader>
-                          <DialogTitle>{report.title}</DialogTitle>
-                          <DialogDescription>Report ID: {report._id}</DialogDescription>
-                        </DialogHeader>
-                        <div className="space-y-4">
-                          <div className="grid grid-cols-2 gap-4">
-                            <div>
-                              <Label className="text-sm font-medium">Status</Label>
-                              <div className="mt-1">{getStatusBadge(report.status)}</div>
-                            </div>
-                            <div>
-                              <Label className="text-sm font-medium">Priority</Label>
-                              <div className="mt-1">{getPriorityBadge(report.priority)}</div>
-                            </div>
+            {/* Empty State */}
+            {filteredData.length === 0 ? (
+              <div className="text-center py-12">
+                <MessageSquare className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+                <h3 className="text-lg font-medium text-foreground mb-2">
+                  {data.length === 0 ? "No Reports Found" : "No Matching Reports"}
+                </h3>
+                <p className="text-muted-foreground mb-4">
+                  {data.length === 0 
+                    ? "There are no citizen reports to display at the moment."
+                    : "Try adjusting your search criteria or filters."
+                  }
+                </p>
+                {data.length > 0 && (
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      setSearchTerm("")
+                      setSelectedStatus("all")
+                      setSelectedPriority("all")
+                    }}
+                  >
+                    Clear All Filters
+                  </Button>
+                )}
+              </div>
+            ) : (
+              /* Table */
+              <div className="rounded-lg border">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead className="w-32">Report ID</TableHead>
+                      <TableHead className="min-w-64">Title</TableHead>
+                      <TableHead>Category</TableHead>
+                      <TableHead>Priority</TableHead>
+                      <TableHead>Status</TableHead>
+                      <TableHead>Reporter</TableHead>
+                      <TableHead>Date</TableHead>
+                      <TableHead className="w-20">Actions</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {filteredData.map((report) => (
+                      <TableRow key={report._id} className="hover:bg-muted/50">
+                        <TableCell className="font-mono text-sm">{report._id.slice(-8)}</TableCell>
+                        <TableCell className="max-w-xs">
+                          <div className="space-y-1">
+                            <div className="truncate font-medium">{report.title}</div>
+                            <div className="text-sm text-muted-foreground truncate">{report.description}</div>
                           </div>
-
-                          <div>
-                            <Label className="text-sm font-medium">Description</Label>
-                            <p className="mt-1 text-sm">{report.description}</p>
-                          </div>
-
-                          <div className="grid grid-cols-2 gap-4">
-                            <div>
-                              <Label className="text-sm font-medium flex items-center gap-1">
-                                <User className="w-4 h-4" />
-                                Reported By
-                              </Label>
-                              <p className="mt-1 text-sm">{report.author}</p>
-                            </div>
-                            <div>
-                              <Label className="text-sm font-medium flex items-center gap-1">
-                                <Calendar className="w-4 h-4" />
-                                Date
-                              </Label>
-                              <p className="mt-1 text-sm">{new Date(report.reportedAt).toLocaleDateString()}</p>
-                            </div>
-                          </div>
-
-                          <div>
-                            <Label className="text-sm font-medium flex items-center gap-1">
-                              <MapPin className="w-4 h-4" />
-                              Location
-                            </Label>
-                            <p className="mt-1 text-sm">{report.location}</p>
-                          </div>
-
-                          {report.photoUrl && (
-                            <div>
-                              <Label className="text-sm font-medium">Photo Evidence</Label>
-                              <Image
-                                src={report.photoUrl || "/placeholder.svg"}
-                                alt="Report evidence"
-                                className="mt-1 rounded-lg border max-w-full h-48 object-cover"
-                                width={400}
-                                height={200}
-                              />
-                            </div>
-                          )}
-                          {assignedTo && (
-                            <div>
-                              <Label className="text-sm font-medium">Assigning to</Label>
-                              <p className="mt-1 text-sm">{assignedTo}</p>
-                            </div>
-                          )}
-                          {report.resolutionNote && (
-                            <div>
-                              <Label className="text-sm font-medium">Add note Note</Label>
-                              <p className="mt-1 text-sm">{report.resolutionNote}</p>
-                              <p className="text-xs text-muted-foreground">Resolved on {report.resolvedDate}</p>
-                            </div>
-                          )}
-                          {report.status !== "resolved" && report.status !== "closed" && (
-                            <div className="space-y-2">
-                              <Label htmlFor="resolution">Feedback Note</Label>
-                              <Textarea
-                                id="resolution"
-                                placeholder="Enter resolution details..."
-                                value={resolutionNote}
-                                onChange={(e) => setResolutionNote(e.target.value)}
-                                rows={3}
-                              />
-                              <Button onClick={handleResolve} disabled={!resolutionNote.trim()}>
-                                Assign to
+                        </TableCell>
+                        <TableCell>{getCategoryLabel(report.category)}</TableCell>
+                        <TableCell>{getPriorityBadge(report.priority)}</TableCell>
+                        <TableCell>{getStatusBadge(report.status)}</TableCell>
+                        <TableCell className="font-medium">{report.author}</TableCell>
+                        <TableCell className="text-sm">{new Date(report.reportedAt).toLocaleDateString()}</TableCell>
+                        <TableCell>
+                          <Dialog>
+                            <DialogTrigger asChild>
+                              <Button 
+                                variant="ghost" 
+                                size="sm" 
+                                onClick={() => {
+                                  setSelectedReport(report)
+                                  findHead(report.location)
+                                  setResolutionNote(report.resolutionNote || "")
+                                }}
+                              >
+                                <Eye className="w-4 h-4" />
                               </Button>
-                            </div>
-                          )}
-                        </div>
-                      </DialogContent>
-                    </Dialog>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </div>
-        </>
+                            </DialogTrigger>
+                            <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+                              <DialogHeader>
+                                <DialogTitle className="text-xl">{report.title}</DialogTitle>
+                                <DialogDescription>Report ID: {report._id}</DialogDescription>
+                              </DialogHeader>
+                              <div className="space-y-6">
+                                {/* Status and Priority Row */}
+                                <div className="grid grid-cols-2 gap-6">
+                                  <div>
+                                    <Label className="text-sm font-medium">Status</Label>
+                                    <div className="mt-2">{getStatusBadge(report.status)}</div>
+                                  </div>
+                                  <div>
+                                    <Label className="text-sm font-medium">Priority</Label>
+                                    <div className="mt-2">{getPriorityBadge(report.priority)}</div>
+                                  </div>
+                                </div>
+
+                                {/* Description */}
+                                <div>
+                                  <Label className="text-sm font-medium">Description</Label>
+                                  <div className="mt-2 p-3 bg-muted rounded-lg">
+                                    <p className="text-sm">{report.description}</p>
+                                  </div>
+                                </div>
+
+                                {/* Reporter and Date */}
+                                <div className="grid grid-cols-2 gap-6">
+                                  <div>
+                                    <Label className="text-sm font-medium flex items-center gap-2">
+                                      <User className="w-4 h-4" />
+                                      Reported By
+                                    </Label>
+                                    <p className="mt-2 text-sm font-medium">{report.author}</p>
+                                  </div>
+                                  <div>
+                                    <Label className="text-sm font-medium flex items-center gap-2">
+                                      <Calendar className="w-4 h-4" />
+                                      Date Reported
+                                    </Label>
+                                    <p className="mt-2 text-sm">{new Date(report.reportedAt).toLocaleDateString()}</p>
+                                  </div>
+                                </div>
+
+                                {/* Location */}
+                                <div>
+                                  <Label className="text-sm font-medium flex items-center gap-2">
+                                    <MapPin className="w-4 h-4" />
+                                    Location
+                                  </Label>
+                                  <p className="mt-2 text-sm font-medium">{report.location}</p>
+                                </div>
+
+                                {/* Assignment Info */}
+                                {assignedTo && (
+                                  <div className="grid grid-cols-2 gap-6 p-4 bg-blue-50 rounded-lg">
+                                    <div>
+                                      <Label className="text-sm font-medium text-blue-900">Assigned To</Label>
+                                      <p className="mt-1 text-sm font-medium text-blue-800">{assignedTo}</p>
+                                    </div>
+                                    <div>
+                                      <Label className="text-sm font-medium text-blue-900">Zone</Label>
+                                      <p className="mt-1 text-sm font-medium text-blue-800">Ward {zone}</p>
+                                    </div>
+                                  </div>
+                                )}
+
+                                {/* Photo Evidence */}
+                                {report.photoUrl && (
+                                  <div>
+                                    <Label className="text-sm font-medium">Photo Evidence</Label>
+                                    <div className="mt-2">
+                                      <Image
+                                        src={report.photoUrl}
+                                        alt="Report evidence"
+                                        className="rounded-lg border max-w-full h-64 object-cover"
+                                        width={400}
+                                        height={256}
+                                      />
+                                    </div>
+                                  </div>
+                                )}
+
+                                {/* Existing Resolution Note */}
+                                {report.resolutionNote && (
+                                  <div>
+                                    <Label className="text-sm font-medium">Resolution Note</Label>
+                                    <div className="mt-2 p-3 bg-green-50 rounded-lg">
+                                      <p className="text-sm">{report.resolutionNote}</p>
+                                      {report.resolvedDate && (
+                                        <p className="text-xs text-muted-foreground mt-2">
+                                          Resolved on {report.resolvedDate}
+                                        </p>
+                                      )}
+                                    </div>
+                                  </div>
+                                )}
+
+                                {/* Assignment Form */}
+                                {report.status !== "resolved" && report.status !== "closed" && (
+                                  <div className="space-y-4 p-4 bg-gray-50 rounded-lg">
+                                    <div>
+                                      <Label htmlFor="resolution" className="text-sm font-medium">
+                                        Assignment Note
+                                      </Label>
+                                      <Textarea
+                                        id="resolution"
+                                        placeholder="Enter assignment details or resolution notes..."
+                                        value={resolutionNote}
+                                        onChange={(e) => setResolutionNote(e.target.value)}
+                                        rows={3}
+                                        className="mt-2"
+                                      />
+                                    </div>
+                                    <div className="flex gap-3">
+                                      <Button 
+                                        onClick={handleAssign} 
+                                        disabled={!resolutionNote.trim() || !assignedTo || isSubmitting}
+                                        className="flex-1"
+                                      >
+                                        {isSubmitting ? "Assigning..." : `Assign to ${assignedTo || "Worker"}`}
+                                      </Button>
+                                    </div>
+                                  </div>
+                                )}
+                              </div>
+                            </DialogContent>
+                          </Dialog>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
+            )}
+          </>
         )}
       </CardContent>
     </Card>
