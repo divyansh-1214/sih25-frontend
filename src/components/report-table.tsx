@@ -200,6 +200,7 @@ export function ReportTable() {
         description: "Failed to assign report. Please try again.",
         variant: "destructive",
       })
+      console.log(error)
     } finally {
       setIsSubmitting(false)
     }

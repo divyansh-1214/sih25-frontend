@@ -25,7 +25,8 @@ export interface TrainingModule {
 }
 
 export interface CommunityReport {
-  id: string
+  _id: string
+  author:string | null
   title: string
   description: string
   category: "illegal_dumping" | "overflowing_bin" | "missed_collection" | "overflow_swvage" | "other"
@@ -220,33 +221,6 @@ export const mockTrainingModules: TrainingModule[] = [
         completed: false,
       },
     ],
-  },
-]
-
-export const mockCommunityReports: CommunityReport[] = [
-  {
-    id: "1",
-    title: "Overflowing Bin on Main Street",
-    description: "The recycling bin near the park is overflowing and attracting pests",
-    category: "overflowing_bin",
-    location: "Main Street Park",
-    status: "in_progress",
-    reportedAt: "2024-01-15T10:30:00Z",
-    reportedBy: "John Doe",
-    priority: "medium",
-    imageUrl:""
-  },
-  {
-    id: "2",
-    title: "Illegal Dumping Behind Shopping Center",
-    description: "Large furniture items dumped illegally behind the shopping center",
-    category: "illegal_dumping",
-    location: "Central Shopping Center",
-    status: "pending",
-    reportedAt: "2024-01-14T16:45:00Z",
-    reportedBy: "Jane Smith",
-    priority: "high",
-    imageUrl:""
   },
 ]
 
