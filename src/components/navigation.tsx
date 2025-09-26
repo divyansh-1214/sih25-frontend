@@ -43,7 +43,6 @@ export function Navigation() {
   };
   useEffect(() => {
     setToken(getCookie("authToken"));
-    console.log("Token:", token);
   }, [token]);
   return (
     <header className="border-b bg-card/50 backdrop-blur-sm sticky top-0 z-50">

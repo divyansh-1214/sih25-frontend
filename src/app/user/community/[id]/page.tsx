@@ -10,7 +10,8 @@ import { Badge } from "@/components/ui/badge"
 import { Textarea } from "@/components/ui/textarea"
 import { Navigation } from "@/components/navigation"
 import { ArrowLeft, MapPin, Calendar, User, MessageSquare, Send, CheckCircle, Clock, AlertTriangle } from "lucide-react"
-import { mockCommunityReports, type CommunityReport } from "@/lib/mock-data"
+import {CommunityReport } from "@/lib/mock-data"
+import axios from "axios"
 
 interface Comment {
   id: string
@@ -28,30 +29,20 @@ export default function ReportDetailPage() {
   const [newComment, setNewComment] = useState("")
   const [isSubmittingComment, setIsSubmittingComment] = useState(false)
 
-  useEffect(() => {
-    const foundReport = mockCommunityReports.find((r) => r.id === params.id)
-    if (foundReport) {
-      setReport(foundReport)
-      // Mock comments
-      setComments([
-        {
-          id: "1",
-          author: "City Waste Management",
-          content:
-            "Thank you for reporting this issue. We have assigned a team to investigate and will provide updates soon.",
-          timestamp: "2024-01-15T15:30:00Z",
-          isOfficial: true,
-        },
-        {
-          id: "2",
-          author: "Jane Smith",
-          content: "I've noticed this issue too. It's been getting worse over the past week.",
-          timestamp: "2024-01-15T16:45:00Z",
-          isOfficial: false,
-        },
-      ])
+    async function fechReport() {
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/reports/${params.id}`
+      );
+      setReport(response.data);
+    } catch (error) {
+      console.log(error);
     }
-  }, [params.id])
+  }
+
+  useEffect(() => {
+    fechReport();
+  },[]);
 
   if (!report) {
     return (
@@ -60,7 +51,7 @@ export default function ReportDetailPage() {
         <div className="container mx-auto px-4 py-8">
           <div className="text-center">
             <h1 className="text-2xl font-bold text-foreground mb-4">Report Not Found</h1>
-            <Button onClick={() => router.push("/community")}>
+            <Button onClick={() => router.push("/user/community")}>
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Community
             </Button>
@@ -148,7 +139,7 @@ export default function ReportDetailPage() {
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="flex items-center gap-4 mb-6">
-            <Button variant="outline" onClick={() => router.push("/community")} size="sm">
+            <Button variant="outline" onClick={() => router.push("/user/community")} size="sm">
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Community
             </Button>

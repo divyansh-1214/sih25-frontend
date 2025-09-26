@@ -122,9 +122,7 @@ export default function WorkersPage() {
           </CardContent>
         </Card>
       </div>
-
-      {/* Worker Table */}
-      <WorkerTable onEditWorker={handleEditWorker} />
+      <WorkerTable  />
     </div>
   )
 }

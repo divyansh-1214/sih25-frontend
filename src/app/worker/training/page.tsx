@@ -11,7 +11,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { Navigation } from "@/components/navigation";
 import {
   BookOpen,
   Clock,
@@ -82,7 +81,6 @@ export default function TrainingPage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-background">
-        <Navigation />
         <div className="container mx-auto px-4 py-8">
           <div className="max-w-6xl mx-auto">
             <div className="flex items-center justify-center min-h-[400px]">
@@ -102,7 +100,6 @@ export default function TrainingPage() {
   if (error) {
     return (
       <div className="min-h-screen bg-background">
-        <Navigation />
         <div className="container mx-auto px-4 py-8">
           <div className="max-w-6xl mx-auto">
             <div className="flex items-center justify-center min-h-[400px]">
@@ -141,7 +138,6 @@ export default function TrainingPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navigation />
 
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-6xl mx-auto">

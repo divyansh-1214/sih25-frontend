@@ -30,7 +30,7 @@ import {
   Camera,
   Send,
 } from "lucide-react";
-import { mockCommunityReports, type CommunityReport } from "@/lib/mock-data";
+import {CommunityReport } from "@/lib/mock-data";
 import Link from "next/link";
 import axios from "axios";
 import Image from "next/image";
@@ -52,30 +52,82 @@ interface ReportFormData {
   imageUrl: string;
 }
 
+// Utility function to remove duplicates from mohalla array
+const getUniqueMohallas = (mohallaList: string[]): string[] => {
+  return [...new Set(mohallaList)].sort();
+};
+
 export default function CommunityPage() {
   const [reports, setReports] =
-    useState<CommunityReport[]>(mockCommunityReports);
+    useState<CommunityReport[]>();
   const [showReportForm, setShowReportForm] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [priorityFilter, setPriorityFilter] = useState<string>("all");
+  
+  // Fix the type annotation
+  const getCookie = (name: string): string | null => {
+    if (typeof document === "undefined") return null;
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop()?.split(";").shift() || null;
+    return null;
+  };
+
+  const  getAuthor = async () => {
+    try {
+      const token = getCookie("authToken");
+      if (!token) {
+        throw new Error("No authentication token found. Please login again.");
+      }
+
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/profile`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          timeout: 10000,
+        }
+      );
+      console.log("Profile data received:", response.data);
+
+      const responseUser = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/profile/${response.data.user.id}`
+      );
+      
+      // Remove 'await' as setAuthor is not async, and store the name
+      localStorage.setItem("author",responseUser.data.name)
+      console.log(localStorage.getItem("author"));
+    } catch (error) {
+      console.log("Error fetching author:", error);
+    }
+  };
+
+  useEffect(() => {
+    getAuthor();
+  }, []);
+
+  // Get unique mohallas for the dropdown
+  const uniqueMohallas = getUniqueMohallas(mohalla);
+  async function fechReport() {
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/reports/`
+      );
+      setReports(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   useEffect(() => {
     fechReport();
-    async function fechReport() {
-      try {
-        const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/reports/`
-        );
-        setReports(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  });
+  },[]);
 
   // Filter reports based on search and filters
-  const filteredReports = reports.filter((report) => {
+  const filteredReports = (reports ?? []).filter((report) => {
     const matchesSearch =
       report.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       report.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -134,16 +186,15 @@ export default function CommunityPage() {
     });
   };
 
-  const pendingReports = reports.filter((r) => r.status === "pending").length;
-  const inProgressReports = reports.filter(
+  const pendingReports = (reports ?? []).filter((r) => r.status === "pending").length;
+  const inProgressReports = (reports ?? []).filter(
     (r) => r.status === "in_progress"
   ).length;
-  const resolvedReports = reports.filter((r) => r.status === "resolved").length;
+  const resolvedReports = (reports ?? []).filter((r) => r.status === "resolved").length;
 
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
@@ -224,7 +275,7 @@ export default function CommunityPage() {
                   </div>
                   <div>
                     <div className="text-2xl font-bold text-foreground">
-                      {reports.length}
+                      {(reports ?? []).length}
                     </div>
                     <div className="text-sm text-muted-foreground">
                       Total Reports
@@ -286,7 +337,7 @@ export default function CommunityPage() {
             {filteredReports.length > 0 ? (
               filteredReports.map((report) => (
                 <Card
-                  key={report.id}
+                  key={report._id}
                   className="hover:shadow-md transition-shadow"
                 >
                   <CardContent className="p-6">
@@ -329,7 +380,7 @@ export default function CommunityPage() {
                         </div>
                       </div>
                       <div className="flex gap-2">
-                        <Link href={`/user/community/${report.id}`}>
+                        <Link href={`/user/community/${report._id}`}>
                           <Button
                             variant="outline"
                             size="sm"
@@ -343,7 +394,7 @@ export default function CommunityPage() {
                   </CardContent>
                 </Card>
               ))
-            ) : (
+             ) : (
               <Card>
                 <CardContent className="p-12 text-center">
                   <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
@@ -383,9 +434,10 @@ export default function CommunityPage() {
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <ReportForm
+                    uniqueMohallas={uniqueMohallas}
                     onClose={() => setShowReportForm(false)}
                     onSubmit={(newReport) => {
-                      setReports([newReport, ...reports]);
+                      setReports([newReport, ...(reports ?? [])]);
                       setShowReportForm(false);
                     }}
                   />
@@ -400,11 +452,12 @@ export default function CommunityPage() {
 }
 
 interface ReportFormProps {
+  uniqueMohallas: string[];
   onClose: () => void;
   onSubmit: (report: CommunityReport) => void;
 }
 
-function ReportForm({ onClose }: ReportFormProps) {
+function ReportForm({ uniqueMohallas, onClose, onSubmit }: ReportFormProps) {
   const [formData, setFormData] = useState<ReportFormData>({
     title: "",
     description: "",
@@ -416,7 +469,6 @@ function ReportForm({ onClose }: ReportFormProps) {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -446,15 +498,15 @@ function ReportForm({ onClose }: ReportFormProps) {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    console.log("fuck yo");
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate form submission
+    const authorName = localStorage.getItem("author") || "Unknown";
     const newReport: CommunityReport = {
-      id: Date.now().toString(),
+      _id: Date.now().toString(),
+      author: authorName,
       title: formData.title,
       description: formData.description,
-      category: formData.category as ReportCategory, // Type assertion with proper type
+      category: formData.category as ReportCategory,
       location: formData.location,
       status: "pending",
       reportedAt: new Date().toISOString(),
@@ -467,7 +519,19 @@ function ReportForm({ onClose }: ReportFormProps) {
       `${process.env.NEXT_PUBLIC_API_URL}/api/reports/`,
       newReport
     );
+    onSubmit(newReport);
     setIsSubmitting(false);
+    setFormData({
+      title: "",
+      description: "",
+      category: "",
+      location: "",
+      priority: "medium",
+      imageUrl: "",
+    });
+    setSelectedImage(null);
+    setImagePreview(null);
+    onClose();
   };
 
   return (
@@ -523,7 +587,7 @@ function ReportForm({ onClose }: ReportFormProps) {
             <SelectValue placeholder="Select location/mohalla" />
           </SelectTrigger>
           <SelectContent className="max-h-60 overflow-y-auto">
-            {mohalla.map((location, index) => (
+            {uniqueMohallas.map((location, index) => (
               <SelectItem key={index} value={location}>
                 {location}
               </SelectItem>

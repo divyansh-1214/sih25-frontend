@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -9,106 +9,48 @@ import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Search, Eye, Edit, Plus, Phone } from "lucide-react"
+import axios from "axios"
 
-interface Worker {
-  id: string
+export interface Worker {
+  _id: string
+  role: string
   name: string
-  role: "collector" | "driver" | "supervisor" | "inspector"
-  phone: string
+  aadhar: string
+  address: string
+  phoneNumber: string
+  workerType: 'garbage_collector' | 'sweeper' | 'recycling_worker' | 'supervisor' | 'maintenance' | 'driver' | 'other'
   email: string
-  zone: string
-  status: "active" | "inactive" | "on_leave"
-  trainingCompleted: number
-  totalTrainings: number
-  complianceStatus: "good" | "warning" | "poor"
-  equipmentRequests: number
-  joinDate: string
+  createdAt?: string
+  updatedAt?: string
+  // Added properties for table usage
+  id?: string
+  status?: string
+  zone?: string
+  trainingCompleted?: number
+  totalTrainings?: number
   avatar?: string
+  complianceStatus?: string
+  equipmentRequests?: number
 }
 
-const mockWorkers: Worker[] = [
-  {
-    id: "WK-001",
-    name: "Rajesh Kumar",
-    role: "collector",
-    phone: "+91 9876543210",
-    email: "rajesh.kumar@greenauth.com",
-    zone: "Zone 1",
-    status: "active",
-    trainingCompleted: 8,
-    totalTrainings: 10,
-    complianceStatus: "good",
-    equipmentRequests: 2,
-    joinDate: "2023-06-15",
-  },
-  {
-    id: "WK-002",
-    name: "Priya Sharma",
-    role: "inspector",
-    phone: "+91 9876543211",
-    email: "priya.sharma@greenauth.com",
-    zone: "Zone 2",
-    status: "active",
-    trainingCompleted: 12,
-    totalTrainings: 12,
-    complianceStatus: "good",
-    equipmentRequests: 0,
-    joinDate: "2023-03-20",
-  },
-  {
-    id: "WK-003",
-    name: "Amit Patel",
-    role: "driver",
-    phone: "+91 9876543212",
-    email: "amit.patel@greenauth.com",
-    zone: "Zone 1",
-    status: "on_leave",
-    trainingCompleted: 6,
-    totalTrainings: 8,
-    complianceStatus: "warning",
-    equipmentRequests: 1,
-    joinDate: "2023-08-10",
-  },
-  {
-    id: "WK-004",
-    name: "Sunita Devi",
-    role: "supervisor",
-    phone: "+91 9876543213",
-    email: "sunita.devi@greenauth.com",
-    zone: "Zone 3",
-    status: "active",
-    trainingCompleted: 15,
-    totalTrainings: 15,
-    complianceStatus: "good",
-    equipmentRequests: 0,
-    joinDate: "2022-11-05",
-  },
-  {
-    id: "WK-005",
-    name: "Mohammed Ali",
-    role: "collector",
-    phone: "+91 9876543214",
-    email: "mohammed.ali@greenauth.com",
-    zone: "Zone 2",
-    status: "active",
-    trainingCompleted: 4,
-    totalTrainings: 10,
-    complianceStatus: "poor",
-    equipmentRequests: 3,
-    joinDate: "2024-01-08",
-  },
-]
-
-export function WorkerTable({ onEditWorker }: { onEditWorker: (worker: Worker) => void }) {
-  const [data] = useState(mockWorkers)
+export function WorkerTable() {
+  const [data,setData] = useState<Worker[]>()
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedRole, setSelectedRole] = useState("all")
   const [selectedStatus, setSelectedStatus] = useState("all")
   const [selectedZone, setSelectedZone] = useState("all")
-  const filteredData = data.filter((worker) => {
+   const fechData = async ()=>{
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/worker/get`)
+    setData(res.data)
+    console.log(data)
+  }
+  useEffect(()=>{
+    fechData()
+  },[])
+  const filteredData = (data ?? []).filter((worker) => {
     const matchesSearch =
       worker.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      worker.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (worker.id?.toLowerCase().includes(searchTerm.toLowerCase())) ||
       worker.email.toLowerCase().includes(searchTerm.toLowerCase())
     const matchesRole = selectedRole === "all" || worker.role === selectedRole
     const matchesStatus = selectedStatus === "all" || worker.status === selectedStatus
@@ -174,7 +116,7 @@ export function WorkerTable({ onEditWorker }: { onEditWorker: (worker: Worker) =
             <CardTitle>Worker Management</CardTitle>
             <CardDescription>Manage worker profiles, training, and compliance</CardDescription>
           </div>
-          <Button onClick={() => onEditWorker({} as Worker)}>
+          <Button >
             <Plus className="w-4 h-4 mr-2" />
             Add Worker
           </Button>
@@ -230,7 +172,7 @@ export function WorkerTable({ onEditWorker }: { onEditWorker: (worker: Worker) =
 
         {/* Results Summary */}
         <div className="mb-4 text-sm text-muted-foreground">
-          Showing {filteredData.length} of {data.length} workers
+          Showing {filteredData.length} of {(data?.length ?? 0)} workers
         </div>
 
         {/* Table */}
@@ -245,14 +187,13 @@ export function WorkerTable({ onEditWorker }: { onEditWorker: (worker: Worker) =
                 <TableHead>Training Progress</TableHead>
                 <TableHead>Compliance</TableHead>
                 <TableHead>Equipment Requests</TableHead>
-                <TableHead>Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {filteredData.map((worker) => {
-                const trainingProgress = getTrainingProgress(worker.trainingCompleted, worker.totalTrainings)
+                const trainingProgress = getTrainingProgress(worker.trainingCompleted ?? 0, worker.totalTrainings ?? 1)
                 return (
-                  <TableRow key={worker.id}>
+                  <TableRow key={worker.id ?? worker._id}>
                     <TableCell>
                       <div className="flex items-center gap-3">
                         <Avatar className="h-8 w-8">
@@ -266,17 +207,17 @@ export function WorkerTable({ onEditWorker }: { onEditWorker: (worker: Worker) =
                         </Avatar>
                         <div>
                           <div className="font-medium">{worker.name}</div>
-                          <div className="text-sm text-muted-foreground">{worker.id}</div>
+                          <div className="text-sm text-muted-foreground">{worker.id ?? worker._id}</div>
                           <div className="flex items-center gap-2 text-xs text-muted-foreground">
                             <Phone className="w-3 h-3" />
-                            {worker.phone}
+                            {worker.phoneNumber}
                           </div>
                         </div>
                       </div>
                     </TableCell>
                     <TableCell>{getRoleLabel(worker.role)}</TableCell>
-                    <TableCell>{worker.zone}</TableCell>
-                    <TableCell>{getStatusBadge(worker.status)}</TableCell>
+                    <TableCell>{worker.zone ?? "N/A"}</TableCell>
+                    <TableCell>{getStatusBadge(worker.status ?? "unknown")}</TableCell>
                     <TableCell>
                       <div className="space-y-1">
                         <div className="flex items-center gap-2">
@@ -287,30 +228,20 @@ export function WorkerTable({ onEditWorker }: { onEditWorker: (worker: Worker) =
                             />
                           </div>
                           <span className="text-xs text-muted-foreground">
-                            {worker.trainingCompleted}/{worker.totalTrainings}
+                            {(worker.trainingCompleted ?? 0)}/{(worker.totalTrainings ?? 1)}
                           </span>
                         </div>
                       </div>
                     </TableCell>
-                    <TableCell>{getComplianceBadge(worker.complianceStatus)}</TableCell>
+                    <TableCell>{getComplianceBadge(worker.complianceStatus ?? "unknown")}</TableCell>
                     <TableCell>
-                      {worker.equipmentRequests > 0 ? (
+                      {(worker.equipmentRequests ?? 0) > 0 ? (
                         <Badge variant="outline" className="text-orange-600 border-orange-600">
                           {worker.equipmentRequests} pending
                         </Badge>
                       ) : (
                         <span className="text-sm text-muted-foreground">None</span>
                       )}
-                    </TableCell>
-                    <TableCell>
-                      <div className="flex items-center gap-1">
-                        <Button variant="ghost" size="sm">
-                          <Eye className="w-4 h-4" />
-                        </Button>
-                        <Button variant="ghost" size="sm" onClick={() => onEditWorker(worker)}>
-                          <Edit className="w-4 h-4" />
-                        </Button>
-                      </div>
                     </TableCell>
                   </TableRow>
                 )

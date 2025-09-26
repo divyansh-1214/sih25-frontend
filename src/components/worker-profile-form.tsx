@@ -56,7 +56,6 @@ const equipmentTypes = [
   "Communication Device",
   "Uniform",
 ]
-
 export function WorkerProfileForm({
   worker,
   onSave,
