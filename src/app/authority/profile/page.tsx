@@ -71,8 +71,6 @@ export default function ProfilePage() {
         throw new Error("No authentication token found. Please login again.");
       }
 
-      console.log("Fetching worker profile with token:", token);
-
       // First, get the worker ID from the main profile endpoint
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_API_URL}/api/auth/worker/profile`,
@@ -85,14 +83,10 @@ export default function ProfilePage() {
         }
       );
 
-      console.log("Worker profile data received:", response.data);
-
       // Then get the detailed worker profile using the ID
       const detailedResponse = await axios.get(
         `${process.env.NEXT_PUBLIC_API_URL}/api/auth/authority/profile/${response.data.user.id}`
       );
-      
-      console.log("Detailed worker profile:", detailedResponse.data);
       setProfile(detailedResponse.data);
       generateQRCode(detailedResponse.data._id);
     } catch (error) {

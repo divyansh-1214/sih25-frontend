@@ -228,7 +228,7 @@ export default function SignupPage() {
             <Recycle className="h-8 w-8 text-white" />
           </div>
           <CardTitle className="text-2xl">Create Account</CardTitle>
-          <CardDescription>Join the waste management portal</CardDescription>
+          <CardDescription>Join the Swachsetu portal</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
