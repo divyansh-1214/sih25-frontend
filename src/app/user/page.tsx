@@ -46,18 +46,12 @@ export default function HomePage() {
         {/* Overlay for better text readability */}
         <div className="absolute inset-0 bg-background/80 backdrop-blur-sm"></div>
 
-        <div className="container mx-auto px-4 py-4 relative z-10">
+        <div className="container mx-auto px-4 py-1 relative z-10">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg">
-                <Recycle className="w-6 h-6 text-primary-foreground" />
-              </div>
-              <div>
-                <h1 className="text-xl font-bold text-foreground">GreenHome</h1>
-                <p className="text-xs text-muted-foreground">
-                  Smart Waste Management
-                </p>
-              </div>
+              <Link href="/" className="flex items-center">
+                <img src="/icon.png" alt="swach setu" className="w-16" />
+              </Link>
             </div>
             <div className="flex items-center gap-3">
               {token && (
@@ -347,7 +341,7 @@ export default function HomePage() {
         <div className="container mx-auto">
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold text-foreground mb-4">
-              Why Choose GreenHome?
+              Why Choose Swachsetu  ?
             </h3>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -398,7 +392,7 @@ export default function HomePage() {
             </div>
             <div>
               <span className="font-bold text-xl text-foreground">
-                GreenHome
+                Swachsetu
               </span>
               <p className="text-xs text-muted-foreground">
                 Smart Waste Management
@@ -409,7 +403,7 @@ export default function HomePage() {
             Making waste management smarter, one household at a time.
           </p>
           <p className="text-sm text-muted-foreground">
-            © 2024 GreenHome. All rights reserved.
+            © 2024 Swachsetu. All rights reserved.
           </p>
         </div>
       </footer>

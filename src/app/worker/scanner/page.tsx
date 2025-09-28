@@ -98,8 +98,6 @@ export default function QrScanner() {
   const fetchUserData = useCallback(
     async (userId: string) => {
       if (userId === "No result" || loading) return;
-
-      console.log("Attempting to fetch user data for ID:", userId);
       setLoading(true);
       setError(""); // Clear previous errors
 
@@ -124,7 +122,6 @@ export default function QrScanner() {
               params: { userId: userId },
             });
           } catch (secondError) {
-            console.log("Alternative endpoint failed, checking if it's a URL");
 
             // If the QR contains a URL, extract the ID from it
             if (userId.startsWith("http") && userId.includes("/profile/")) {
@@ -139,7 +136,6 @@ export default function QrScanner() {
         }
 
         setUserData(response.data);
-        console.log("User data fetched successfully:", response.data);
 
         // Pre-populate form with user data
         setFormData((prev) => ({
@@ -262,14 +258,12 @@ export default function QrScanner() {
           );
 
           if (qrCode && qrCode.data !== data) {
-            console.log("Raw QR Code Data:", qrCode.data);
 
             // Process the QR data - could be just an ID, URL, or JSON
             let processedData = qrCode.data;
 
             // If it's a URL, try to extract useful information
             if (qrCode.data.startsWith("http")) {
-              console.log("QR contains URL:", qrCode.data);
               // Extract ID from URL if it contains /profile/
               if (qrCode.data.includes("/profile/")) {
                 const urlParts = qrCode.data.split("/profile/");
@@ -338,8 +332,6 @@ export default function QrScanner() {
         scannedAt: new Date().toISOString(),
       };
 
-      console.log("Submitting evaluation:", submissionData);
-
       // Submit to your evaluation/feedback API endpoint
       const response = await axios.post(
         `${port}/api/worker/feedback/`,
@@ -351,8 +343,6 @@ export default function QrScanner() {
           },
         }
       );
-
-      console.log("Evaluation submitted successfully:", response.data);
 
       // Reset form after successful submission
       setFormData({
@@ -434,7 +424,6 @@ export default function QrScanner() {
                     onResult={(result, err) => {
                       if (result) {
                         setData(result.getText()); // ✅ show result
-                        console.log("Scanned QR:", result.getText());
                       }
                       if (err && !result) {
                         // log error, but don't spam UI state

@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import "../globals.css";
 
 export const metadata: Metadata = {
-  title: "GreenHome - Smart Waste Management",
+  title: "Swachsetu - Smart Waste Management",
   description:
     "Municipal waste management app with AI-powered segregation, community reporting, and green points system",
 };

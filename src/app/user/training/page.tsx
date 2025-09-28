@@ -65,7 +65,6 @@ export default function TrainingPage() {
         setError(null);
         const data = await trainingApi.getTrainingModules();
         setModules(data);
-        console.log(data);
       } catch (err) {
         setError(
           err instanceof Error ? err.message : "Failed to load training data"

@@ -149,7 +149,7 @@ export default function LoginPage() {
           </div>
           <CardTitle className="text-2xl">Welcome Back</CardTitle>
           <CardDescription>
-            Sign in to your waste management portal
+            Sign in to your Swachsetu portal
           </CardDescription>
         </CardHeader>
         <CardContent>

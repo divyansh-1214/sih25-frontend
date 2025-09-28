@@ -81,8 +81,6 @@ export default function TrainingModulePage() {
     updateLessonProgress: async (
       moduleId: string,
     ): Promise<void> => {
-      console.log(typeof(module));
-      
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/api/training/training/${moduleId}`,
         {

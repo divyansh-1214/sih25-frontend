@@ -34,8 +34,6 @@ export default function LoginPage() {
 
   const login = async (email: string, password: string) => {
     try {
-      console.log('Attempting login with:', { email });
-      
       const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/authority/login`, {
         email,
         password,
@@ -45,8 +43,6 @@ export default function LoginPage() {
         },
         timeout: 10000,
       });
-
-      console.log('Login successful:', response.data);
       
       // Extract token and user data from response
       const { token, user, ...otherData } = response.data;
@@ -59,8 +55,6 @@ export default function LoginPage() {
         if (user) {
           localStorage.setItem('userData', JSON.stringify(user));
         }
-        
-        console.log('Token stored in cookie:', token);
         return { success: true, token, user, ...otherData };
       } else {
         throw new Error('No token received from server');

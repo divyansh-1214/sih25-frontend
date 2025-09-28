@@ -81,8 +81,6 @@ export default function ProfilePage() {
         throw new Error("No authentication token found. Please login again.");
       }
 
-      console.log("Fetching profile with token:", token);
-
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_API_URL}/api/auth/profile`,
         {
@@ -93,8 +91,6 @@ export default function ProfilePage() {
           timeout: 10000,
         }
       );
-
-      console.log("Profile data received:", response.data);
 
       const responseUser = await axios.get(
         `${process.env.NEXT_PUBLIC_API_URL}/api/auth/profile/${response.data.user.id}`

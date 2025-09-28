@@ -46,14 +46,11 @@ export function Navigation() {
   }, [token]);
   return (
     <header className="border-b bg-card/50 backdrop-blur-sm sticky top-0 z-50">
-      <div className="container mx-auto px-4 py-4">
+      <div className="container mx-auto px-4 py-1">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              <Recycle className="w-5 h-5 text-primary-foreground" />
-            </div>
-            <h1 className="text-xl font-bold text-foreground">GreenHome</h1>
+          <Link href="/" className="flex items-center">
+            <img src="/icon.png" alt="swach setu" className="w-16" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -97,7 +94,7 @@ export function Navigation() {
                     <Recycle className="w-4 h-4 text-primary-foreground" />
                   </div>
                   <span className="font-semibold text-foreground">
-                    GreenHome
+                    Swachh Satu
                   </span>
                 </div>
                 <nav className="space-y-2">
